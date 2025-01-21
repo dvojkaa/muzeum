@@ -2,7 +2,6 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.PriceListBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.PriceListDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.PriceList;
 import org.mapstruct.Mapper;
 
 /**

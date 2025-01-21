@@ -2,9 +2,7 @@ package cz.cvut.fel.nss.SaunaStudio.bo;
 
 import cz.cvut.fel.nss.SaunaStudio.dao.EventDao;
 import cz.cvut.fel.nss.SaunaStudio.exception.MyException;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,7 +54,7 @@ public class ReservationBO {
     /**
      * Zákazník, který rezervaci provedl.
      */
-    private Customer customer;
+    private Employee employee;
 
     /**
      * Validuje rezervaci. Kontroluje platnost události a časy rezervace.

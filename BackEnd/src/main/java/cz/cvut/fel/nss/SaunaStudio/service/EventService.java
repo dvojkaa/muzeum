@@ -5,7 +5,6 @@ import cz.cvut.fel.nss.SaunaStudio.bo.EventBO;
 import cz.cvut.fel.nss.SaunaStudio.dao.EventDao;
 import cz.cvut.fel.nss.SaunaStudio.mapper.CalendarCriteriaMapper;
 import cz.cvut.fel.nss.SaunaStudio.mapper.EventMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

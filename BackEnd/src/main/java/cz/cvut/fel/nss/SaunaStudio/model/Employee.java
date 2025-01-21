@@ -12,12 +12,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username"),
-        @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
-        @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber")
+        @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Employee c WHERE c.email = :username"),
+        @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Employee c WHERE c.email = :email"),
+        @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber")
 
 })
-public class Customer extends User{
+public class Employee extends User{
 
     @Column(nullable = false)
     @Basic(optional = false)

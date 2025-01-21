@@ -2,8 +2,7 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.ReservationBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.ReservationDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
-import cz.cvut.fel.nss.SaunaStudio.model.ReservationStateType;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.annotation.processing.Generated;
@@ -35,7 +34,7 @@ public class ReservationMapperImpl implements ReservationMapper {
             reservationBO.setStateType( reservation.getStateType().name() );
         }
         reservationBO.setSaunaStudio( reservation.getSaunaStudio() );
-        reservationBO.setCustomer( reservation.getCustomer() );
+        reservationBO.setEmployee( reservation.getEmployee() );
 
         return reservationBO;
     }
@@ -58,7 +57,7 @@ public class ReservationMapperImpl implements ReservationMapper {
         }
         reservationDTO.setStateType( reservationBO.getStateType() );
         reservationDTO.setSaunaStudio( reservationBO.getSaunaStudio() );
-        reservationDTO.setCustomer( reservationBO.getCustomer() );
+        reservationDTO.setEmployee( reservationBO.getEmployee() );
 
         return reservationDTO;
     }
@@ -81,7 +80,7 @@ public class ReservationMapperImpl implements ReservationMapper {
         }
         reservationBO.setStateType( reservationDTO.getStateType() );
         reservationBO.setSaunaStudio( reservationDTO.getSaunaStudio() );
-        reservationBO.setCustomer( reservationDTO.getCustomer() );
+        reservationBO.setEmployee( reservationDTO.getEmployee() );
 
         return reservationBO;
     }
@@ -100,7 +99,7 @@ public class ReservationMapperImpl implements ReservationMapper {
         if ( reservationBO.getStateType() != null ) {
             reservation.setStateType( Enum.valueOf( ReservationStateType.class, reservationBO.getStateType() ) );
         }
-        reservation.setCustomer( reservationBO.getCustomer() );
+        reservation.setEmployee( reservationBO.getEmployee() );
         reservation.setEvent( reservationBO.getEvent() );
         reservation.setSaunaStudio( reservationBO.getSaunaStudio() );
 

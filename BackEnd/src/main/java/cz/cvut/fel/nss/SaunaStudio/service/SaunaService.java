@@ -6,9 +6,6 @@ import cz.cvut.fel.nss.SaunaStudio.dao.SaunaDao;
 import cz.cvut.fel.nss.SaunaStudio.exception.MyException;
 import cz.cvut.fel.nss.SaunaStudio.mapper.SaunaMapper;
 import cz.cvut.fel.nss.SaunaStudio.mapper.SaunaStudioMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Sauna;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaType;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

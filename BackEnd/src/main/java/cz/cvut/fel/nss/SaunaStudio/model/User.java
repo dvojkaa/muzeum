@@ -18,7 +18,7 @@ public abstract class User extends AbstractEntity {
 
     @Basic(optional = false)
     @Column(nullable = false)
-    private String username;
+    private String email;
 
     @Basic(optional = false)
     @Column(nullable = false)

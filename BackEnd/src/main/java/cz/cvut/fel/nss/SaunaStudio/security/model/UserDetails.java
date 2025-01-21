@@ -1,7 +1,7 @@
 package cz.cvut.fel.nss.SaunaStudio.security.model;
 
 import cz.cvut.fel.nss.SaunaStudio.model.Admin;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  * Uložené uživatelské detaily pro autentizaci a autorizaci v rámci Spring Security.
  * <p>
  * Třída {@link UserDetails} rozšiřuje {@link org.springframework.security.core.userdetails.User} a poskytuje
- * dodatečné informace o uživatelském objektu typu {@link Customer} nebo {@link Admin}.
+ * dodatečné informace o uživatelském objektu typu {@link Employee} nebo {@link Admin}.
  * </p>
  */
 public class UserDetails extends org.springframework.security.core.userdetails.User {
@@ -23,7 +23,7 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
      * Zákazník spojený s tímto uživatelským detailem, pokud je to relevantní.
      */
     @Getter
-    private final Customer customer;
+    private final Employee employee;
 
     /**
      * Administrátor spojený s tímto uživatelským detailem, pokud je to relevantní.
@@ -36,12 +36,12 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
     /**
      * Konstruktor pro {@link UserDetails} s objektem zákazníka.
      *
-     * @param customer    Zákazník spojený s tímto uživatelským detailem
+     * @param employee    Zákazník spojený s tímto uživatelským detailem
      * @param authorities Seznam oprávnění spojených s tímto uživatelským detailem
      */
-    public UserDetails(Customer customer, Collection<? extends GrantedAuthority> authorities) {
-        super(customer.getUsername(), customer.getPassword(), authorities);
-        this.customer = customer;
+    public UserDetails(Employee employee, Collection<? extends GrantedAuthority> authorities) {
+        super(employee.getEmail(), employee.getPassword(), authorities);
+        this.employee = employee;
         this.admin = null;
         this.authorities = new HashSet<>();
         this.authorities.addAll(authorities);
@@ -54,8 +54,8 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
      * @param authorities Seznam oprávnění spojených s tímto uživatelským detailem
      */
     public UserDetails(Admin admin, Collection<? extends GrantedAuthority> authorities) {
-        super(admin.getUsername(), admin.getPassword(), authorities);
-        this.customer = null;
+        super(admin.getEmail(), admin.getPassword(), authorities);
+        this.employee = null;
         this.admin = admin;
         this.authorities = new HashSet<>();
         this.authorities.addAll(authorities);
@@ -78,9 +78,9 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
      */
     @Override
     public String getPassword() {
-        if (customer == null)
+        if (employee == null)
             return admin.getPassword();
-        return customer.getPassword();
+        return employee.getPassword();
     }
 
     /**
@@ -90,9 +90,9 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
      */
     @Override
     public String getUsername() {
-        if (customer == null)
-            return admin.getUsername();
-        return customer.getUsername();
+        if (employee == null)
+            return admin.getEmail();
+        return employee.getEmail();
     }
 
     /**

@@ -1,14 +1,10 @@
 package cz.cvut.fel.nss.SaunaStudio.dto;
 
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 /**
  * Data Transfer Object (DTO) pro rezervaci.
@@ -56,6 +52,6 @@ public class ReservationDTO {
     /**
      * Zákazník, který provedl rezervaci.
      */
-    private Customer customer;
+    private Employee employee;
 
 }

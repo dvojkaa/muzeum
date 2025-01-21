@@ -1,6 +1,5 @@
 package cz.cvut.fel.nss.SaunaStudio.dto;
 
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -2,12 +2,10 @@ package cz.cvut.fel.nss.SaunaStudio.rest;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.CalendarCriteriaBO;
 import cz.cvut.fel.nss.SaunaStudio.bo.EventBO;
-import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteria;
 import cz.cvut.fel.nss.SaunaStudio.dto.CalendarCriteriaDTO;
 import cz.cvut.fel.nss.SaunaStudio.dto.EventDTO;
 import cz.cvut.fel.nss.SaunaStudio.mapper.CalendarCriteriaMapper;
 import cz.cvut.fel.nss.SaunaStudio.mapper.EventMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
 import cz.cvut.fel.nss.SaunaStudio.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

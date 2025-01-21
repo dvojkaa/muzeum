@@ -1,7 +1,5 @@
 package cz.cvut.fel.nss.SaunaStudio.bo;
 
-import cz.cvut.fel.nss.SaunaStudio.model.DurationType;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

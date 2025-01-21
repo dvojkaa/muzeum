@@ -3,9 +3,7 @@ package cz.cvut.fel.nss.SaunaStudio.dao;
 import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteria;
 import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteriaUtils;
 import cz.cvut.fel.nss.SaunaStudio.dto.HourlyOccupancy;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
-import cz.cvut.fel.nss.SaunaStudio.model.ReservationStateType;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.*;
@@ -37,13 +35,13 @@ public class ReservationDao extends BaseDao<Reservation> {
      *
      * <p>Pokud neexistují žádné rezervace pro zadaného zákazníka, metoda vrací {@code null}.</p>
      *
-     * @param customer Zákazník, jehož rezervace se hledají
+     * @param employee Zákazník, jehož rezervace se hledají
      * @return Seznam rezervací pro daného zákazníka nebo {@code null}, pokud žádné neexistují
      */
-    public List<Reservation> findByCustomer(Customer customer) {
+    public List<Reservation> findByCustomer(Employee employee) {
         try {
             return em.createNamedQuery("Reservation.findByCustomer", Reservation.class)
-                    .setParameter("customer", customer)
+                    .setParameter("customer", employee)
                     .getResultList();
         } catch (NoResultException e) {
             return null;

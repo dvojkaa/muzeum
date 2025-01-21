@@ -3,7 +3,7 @@ package cz.cvut.fel.nss.SaunaStudio.service.security;
 import cz.cvut.fel.nss.SaunaStudio.dao.AdminDao;
 import cz.cvut.fel.nss.SaunaStudio.dao.CustomerDao;
 import cz.cvut.fel.nss.SaunaStudio.model.Admin;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import cz.cvut.fel.nss.SaunaStudio.security.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,9 +53,9 @@ public class UserDetailsService implements org.springframework.security.core.use
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Customer customer = customerDao.findByUsername(username);
-        if (customer != null) {
-            return new UserDetails(customer, getAuthorities("ROLE_CUSTOMER"));
+        Employee employee = customerDao.findByUsername(username);
+        if (employee != null) {
+            return new UserDetails(employee, getAuthorities("ROLE_CUSTOMER"));
         }
 
         Admin admin = adminDao.findByUsername(username);

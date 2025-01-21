@@ -45,7 +45,7 @@ public class ReservationService {
      * @param reservationMapper Mapa pro převod mezi {@link ReservationBO} a {@link Reservation}
      * @param reservationDao DAO pro správu rezervací
      * @param eventDao DAO pro správu událostí
-     * @param customerMapper Mapa pro převod mezi {@link CustomerBO} a {@link Customer}
+     * @param customerMapper Mapa pro převod mezi {@link CustomerBO} a {@link Employee}
      * @param saunaStudioDao DAO pro správu saunových studií
      */
     @Autowired
@@ -74,12 +74,12 @@ public class ReservationService {
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @Transactional
     public Reservation create(ReservationBO reservationBO) {
-        Customer customer = Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getCustomer();
+        Employee employee = Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getEmployee();
         Objects.requireNonNull(reservationBO, "Reservation must not be null");
-        Objects.requireNonNull(customer, "Customer must not be null");
+        Objects.requireNonNull(employee, "Customer must not be null");
 
         reservationBO.validate(eventDao);
-        reservationBO.setCustomer(customer);
+        reservationBO.setEmployee(employee);
 
         Reservation reservation = reservationMapper.reservationBoToReservation(reservationBO);
         reservationDao.persist(reservation);
@@ -100,10 +100,10 @@ public class ReservationService {
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN')")
     @Transactional
     public List<Reservation> findByCustomer() {
-        Customer customer = Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getCustomer();
-        Objects.requireNonNull(customer, "Customer must not be null");
+        Employee employee = Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getEmployee();
+        Objects.requireNonNull(employee, "Customer must not be null");
 
-        return reservationElasticsearchRepository.findByCustomer(customer); // Use Elasticsearch repository
+        return reservationElasticsearchRepository.findByCustomer(employee); // Use Elasticsearch repository
     }
 
     /**
@@ -119,10 +119,10 @@ public class ReservationService {
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN')")
     @Transactional
     public List<Reservation> findByCustomer(CustomerBO customerBO) {
-        Customer customer = customerMapper.customerBoToCustomer(customerBO);
-        Objects.requireNonNull(customer, "Customer must not be null");
+        Employee employee = customerMapper.customerBoToCustomer(customerBO);
+        Objects.requireNonNull(employee, "Customer must not be null");
 
-        return reservationElasticsearchRepository.findByCustomer(customer); // Use Elasticsearch repository
+        return reservationElasticsearchRepository.findByCustomer(employee); // Use Elasticsearch repository
     }
 
     /**

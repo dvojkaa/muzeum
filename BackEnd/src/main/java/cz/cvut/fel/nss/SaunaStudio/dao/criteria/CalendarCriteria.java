@@ -1,6 +1,5 @@
 package cz.cvut.fel.nss.SaunaStudio.dao.criteria;
 
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

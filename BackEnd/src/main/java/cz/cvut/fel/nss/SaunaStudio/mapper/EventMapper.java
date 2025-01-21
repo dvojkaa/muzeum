@@ -2,7 +2,6 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.EventBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.EventDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
 import org.mapstruct.Mapper;
 
 /**

@@ -47,7 +47,7 @@ public class AdminController {
      * @param saunaStudioService Služba pro správu operací spojených se saunovými studii
      * @param reservationService Služba pro správu operací spojených s rezervacemi
      * @param customerService Služba pro správu operací spojených se zákazníky
-     * @param customerMapper Maper pro převod {@link CustomerDTO} na {@link Customer}
+     * @param customerMapper Maper pro převod {@link CustomerDTO} na {@link Employee}
      * @param priceListMapper Maper pro převod {@link PriceListDTO} na {@link PriceList}
      * @param adminMapper Maper pro převod {@link AdminDTO} na {@link Admin}
      * @param saunaStudioMapper Maper pro převod {@link SaunaStudioDTO} na {@link SaunaStudio}
@@ -98,11 +98,11 @@ public class AdminController {
      * </p>
      *
      * @param customerDTO Data transfer objekt obsahující údaje o zákazníkovi
-     * @return {@link Customer} entita spojená s poskytnutým telefonním číslem
+     * @return {@link Employee} entita spojená s poskytnutým telefonním číslem
      */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/info")
-    public Customer getCustomerInfo(@RequestBody CustomerDTO customerDTO) {
+    public Employee getCustomerInfo(@RequestBody CustomerDTO customerDTO) {
         return customerService.findByPhoneNumber(customerDTO.getPhoneNumber());
     }
 

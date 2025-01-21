@@ -3,7 +3,7 @@ package cz.cvut.fel.nss.SaunaStudio.rest;
 import cz.cvut.fel.nss.SaunaStudio.bo.CustomerBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.CustomerRegistrationDTO;
 import cz.cvut.fel.nss.SaunaStudio.mapper.CustomerMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import cz.cvut.fel.nss.SaunaStudio.security.SecurityUtils;
 import cz.cvut.fel.nss.SaunaStudio.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +50,10 @@ public class CustomerController {
      * </p>
      *
      * @param customerRegistrationDTO Data transfer objekt obsahující údaje o registraci zákazníka
-     * @return Vytvořený {@link Customer} entita
+     * @return Vytvořený {@link Employee} entita
      */
     @PostMapping(value = "/registration", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Customer customerRegistration(@RequestBody CustomerRegistrationDTO customerRegistrationDTO) {
+    public Employee customerRegistration(@RequestBody CustomerRegistrationDTO customerRegistrationDTO) {
         return customerService.create(customerMapper.customerRegistrationDtoToCustomerBO(customerRegistrationDTO));
     }
 
@@ -65,13 +65,13 @@ public class CustomerController {
      * Přístup je omezen pouze na autentizované zákazníky.
      * </p>
      *
-     * @return {@link Customer} entita spojená s aktuálním uživatelským jménem
+     * @return {@link Employee} entita spojená s aktuálním uživatelským jménem
      */
     @CachePut(value = "userCache", key = "#root.target.getCurrentUsername()")
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @GetMapping(value = "/info")
-    public Customer getCustomerInfo() {
-        return Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getCustomer();
+    public Employee getCustomerInfo() {
+        return Objects.requireNonNull(SecurityUtils.getCurrentUserDetails()).getEmployee();
     }
 
     /**

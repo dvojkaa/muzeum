@@ -3,7 +3,7 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 import cz.cvut.fel.nss.SaunaStudio.bo.CalendarCriteriaBO;
 import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteria;
 import cz.cvut.fel.nss.SaunaStudio.dto.CalendarCriteriaDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.annotation.processing.Generated;

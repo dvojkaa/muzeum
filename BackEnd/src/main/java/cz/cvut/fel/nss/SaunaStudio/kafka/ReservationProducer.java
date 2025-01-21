@@ -1,6 +1,5 @@
 package cz.cvut.fel.nss.SaunaStudio.kafka;
 
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 

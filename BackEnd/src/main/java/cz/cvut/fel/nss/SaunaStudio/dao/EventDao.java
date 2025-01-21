@@ -2,8 +2,6 @@ package cz.cvut.fel.nss.SaunaStudio.dao;
 
 import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteriaUtils;
 import cz.cvut.fel.nss.SaunaStudio.dao.criteria.CalendarCriteria;
-import cz.cvut.fel.nss.SaunaStudio.model.Event;
-import cz.cvut.fel.nss.SaunaStudio.model.Sauna;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.*;
 import org.springframework.stereotype.Repository;

@@ -2,7 +2,7 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.SaunaStudioBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.SaunaStudioDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
+
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 

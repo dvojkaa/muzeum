@@ -4,7 +4,7 @@ import cz.cvut.fel.nss.SaunaStudio.bo.CustomerBO;
 import cz.cvut.fel.nss.SaunaStudio.dao.CustomerDao;
 import cz.cvut.fel.nss.SaunaStudio.exception.MyException;
 import cz.cvut.fel.nss.SaunaStudio.mapper.CustomerMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class CustomerService {
      *
      * @param passwordEncoder Kódovač hesel pro šifrování hesel zákazníků
      * @param customerDao DAO pro správu zákazníků
-     * @param customerMapper Mapa pro převod mezi {@link CustomerBO} a {@link Customer}
+     * @param customerMapper Mapa pro převod mezi {@link CustomerBO} a {@link Employee}
      */
     @Autowired
     public CustomerService(PasswordEncoder passwordEncoder, CustomerDao customerDao, CustomerMapper customerMapper) {
@@ -50,20 +50,20 @@ public class CustomerService {
      * </p>
      *
      * @param customerBO Business objekt obsahující informace o zákazníkovi
-     * @return Vytvořený {@link Customer}
+     * @return Vytvořený {@link Employee}
      * @throws MyException Pokud uživatelské jméno nebo email již existují
      */
     @Transactional
-    public Customer create(CustomerBO customerBO) {
+    public Employee create(CustomerBO customerBO) {
         Objects.requireNonNull(customerBO);
         if (customerDao.findByUsername(customerBO.getUsername()) != null)
             throw new MyException("Username is already taken.");
         if (customerDao.findByEmail(customerBO.getEmail()) != null)
             throw new MyException("Email is already used by different account.");
 
-        Customer customer = customerMapper.customerBoToCustomer(customerBO);
-        customerDao.persist(customer);
-        return customer;
+        Employee employee = customerMapper.customerBoToCustomer(customerBO);
+        customerDao.persist(employee);
+        return employee;
     }
 
     /**
@@ -73,11 +73,11 @@ public class CustomerService {
      * </p>
      *
      * @param username Uživatelské jméno zákazníka
-     * @return {@link Customer} zákazník s daným uživatelským jménem
+     * @return {@link Employee} zákazník s daným uživatelským jménem
      */
     @Cacheable(value = "userCache", key = "#username")
     @Transactional
-    public Customer findByUsername(String username) {
+    public Employee findByUsername(String username) {
         return customerDao.findByUsername(username);
     }
 
@@ -88,11 +88,11 @@ public class CustomerService {
      * </p>
      *
      * @param phoneNumber Telefonní číslo zákazníka
-     * @return {@link Customer} zákazník s daným telefonním číslem
+     * @return {@link Employee} zákazník s daným telefonním číslem
      */
     @Cacheable(value = "userCache", key = "#phoneNumber")
     @Transactional
-    public Customer findByPhoneNumber(String phoneNumber) {
+    public Employee findByPhoneNumber(String phoneNumber) {
         return customerDao.findByPhoneNumber(phoneNumber);
     }
 
@@ -103,11 +103,11 @@ public class CustomerService {
      * </p>
      *
      * @param email Email zákazníka
-     * @return {@link Customer} zákazník s daným emailem
+     * @return {@link Employee} zákazník s daným emailem
      */
     @Cacheable(value = "userCache", key = "#email")
     @Transactional
-    public Customer findByEmail(String email) {
+    public Employee findByEmail(String email) {
         return customerDao.findByEmail(email);
     }
 
@@ -125,10 +125,10 @@ public class CustomerService {
     /**
      * Získá seznam všech zákazníků.
      *
-     * @return List všech {@link Customer} zákazníků
+     * @return List všech {@link Employee} zákazníků
      */
     @Transactional
-    public List<Customer> getCustomers() {
+    public List<Employee> getCustomers() {
         return customerDao.findAll();
     }
 }

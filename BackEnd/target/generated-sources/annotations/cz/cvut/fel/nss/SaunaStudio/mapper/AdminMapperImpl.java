@@ -22,7 +22,7 @@ public class AdminMapperImpl implements AdminMapper {
 
         AdminBO adminBO = new AdminBO();
 
-        adminBO.setUsername( admin.getUsername() );
+        adminBO.setUsername( admin.getEmail() );
         adminBO.setPassword( admin.getPassword() );
 
         return adminBO;
@@ -64,7 +64,7 @@ public class AdminMapperImpl implements AdminMapper {
 
         Admin admin = new Admin();
 
-        admin.setUsername( adminBO.getUsername() );
+        admin.setEmail( adminBO.getUsername() );
         admin.setPassword( adminBO.getPassword() );
 
         return admin;

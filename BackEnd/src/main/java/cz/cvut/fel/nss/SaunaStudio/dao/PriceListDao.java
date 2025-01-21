@@ -1,7 +1,5 @@
 package cz.cvut.fel.nss.SaunaStudio.dao;
 
-import cz.cvut.fel.nss.SaunaStudio.model.PriceList;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
 import jakarta.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package cz.cvut.fel.nss.SaunaStudio.security;
 
 import cz.cvut.fel.nss.SaunaStudio.model.Admin;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import cz.cvut.fel.nss.SaunaStudio.security.model.UserDetails;
 import cz.cvut.fel.nss.SaunaStudio.model.User;
 import org.springframework.security.core.context.SecurityContext;
@@ -19,7 +19,7 @@ public class SecurityUtils {
     /**
      * Získá aktuálně přihlášeného uživatele.
      * <p>
-     * Pokud je aktuálně přihlášený uživatel typu {@link UserDetails}, vrátí buď {@link Customer},
+     * Pokud je aktuálně přihlášený uživatel typu {@link UserDetails}, vrátí buď {@link Employee},
      * nebo {@link Admin} podle toho, kdo je přihlášen. Pokud není nikdo přihlášen, vrátí {@code null}.
      * </p>
      *
@@ -28,7 +28,7 @@ public class SecurityUtils {
     public static User getCurrentUser() {
         final UserDetails ud = getCurrentUserDetails();
         if (ud != null)
-            return ud.getCustomer() == null ? ud.getAdmin() : ud.getCustomer();
+            return ud.getEmployee() == null ? ud.getAdmin() : ud.getEmployee();
         return null;
     }
 

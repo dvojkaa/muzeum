@@ -1,7 +1,6 @@
 package cz.cvut.fel.nss.SaunaStudio.elasticsearch;
 
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
@@ -21,10 +20,10 @@ public interface ReservationElasticsearchRepository extends ElasticsearchReposit
     /**
      * Vyhledává rezervace spojené se specifickým zákazníkem.
      *
-     * @param customer Zákazník, jehož rezervace mají být vyhledány
+     * @param employee Zákazník, jehož rezervace mají být vyhledány
      * @return Seznam rezervací spojených s daným zákazníkem
      */
-    List<Reservation> findByCustomer(Customer customer);
+    List<Reservation> findByCustomer(Employee employee);
 
     /**
      * Vyhledává rezervace s počátečními časy mezi zadanými začátkem a koncem.

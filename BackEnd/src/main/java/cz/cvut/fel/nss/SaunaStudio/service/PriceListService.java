@@ -6,8 +6,6 @@ import cz.cvut.fel.nss.SaunaStudio.dao.PriceListDao;
 import cz.cvut.fel.nss.SaunaStudio.exception.MyException;
 import cz.cvut.fel.nss.SaunaStudio.mapper.PriceListMapper;
 import cz.cvut.fel.nss.SaunaStudio.mapper.SaunaStudioMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.PriceList;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -2,7 +2,6 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.ReservationBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.ReservationDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 

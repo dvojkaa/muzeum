@@ -3,7 +3,6 @@ package cz.cvut.fel.nss.SaunaStudio.rest;
 import cz.cvut.fel.nss.SaunaStudio.bo.SaunaStudioBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.SaunaStudioDTO;
 import cz.cvut.fel.nss.SaunaStudio.mapper.SaunaStudioMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.SaunaStudio;
 import cz.cvut.fel.nss.SaunaStudio.service.SaunaStudioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

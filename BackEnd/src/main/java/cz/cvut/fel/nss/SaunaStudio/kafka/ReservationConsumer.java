@@ -2,9 +2,6 @@ package cz.cvut.fel.nss.SaunaStudio.kafka;
 
 import cz.cvut.fel.nss.SaunaStudio.dto.ReservationDTO;
 import cz.cvut.fel.nss.SaunaStudio.mapper.ReservationMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
-import cz.cvut.fel.nss.SaunaStudio.security.SecurityUtils;
 import cz.cvut.fel.nss.SaunaStudio.service.ReservationService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

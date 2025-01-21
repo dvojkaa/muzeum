@@ -3,8 +3,9 @@ package cz.cvut.fel.nss.SaunaStudio.mapper;
 import cz.cvut.fel.nss.SaunaStudio.bo.CustomerBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.CustomerDTO;
 import cz.cvut.fel.nss.SaunaStudio.dto.CustomerRegistrationDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.Customer;
+import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import javax.annotation.processing.Generated;
+
 import org.springframework.stereotype.Component;
 
 @Generated(
@@ -16,19 +17,19 @@ import org.springframework.stereotype.Component;
 public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
-    public CustomerBO customerToCustomerBO(Customer customer) {
-        if ( customer == null ) {
+    public CustomerBO customerToCustomerBO(Employee employee) {
+        if ( employee == null ) {
             return null;
         }
 
         CustomerBO customerBO = new CustomerBO();
 
-        customerBO.setUsername( customer.getUsername() );
-        customerBO.setPassword( customer.getPassword() );
-        customerBO.setFirstName( customer.getFirstName() );
-        customerBO.setLastName( customer.getLastName() );
-        customerBO.setEmail( customer.getEmail() );
-        customerBO.setPhoneNumber( customer.getPhoneNumber() );
+        customerBO.setUsername( employee.getEmail() );
+        customerBO.setPassword( employee.getPassword() );
+        customerBO.setFirstName( employee.getFirstName() );
+        customerBO.setLastName( employee.getLastName() );
+        customerBO.setEmail( employee.getEmail() );
+        customerBO.setPhoneNumber( employee.getPhoneNumber() );
 
         return customerBO;
     }
@@ -66,21 +67,21 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public Customer customerBoToCustomer(CustomerBO customerBO) {
+    public Employee customerBoToCustomer(CustomerBO customerBO) {
         if ( customerBO == null ) {
             return null;
         }
 
-        Customer customer = new Customer();
+        Employee employee = new Employee();
 
-        customer.setUsername( customerBO.getUsername() );
-        customer.setPassword( customerBO.getPassword() );
-        customer.setFirstName( customerBO.getFirstName() );
-        customer.setLastName( customerBO.getLastName() );
-        customer.setEmail( customerBO.getEmail() );
-        customer.setPhoneNumber( customerBO.getPhoneNumber() );
+        employee.setEmail( customerBO.getUsername() );
+        employee.setPassword( customerBO.getPassword() );
+        employee.setFirstName( customerBO.getFirstName() );
+        employee.setLastName( customerBO.getLastName() );
+        employee.setEmail( customerBO.getEmail() );
+        employee.setPhoneNumber( customerBO.getPhoneNumber() );
 
-        return customer;
+        return employee;
     }
 
     @Override

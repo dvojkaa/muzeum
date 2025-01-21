@@ -3,8 +3,6 @@ package cz.cvut.fel.nss.SaunaStudio.rest;
 import cz.cvut.fel.nss.SaunaStudio.bo.ReservationBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.HourlyOccupancy;
 import cz.cvut.fel.nss.SaunaStudio.mapper.ReservationMapper;
-import cz.cvut.fel.nss.SaunaStudio.model.Reservation;
-import cz.cvut.fel.nss.SaunaStudio.security.SecurityUtils;
 import cz.cvut.fel.nss.SaunaStudio.dto.ReservationDTO;
 import cz.cvut.fel.nss.SaunaStudio.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
