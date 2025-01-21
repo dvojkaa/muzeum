@@ -1,5 +1,6 @@
-package cz.cvut.fel.nss.SaunaStudio.model;
+package cz.cvut.fel.MuzeumSys.model;
 
+import cz.cvut.fel.nss.SaunaStudio.model.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -12,8 +13,8 @@ import lombok.Setter;
 @Setter
 @Entity(name = "admins")
 @NamedQueries({
-        @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.username = :username")
+        @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.email = :username")
 })
-public class Admin extends User{
+public class Admin extends User {
 
 }

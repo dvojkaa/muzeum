@@ -1,5 +1,6 @@
-package cz.cvut.fel.nss.SaunaStudio.model;
+package cz.cvut.fel.MuzeumSys.model;
 
+import cz.cvut.fel.nss.SaunaStudio.model.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public abstract class User extends AbstractEntity {
 
     @Basic(optional = false)
     @Column(nullable = false)
-    private String username;
+    private String email;
 
     @Basic(optional = false)
     @Column(nullable = false)
