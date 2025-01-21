@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
  * v databázi prostřednictvím JPA.
  */
 @Repository
-public class AdminDao extends BaseDao<Admin> {
+public class AdminDAO extends BaseDao<Admin> {
 
     /**
-     * Konstruktor pro inicializaci {@link AdminDao} s entitou {@link Admin}.
+     * Konstruktor pro inicializaci {@link AdminDAO} s entitou {@link Admin}.
      */
-    protected AdminDao() {
+    protected AdminDAO() {
         super(Admin.class);
     }
 
