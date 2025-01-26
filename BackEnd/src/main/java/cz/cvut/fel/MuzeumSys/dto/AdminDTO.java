@@ -18,7 +18,7 @@ public class AdminDTO {
     /**
      * Uživatelské jméno administrátora.
      */
-    private String username;
+    private String emaol;
 
     /**
      * Heslo administrátora.
