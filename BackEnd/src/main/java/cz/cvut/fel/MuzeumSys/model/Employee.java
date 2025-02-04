@@ -14,7 +14,8 @@ import lombok.Setter;
 @NamedQueries({
         @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Employee c WHERE c.email = :username"),
         @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Employee c WHERE c.email = :email"),
-        @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber")
+        @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber"),
+        @NamedQuery(name = "Customer.findByEmailAndPassword", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber ")
 
 })
 public class Employee extends User {
