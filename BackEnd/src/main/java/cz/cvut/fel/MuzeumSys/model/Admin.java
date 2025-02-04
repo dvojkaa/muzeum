@@ -16,12 +16,5 @@ import lombok.Setter;
         @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.email = :email")
 })
 public class Admin extends User {
-+id:Double
-+ name:String
-+ era:enum
-+ type:enum
-+ qrCode:Double
-+ discription:String
-+ parametrs:Pair<int,int>
-+ Author:String
+
 }
