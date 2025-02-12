@@ -1,21 +1,17 @@
 package cz.cvut.fel.MuzeumSys.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
- * Data Transfer Object (DTO) pro QR kód.
- *
- * <p>Tato třída slouží k přenosu informací o QR kódu mezi vrstvami aplikace,
- * například mezi kontrolery a službami.</p>
+ * Data Transfer Object for QRCode entity.
  */
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class QRCodeDTO {
 
-
+    private Integer id;
+    private String qrCode;
+    private String color;
+    private String imagePath;
 }
