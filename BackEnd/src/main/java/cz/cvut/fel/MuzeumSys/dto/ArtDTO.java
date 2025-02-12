@@ -1,33 +1,23 @@
 package cz.cvut.fel.MuzeumSys.dto;
 
-import cz.cvut.fel.MuzeumSys.model.Era;
-import cz.cvut.fel.MuzeumSys.model.Type;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
- * Data Transfer Object (DTO) pro exponát.
- *
- * <p>Tato třída slouží k přenosu informací o exponátech mezi vrstvami aplikace,
- * například mezi kontrolery a službami.</p>
+ * Data Transfer Object for Art entity.
  */
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class ArtDTO {
 
+    private Integer id;
     private String name;
-
+    private String era;
+    private String type;
+    private String qrCode;
     private String description;
-
-    private Era era;
-
-    private Type type;
-
+    private String parameters;
     private String author;
-
-    private Double qrCode;
+    private Integer groupId;
+    private Integer roomId;
 }

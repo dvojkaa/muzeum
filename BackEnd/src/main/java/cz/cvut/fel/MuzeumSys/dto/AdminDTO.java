@@ -1,28 +1,17 @@
 package cz.cvut.fel.MuzeumSys.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
- * Data Transfer Object (DTO) pro administrátora.
- * Tato třída slouží k přenosu údajů o administrátorovi mezi vrstvami aplikace.
+ * Data Transfer Object for Admin entity.
  */
-@Setter
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class AdminDTO {
 
-    /**
-     * Uživatelské jméno administrátora.
-     */
-    private String emaol;
-
-    /**
-     * Heslo administrátora.
-     */
-    private String password;
-
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
 }
