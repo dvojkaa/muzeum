@@ -2,10 +2,12 @@ package cz.cvut.fel.MuzeumSys.model;
 
 import cz.cvut.fel.nss.SaunaStudio.model.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,5 +24,9 @@ public class Admin extends User {
     @Column(nullable = false)
     @Basic(optional = false)
     private String lastName;
+
+    @Column(nullable = false)
+    @Basic(optional = false)
+    private String email;
 
 }
