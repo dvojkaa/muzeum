@@ -4,14 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Data Transfer Object for Admin entity.
+ * Data Transfer Object for Employee entity.
  */
 @Data
 @NoArgsConstructor
-public class AdminDTO {
+public class EmployeeDTO {
 
     private Integer id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String phoneNumber;
+    private Boolean suspended;
 }
