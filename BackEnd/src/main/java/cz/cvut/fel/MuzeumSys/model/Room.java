@@ -1,4 +1,32 @@
 package cz.cvut.fel.MuzeumSys.model;
 
-public class Room {
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString(exclude = "arts")
+@Entity
+@Table(name = "room")
+
+public class Room extends AbstractEntity {
+
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private String name;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private Integer floorNumber;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Art> arts;
 }

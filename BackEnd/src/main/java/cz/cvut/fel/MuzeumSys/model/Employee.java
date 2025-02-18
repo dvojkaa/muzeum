@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity(name = "employee")
 @NamedQueries({
         @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Employee c WHERE c.email = :username"),
         @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Employee c WHERE c.email = :email"),
@@ -26,10 +26,6 @@ public class Employee extends User {
     @Column(nullable = false)
     @Basic(optional = false)
     private String lastName;
-
-    @Column(nullable = false)
-    @Basic(optional = false)
-    private String email;
 
     @Column(nullable = false)
     @Basic(optional = false)
