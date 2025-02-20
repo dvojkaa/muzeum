@@ -5,13 +5,12 @@ import cz.cvut.fel.nss.SaunaStudio.dto.CustomerDTO;
 import cz.cvut.fel.nss.SaunaStudio.dto.CustomerRegistrationDTO;
 import cz.cvut.fel.nss.SaunaStudio.model.Employee;
 import javax.annotation.processing.Generated;
-
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-08T00:12:04+0200",
-    comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.12 (Amazon.com Inc.)"
+    date = "2025-02-20T15:46:18+0100",
+    comments = "version: 1.6.0, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
@@ -24,7 +23,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         CustomerBO customerBO = new CustomerBO();
 
-        customerBO.setUsername( employee.getEmail() );
+        customerBO.setUsername( employee.getUsername() );
         customerBO.setPassword( employee.getPassword() );
         customerBO.setFirstName( employee.getFirstName() );
         customerBO.setLastName( employee.getLastName() );
@@ -74,7 +73,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 
         Employee employee = new Employee();
 
-        employee.setEmail( customerBO.getUsername() );
+        employee.setUsername( customerBO.getUsername() );
         employee.setPassword( customerBO.getPassword() );
         employee.setFirstName( customerBO.getFirstName() );
         employee.setLastName( customerBO.getLastName() );
