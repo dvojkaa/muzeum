@@ -1,4 +1,4 @@
-package cz.cvut.fel.nss.SaunaStudio.mapper;
+package cz.cvut.fel.MuzeumSys.mapper;
 
 import cz.cvut.fel.nss.SaunaStudio.bo.AdminBO;
 import cz.cvut.fel.nss.SaunaStudio.dto.AdminDTO;
