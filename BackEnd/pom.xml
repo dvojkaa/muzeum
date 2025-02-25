@@ -11,21 +11,18 @@
 	<groupId>com.example</groupId>
 	<artifactId>semestralka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SaunaStudio</name>
-	<description>Sauna studio Spring Boot project</description>
+	<name>MuzeumSys</name>
+	<description>MuzeumSys Spring Boot project</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -109,11 +106,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>1.6.0</version>
-		</dependency>
 
 	</dependencies>
 
@@ -123,19 +115,19 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.mapstruct</groupId>
-				<artifactId>mapstruct-processor</artifactId>
-<!--				<version>${1.6.0.Beta1}</version>-->
-<!--				<optional>true</optional>-->
-				<executions>
-					<execution>
-						<goals>
-							<goal>process</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.mapstruct</groupId>-->
+<!--				<artifactId>mapstruct-processor</artifactId>-->
+<!--&lt;!&ndash;				<version>${1.6.0.Beta1}</version>&ndash;&gt;-->
+<!--&lt;!&ndash;				<optional>true</optional>&ndash;&gt;-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>process</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

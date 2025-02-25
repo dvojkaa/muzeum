@@ -1,8 +1,8 @@
 package cz.cvut.fel.MuzeumSys.mapper;
 
-import cz.cvut.fel.nss.SaunaStudio.bo.AdminBO;
-import cz.cvut.fel.nss.SaunaStudio.dto.AdminDTO;
-import cz.cvut.fel.nss.SaunaStudio.model.Admin;
+import cz.cvut.fel.MuzeumSys.bo.AdminBO;
+import cz.cvut.fel.MuzeumSys.dto.AdminDTO;
+import cz.cvut.fel.MuzeumSys.model.Admin;
 import org.mapstruct.Mapper;
 
 /**

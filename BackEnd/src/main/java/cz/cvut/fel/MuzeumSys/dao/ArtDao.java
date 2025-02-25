@@ -1,7 +1,6 @@
 package cz.cvut.fel.MuzeumSys.dao;
 
 import cz.cvut.fel.MuzeumSys.model.Art;
-import cz.cvut.fel.nss.SaunaStudio.dao.BaseDao;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

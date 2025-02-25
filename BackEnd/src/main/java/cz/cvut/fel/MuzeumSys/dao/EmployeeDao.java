@@ -1,7 +1,6 @@
 package cz.cvut.fel.MuzeumSys.dao;
 
 import cz.cvut.fel.MuzeumSys.model.Employee;
-import cz.cvut.fel.nss.SaunaStudio.dao.BaseDao;
 import jakarta.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 

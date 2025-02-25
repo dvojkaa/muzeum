@@ -1,6 +1,5 @@
 package cz.cvut.fel.MuzeumSys.model;
 
-import cz.cvut.fel.nss.SaunaStudio.model.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

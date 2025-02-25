@@ -1,7 +1,7 @@
 package cz.cvut.fel.MuzeumSys.dao;
 
-import cz.cvut.fel.nss.SaunaStudio.dao.GenericDao;
-import cz.cvut.fel.nss.SaunaStudio.exception.PersistenceException;
+
+import cz.cvut.fel.MuzeumSys.exception.PersistenceException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
