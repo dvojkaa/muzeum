@@ -1,0 +1,17 @@
+version: "3.9"
+
+volumes:
+  muzeum-sys-postgres:
+
+services:
+  muzeum-sys-postgres:
+    image: postgres:latest
+    hostname: muzeum-sys-host
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./muzeum-sys-postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: muzeumSys

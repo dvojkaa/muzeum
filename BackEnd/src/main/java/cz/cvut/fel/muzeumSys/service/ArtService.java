@@ -2,19 +2,32 @@ package cz.cvut.fel.muzeumSys.service;
 
 import cz.cvut.fel.muzeumSys.dto.ArtDto;
 import cz.cvut.fel.muzeumSys.mapper.ArtMapper;
+import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 
 @Service
-//@RequiredArgsConstructor
 public class ArtService {
 
+    private final ArtRepository artRepository;
+    private final ArtMapper artMapper;
 
-    public ResponseEntity<ArtDto> createArt(ArtDto artDto) {
-       return null;
+    public ArtService(ArtRepository artRepository, ArtMapper artMapper) {
+        this.artRepository = artRepository;
+        this.artMapper = artMapper;
+    }
+
+
+    public ResponseEntity<Art> createArt(ArtDto artDto) {
+        Art art = artMapper.toEntity(artDto);
+
+        artRepository.save(art);
+
+        return ResponseEntity.ok(art);
     }
 
 

@@ -1,5 +1,6 @@
 package cz.cvut.fel.muzeumSys.model;
 
+import cz.cvut.fel.muzeumSys.model.enums.Color;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

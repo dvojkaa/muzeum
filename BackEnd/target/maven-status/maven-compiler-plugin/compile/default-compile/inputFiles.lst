@@ -23,7 +23,6 @@
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/repository/GroupRepository.java
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/model/Group.java
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/model/User.java
-/Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/service/AdminService.java
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/dto/EmployeeDto.java
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/exception/NotFoundException.java
 /Applications/MAMP/htdocs/MuzeumSys/BackEnd/src/main/java/cz/cvut/fel/muzeumSys/rest/handler/RestExceptionHandler.java

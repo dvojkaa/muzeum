@@ -1,11 +1,12 @@
 package cz.cvut.fel.muzeumSys.model;
 
+import cz.cvut.fel.muzeumSys.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public abstract class User extends AbstractEntity {
     @Column(nullable = false)
     private Role role;
 
-    public void encodePassword(PasswordEncoder passwordEncoder) {
-        this.password = passwordEncoder.encode(password);
-    }
+//    public void encodePassword(PasswordEncoder passwordEncoder) {
+//        this.password = passwordEncoder.encode(password);
+//    }
 }
