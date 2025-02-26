@@ -7,30 +7,30 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-26T13:34:55+0100",
+    date = "2025-02-26T15:30:14+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
 public class ArtMapperImpl implements ArtMapper {
 
     @Override
-    public ArtDto toDto(Art artEntity) {
-        if ( artEntity == null ) {
+    public ArtDto toDto(Art art) {
+        if ( art == null ) {
             return null;
         }
 
         Long id = null;
-        String name = artEntity.getName();
+        String name = null;
         String era = null;
         String type = null;
         String description = null;
         String parameters = null;
         String author = null;
         String qrCode = null;
-        Integer groupId = null;
-        Integer roomId = null;
+        Integer group = null;
+        Integer room = null;
 
-        ArtDto artDto = new ArtDto( id, name, era, type, description, parameters, author, qrCode, groupId, roomId );
+        ArtDto artDto = new ArtDto( id, name, era, type, description, parameters, author, qrCode, group, room );
 
         return artDto;
     }

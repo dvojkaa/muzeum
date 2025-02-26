@@ -7,7 +7,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ArtMapper {
 
-    ArtDto toDto(Art artEntity);
+    ArtDto toDto(Art art);
 
     Art toEntity(ArtDto artDto);
+
 }

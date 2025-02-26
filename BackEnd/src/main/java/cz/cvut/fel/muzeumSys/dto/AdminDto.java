@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 /**
  * Data Transfer Object for Admin entity.
  */
-@Data
-@NoArgsConstructor
-public class AdminDto {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+public record AdminDto (
+
+        Long id,
+        String firstName,
+        String lastName,
+        String email
+){
 }

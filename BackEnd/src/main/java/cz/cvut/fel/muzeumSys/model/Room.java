@@ -19,14 +19,14 @@ import java.util.List;
 
 public class Room extends AbstractEntity {
 
-    @Basic(optional = false)
-    @Column(nullable = false)
+//    @Basic(optional = false)
+//    @Column(nullable = false)
     private String name;
-
-    @Basic(optional = false)
-    @Column(nullable = false)
+//
+//    @Basic(optional = false)
+//    @Column(nullable = false)
     private Integer floorNumber;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Art> arts;
+//    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Art> arts;
 }
