@@ -9,6 +9,5 @@ public interface ArtMapper {
 
     ArtDto toDto(Art artEntity);
 
-    Art toEntity(ArtDto eventDto);
-
+    Art toEntity(ArtDto artDto);
 }
