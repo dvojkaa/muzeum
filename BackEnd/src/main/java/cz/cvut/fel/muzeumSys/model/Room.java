@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "arts")
+@ToString()
 @Entity
 @Table(name = "room")
 
@@ -28,5 +28,5 @@ public class Room extends AbstractEntity {
     private Integer floorNumber;
 
 //    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Art> arts;
+    private List<Art> arts;
 }

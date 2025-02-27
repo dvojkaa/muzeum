@@ -3,12 +3,10 @@ package cz.cvut.fel.muzeumSys.model;
 import cz.cvut.fel.muzeumSys.model.enums.Era;
 import cz.cvut.fel.muzeumSys.model.enums.Type;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
