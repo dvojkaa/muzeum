@@ -1,12 +1,10 @@
 package cz.cvut.fel.muzeumSys.service;
 
-import cz.cvut.fel.muzeumSys.dto.ArtDto;
+import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.mapper.ArtMapper;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 

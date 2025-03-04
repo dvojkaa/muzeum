@@ -1,6 +1,6 @@
 package cz.cvut.fel.muzeumSys.mapper;
 
-import cz.cvut.fel.muzeumSys.dto.EmployeeDto;
+import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import org.mapstruct.Mapper;
 

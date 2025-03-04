@@ -1,15 +1,13 @@
 package cz.cvut.fel.muzeumSys.service;
 
 
-import cz.cvut.fel.muzeumSys.dto.RoomDto;
+import cz.cvut.fel.muzeumSys.dto.Record.RoomDto;
 import cz.cvut.fel.muzeumSys.mapper.RoomMapper;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Room;
 import cz.cvut.fel.muzeumSys.repository.RoomRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RoomService {

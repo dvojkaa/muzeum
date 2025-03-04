@@ -1,6 +1,6 @@
 package cz.cvut.fel.muzeumSys.mapper;
 
-import cz.cvut.fel.muzeumSys.dto.QRCodeDto;
+import cz.cvut.fel.muzeumSys.dto.Record.QRCodeDto;
 import cz.cvut.fel.muzeumSys.model.QRCode;
 import org.mapstruct.Mapper;
 

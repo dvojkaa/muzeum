@@ -1,4 +1,4 @@
-package cz.cvut.fel.muzeumSys.dto;
+package cz.cvut.fel.muzeumSys.dto.Record;
 
 /**
  * Data Transfer Object for Room entity.

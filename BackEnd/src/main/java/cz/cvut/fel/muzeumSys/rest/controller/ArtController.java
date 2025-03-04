@@ -1,9 +1,8 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
-import cz.cvut.fel.muzeumSys.dto.ArtDto;
+import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.service.ArtService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

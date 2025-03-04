@@ -1,6 +1,6 @@
 package cz.cvut.fel.muzeumSys.mapper;
 
-import cz.cvut.fel.muzeumSys.dto.AdminDto;
+import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.model.Admin;
 import org.mapstruct.Mapper;
 

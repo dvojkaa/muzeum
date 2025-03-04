@@ -1,7 +1,4 @@
-package cz.cvut.fel.muzeumSys.dto;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package cz.cvut.fel.muzeumSys.dto.Record;
 
 /**
  * Data Transfer Object for Admin entity.
