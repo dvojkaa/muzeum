@@ -1,6 +1,8 @@
 package cz.cvut.fel.muzeumSys.service;
 
+import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.mapper.EmployeeMapper;
+import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,13 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
         this.employeeMapper = employeeMapper;
+    }
+
+
+    public Employee createEmployee(EmployeeDto employeeDto) {
+        Employee employee = employeeMapper.toEntity(employeeDto);
+
+        employeeRepository.save(employee);
+        return employee;
     }
 }

@@ -1,6 +1,8 @@
 package cz.cvut.fel.muzeumSys.service;
 
+import cz.cvut.fel.muzeumSys.dto.Record.QRCodeDto;
 import cz.cvut.fel.muzeumSys.mapper.QRCodeMapper;
+import cz.cvut.fel.muzeumSys.model.QRCode;
 import cz.cvut.fel.muzeumSys.repository.QRCodeRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,10 @@ public class QRCodeService {
         this.qrCodeMapper = qrCodeMapper;
     }
 
+    public QRCode createQRCode(QRCodeDto qrCodeDto) {
+        QRCode qrCode = qrCodeMapper.toEntity(qrCodeDto);
+
+        qrCodeRepository.save(qrCode);
+        return qrCode;
+    }
 }

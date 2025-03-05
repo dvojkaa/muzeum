@@ -20,12 +20,12 @@ public class ArtService {
     }
 
 
-    public ResponseEntity<Art> createArt(ArtDto artDto) {
+    public Art createArt(ArtDto artDto) {
         Art art = artMapper.toEntity(artDto);
 
         artRepository.save(art);
 
-        return ResponseEntity.ok(art);
+        return art;
     }
 
 

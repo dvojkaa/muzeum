@@ -19,7 +19,7 @@ public class ArtController {
 
     @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> createArt(@RequestBody ArtDto artDto) {
-        return artService.createArt(artDto);
+        return ResponseEntity.ok(artService.createArt(artDto));
     }
 
     @GetMapping
