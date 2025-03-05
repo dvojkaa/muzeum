@@ -16,10 +16,14 @@ import java.util.List;
 @ToString(exclude = "arts")
 @Entity
 @Table(name = "art_group")
-@NamedQueries({
+//@NamedQueries({
+//
+//})
+public class Group {
 
-})
-public class Group extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Basic(optional = false)
     @Column(nullable = false, unique = true)
@@ -28,7 +32,7 @@ public class Group extends AbstractEntity {
     @Basic(optional = true)
     @Column
     private String description;
-
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Art> arts;
+//
+//    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Art> arts;
 }

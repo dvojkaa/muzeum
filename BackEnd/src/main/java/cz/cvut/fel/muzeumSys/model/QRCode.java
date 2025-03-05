@@ -15,8 +15,11 @@ import lombok.Setter;
 @NamedQueries({
 
        })
-public class QRCode extends AbstractEntity {
+public class QRCode  {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Basic(optional = false)
     @Column(nullable = false)

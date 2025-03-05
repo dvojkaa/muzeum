@@ -17,9 +17,14 @@ import java.util.List;
 @Entity
 @Table(name = "room")
 
-public class Room extends AbstractEntity {
+public class Room {
 
-//    @Basic(optional = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    //    @Basic(optional = false)
 //    @Column(nullable = false)
     private String name;
 //
@@ -28,5 +33,5 @@ public class Room extends AbstractEntity {
     private Integer floorNumber;
 
 //    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Art> arts;
+//    private List<Art> arts;
 }

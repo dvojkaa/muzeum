@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface GroupMapper {
 
-    GroupDto toDto(Group group);
+    GroupDto toDto(Group groupEntity);
 
     Group toEntity(GroupDto groupDto);
 

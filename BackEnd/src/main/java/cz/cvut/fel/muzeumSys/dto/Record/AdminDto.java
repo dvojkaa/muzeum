@@ -9,6 +9,7 @@ public record AdminDto (
         Long id,
         String firstName,
         String lastName,
-        String email
-){
-}
+        String email,
+        String password,
+        String role
+){}

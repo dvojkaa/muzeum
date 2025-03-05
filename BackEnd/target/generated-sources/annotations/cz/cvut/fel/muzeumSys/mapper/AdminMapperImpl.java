@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-27T16:10:01+0100",
+    date = "2025-03-04T16:18:57+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
 public class AdminMapperImpl implements AdminMapper {
 
     @Override
-    public AdminDto toDto(Admin admin) {
-        if ( admin == null ) {
+    public AdminDto toDto(Admin adminEntity) {
+        if ( adminEntity == null ) {
             return null;
         }
 
@@ -23,8 +23,10 @@ public class AdminMapperImpl implements AdminMapper {
         String firstName = null;
         String lastName = null;
         String email = null;
+        String password = null;
+        String role = null;
 
-        AdminDto adminDto = new AdminDto( id, firstName, lastName, email );
+        AdminDto adminDto = new AdminDto( id, firstName, lastName, email, password, role );
 
         return adminDto;
     }
