@@ -4,6 +4,7 @@ import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.mapper.EmployeeMapper;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.repository.EmployeeRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,7 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-
+    @PreAuthorize("hasRole()")
     public Employee createEmployee(EmployeeDto employeeDto) {
         Employee employee = employeeMapper.toEntity(employeeDto);
 

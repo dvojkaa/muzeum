@@ -1,6 +1,9 @@
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecrityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
