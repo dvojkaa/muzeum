@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-04T16:18:57+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
+    date = "2025-03-05T15:39:15+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
 public class GroupMapperImpl implements GroupMapper {
@@ -23,6 +23,10 @@ public class GroupMapperImpl implements GroupMapper {
         String name = null;
         String description = null;
 
+        id = groupEntity.getId();
+        name = groupEntity.getName();
+        description = groupEntity.getDescription();
+
         GroupDto groupDto = new GroupDto( id, name, description );
 
         return groupDto;
@@ -35,6 +39,10 @@ public class GroupMapperImpl implements GroupMapper {
         }
 
         Group group = new Group();
+
+        group.setId( groupDto.id() );
+        group.setName( groupDto.name() );
+        group.setDescription( groupDto.description() );
 
         return group;
     }

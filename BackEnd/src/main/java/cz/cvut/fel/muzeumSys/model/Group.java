@@ -25,12 +25,12 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Basic(optional = true)
-    @Column
+//    @Basic(optional = true)
+//    @Column
     private String description;
 //
 //    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

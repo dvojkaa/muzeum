@@ -13,7 +13,7 @@ public record ArtDto(
         String parameters,
         String author,
         String qrCode,
-        Integer group,
-        Integer room
+        Long group_id,
+        Long room_id
 ) {
 }
