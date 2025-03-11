@@ -29,6 +29,6 @@ public class Room {
 //    @Column(nullable = false)
     private Integer floorNumber;
 
-//    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Art> arts;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Art> arts;
 }

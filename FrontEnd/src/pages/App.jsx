@@ -8,6 +8,8 @@ import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
 import 'react-calendar/dist/Calendar.css';
 import '../CSS/App.css';
+import Employee from "./Employee.jsx";
+import Database from "./Database.jsx";
 
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/art" element={<Art />} />
+                <Route path="/employee" element={<Employee />} />
+                <Route path="/database" element={<Database />} />
+
                 <Route path="/login" element={<Login />} />
             </Routes>
             <Footer />

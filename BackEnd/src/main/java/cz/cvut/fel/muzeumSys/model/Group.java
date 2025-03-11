@@ -33,6 +33,6 @@ public class Group {
 //    @Column
     private String description;
 //
-//    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Art> arts;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Art> arts;
 }
