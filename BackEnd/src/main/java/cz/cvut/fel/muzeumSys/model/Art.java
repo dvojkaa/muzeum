@@ -5,6 +5,8 @@ import cz.cvut.fel.muzeumSys.model.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.awt.*;
+
 @Getter
 @Setter
 @ToString
@@ -31,6 +33,8 @@ public class Art{
     private Type type;
 
     private String qrCode;
+
+    private String color;
 
     private String description;
 

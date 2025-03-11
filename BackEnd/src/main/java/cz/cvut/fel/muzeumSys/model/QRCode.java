@@ -21,17 +21,11 @@ public class QRCode  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
+    private Long artId;
+
     private String qrCode;
 
-
-    @Basic(optional = false)
-    @Column(nullable = false)
     private Color color;
 
-
-    @Basic(optional = false)
-    @Column(nullable = false)
     private String imagePath;
 }

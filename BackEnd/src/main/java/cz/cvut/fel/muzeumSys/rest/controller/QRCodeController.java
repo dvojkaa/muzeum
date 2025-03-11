@@ -1,14 +1,22 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import cz.cvut.fel.muzeumSys.dto.Record.QRCodeDto;
 import cz.cvut.fel.muzeumSys.model.QRCode;
 import cz.cvut.fel.muzeumSys.service.QRCodeService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/qrcode")
@@ -21,7 +29,11 @@ public class QRCodeController {
     }
 
     @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<QRCode> createQRCode(@RequestBody QRCodeDto qrCodeDto) {
-        return ResponseEntity.ok(qrCodeService.createQRCode(qrCodeDto));
-    }
+    public ResponseEntity<QRCode> createQRCode(@RequestBody QRCodeDto qrCodeDto){
+        try {
+            QRCode qrCode = qrCodeService.createQRCode(qrCodeDto);
+            return ResponseEntity.ok(qrCode);
+        } catch (WriterException | IOException e) {
+            return ResponseEntity.internalServerError().build();
+        }    }
 }

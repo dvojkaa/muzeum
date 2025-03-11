@@ -6,6 +6,7 @@ import cz.cvut.fel.muzeumSys.service.ArtService;
 import jakarta.persistence.Enumerated;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,7 @@ public class ArtController {
         this.artService = artService;
     }
 
-    @PreAuthorize()
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> createArt(@RequestBody ArtDto artDto) {
         return ResponseEntity.ok(artService.createArt(artDto));
