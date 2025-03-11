@@ -1,0 +1,76 @@
+/* Obecný styl */
+.art-container {
+    max-width: 100%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    background: #F5EFE3;
+    padding: 10px;
+}
+
+/* Header */
+.art-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.login-link {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.museum-name {
+    font-size: 18px;
+}
+
+/* Obrázek */
+.art-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Text */
+.art-details {
+    padding: 10px;
+    text-align: center;
+}
+
+.art-details h2 {
+    font-size: 22px;
+}
+
+.art-details p {
+    font-size: 16px;
+}
+
+.art-material {
+    font-weight: bold;
+}
+
+/* 📌 Responzivita pro mobilní zařízení */
+@media (max-width: 600px) {
+    .art-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .login-link {
+        font-size: 12px;
+    }
+
+    .museum-name {
+        font-size: 16px;
+    }
+
+    .art-details h2 {
+        font-size: 18px;
+    }
+
+    .art-details p {
+        font-size: 14px;
+    }
+}

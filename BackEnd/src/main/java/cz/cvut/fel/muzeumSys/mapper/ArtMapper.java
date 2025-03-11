@@ -7,12 +7,10 @@ import cz.cvut.fel.muzeumSys.model.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface ArtMapper {
 
-    ArtMapper INSTANCE = Mappers.getMapper(ArtMapper.class);
 
     @Mapping(source = "room.id", target = "room_id")
     @Mapping(source = "group.id", target = "group_id")

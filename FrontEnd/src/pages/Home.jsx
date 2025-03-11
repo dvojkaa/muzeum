@@ -1,114 +1,47 @@
-import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import Kalendar from '../components/Kalendar.jsx';
-import '../CSS/App.css';
+import React from "react";
+import "../CSS/Home.css"; // Připojíme CSS soubor
 
 const Home = () => {
-    const navigate = useNavigate();
-
-    let selectedTimeSlot;
-
-    const [studios, setStudios] = useState([]);
-    const [selectedStudioId, setSelectedStudioId] = useState(null);
-
-    const handleTimeSlotClick = (timeSlot) => {
-        setTime(timeSlot);
-    };
-
-
-    const handleClick = () => {
-        const selected = studios.find(studio => studio.id === selectedStudioId);
-        setSelectedStudio(selected);
-        navigate('/rezervace' );
-    };
-
-    const handleStudioChange = (e) => {
-        const selectedId = parseInt(e.target.value);
-        setSelectedStudioId(selectedId);
-    };
-
-    const getStudios = async () =>
-    {
-        try {
-            const response = await fetch('http://localhost:8080/studio', {
-                method: 'GET',
-                headers: {
-                    'Connection': 'keep-alive',
-                },
-                credentials: 'include',
-            });
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Reservation successful received:', data);
-
-                // return data.toString();
-
-                setStudios(data);
-                setSelectedStudioId(data[0].id)
-                console.log(studios);
-            } else {
-                console.error('Error getting customer reservation:', response.statusText);
-
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-
-
-    useEffect(() => {
-        getStudios();
-    }, []);
-
-    //TODO potrebuju prenest studio do /rezervace a tam
-    // ho mit jako Context abych vyhledaval podle nej eventy
-
     return (
-        <main className="mainContent">
-            <h2>Výběr saunového centra</h2>
+        <div className="home-container">
+            {/* Horní navigace */}
+            <header className="home-header">
+                <div className="logo">🌀 EvidenceSys</div>
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Save Items</a>
+                    <a href="#">View Database</a>
+                    <a href="#">Add Personal</a>
+                    <a href="#">Logout</a>
+                    <button className="btn">Sign up</button>
+                    <button className="btn">Log In</button>
+                </nav>
+            </header>
 
-            <select className="centerSelect" value={selectedStudioId || ""} onChange={handleStudioChange}>
-                {studios.map((studio, index) => (
-                    <option key={studio.id || index} value={studio.id}>
-                        {`${studio.name}, ${studio.address}`}
-                    </option>
-                ))}
-            </select>
-            <Kalendar/>
-            <div className="time-slots">
-                <button
-                    className={`time-slot ${selectedTimeSlot === '09:00-12:00' ? 'selected' : ''}`}
-                    onClick={() => handleTimeSlotClick(9)}
-                >
-                    09:00-12:00
-                </button>
-                <button
-                    className={`time-slot ${selectedTimeSlot === '12:00-15:00' ? 'selected' : ''}`}
-                    onClick={() => handleTimeSlotClick(12)}
-                >
-                    12:00-15:00
-                </button>
-                <button
-                    className={`time-slot ${selectedTimeSlot === '15:00-18:00' ? 'selected' : ''}`}
-                    onClick={() => handleTimeSlotClick(15)}
-                >
-                    15:00-18:00
-                </button>
-                <button
-                    className={`time-slot ${selectedTimeSlot === '18:00-21:00' ? 'selected' : ''}`}
-                    onClick={() => handleTimeSlotClick(18)}
-                >
-                    18:00-21:00
-                </button>
-            </div>
-            <button className="availability" onClick={handleClick}>
-                Volná místa: ??/45 →
-            </button>
+            {/* Hlavní obsah */}
+            <section className="home-main">
+                <div className="home-text">
+                    <h5>#1 in effortless storage</h5>
+                    <h1>Effortlessly Store <br /> and Display Data</h1>
+                    <p>Store and access your data seamlessly with DataStorage's intuitive database solutions.</p>
+                </div>
+                <div className="home-image">
+                    <img src="../assets/database-image.png" alt="Data Storage" />
+                </div>
+            </section>
 
-        </main>
+            {/* Spodní sekce */}
+            <footer className="home-footer">
+                <div className="footer-title">🌀 DataStorage</div>
+                <div className="footer-links">
+                    <a href="#">Product</a>
+                    <a href="#">Company</a>
+                    <a href="#">Support</a>
+                    <a href="#">Legal</a>
+                </div>
+            </footer>
+        </div>
     );
 };
-
 
 export default Home;

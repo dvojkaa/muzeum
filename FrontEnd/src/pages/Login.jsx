@@ -60,7 +60,7 @@ const Login = () => {
 
     const cachUserInfo = async () => {
         try {
-            const response = await fetch('http://localhost:8080/customer/info', {
+            const response = await fetch('http://localhost:8080/employee/info', {
                 method: 'GET',
                 headers: {
                     'Connection': 'keep-alive',
