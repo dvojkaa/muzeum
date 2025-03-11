@@ -1,5 +1,6 @@
 package cz.cvut.fel.muzeumSys.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.cvut.fel.muzeumSys.model.enums.Era;
 import cz.cvut.fel.muzeumSys.model.enums.Type;
 import jakarta.persistence.*;
@@ -44,10 +45,12 @@ public class Art{
 
     @ManyToOne
     @JoinColumn(name = "group_id")
+    @JsonIgnore
     private Group group;
 
     @ManyToOne
     @JoinColumn(name = "room_id")
+    @JsonIgnore
     private Room room;
 
 }

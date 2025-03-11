@@ -14,7 +14,7 @@ const Database = () => {
 
     const fetchArts = async () => {
         try {
-            const response = await fetch('http://localhost:8080/Art/info/all', {
+            const response = await fetch('http://localhost:8080/art/info', {
                 method: 'POST',
                 headers: {
                     'Connection': 'keep-alive',
@@ -36,7 +36,9 @@ const Database = () => {
     };
 
     const handleAddArt = () => {
-        navigate('/add-art');
+        // navigate('/add-art');
+        fetchArts();
+
     };
 
     return (

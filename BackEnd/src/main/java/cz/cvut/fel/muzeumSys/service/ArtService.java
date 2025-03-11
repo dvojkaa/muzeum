@@ -4,8 +4,9 @@ import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.mapper.ArtMapper;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.List;
+
 
 
 @Service
@@ -29,4 +30,11 @@ public class ArtService {
     }
 
 
+    public List<Art> getArts() {
+        return artRepository.findAll();
+    }
+
+//    public List getArts(ArtDto artDto) {
+//        return artRepository.findBy(artDto);
+//    }
 }

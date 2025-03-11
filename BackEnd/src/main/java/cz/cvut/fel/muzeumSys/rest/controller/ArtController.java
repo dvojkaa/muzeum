@@ -3,7 +3,7 @@ package cz.cvut.fel.muzeumSys.rest.controller;
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.service.ArtService;
-import jakarta.persistence.Enumerated;
+import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,5 +30,15 @@ public class ArtController {
         return "Hello";
     }
 
+
+    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Art>> getArt() {
+        return ResponseEntity.ok(artService.getArts());
+    }
+
+//    @PostMapping(value="/info", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<Art>> getArt(@RequestBody ArtDto artDto) {
+//        return ResponseEntity.ok(artService.getArts(artDto));
+//    }
 
 }
