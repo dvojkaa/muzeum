@@ -8,7 +8,6 @@ package cz.cvut.fel.muzeumSys.dto.Record;
 public record EmployeeDto (
         Long id,
         String email,
-        String role,
         String password,
         String firstName,
         String lastName,

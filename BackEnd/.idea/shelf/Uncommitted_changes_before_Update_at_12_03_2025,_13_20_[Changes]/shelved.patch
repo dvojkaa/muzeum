@@ -1,0 +1,19 @@
+Index: src/main/java/cz/cvut/fel/muzeumSys/model/Group.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cz.cvut.fel.muzeumSys.model;\n\nimport jakarta.persistence.*;\nimport lombok.AllArgsConstructor;\nimport lombok.Getter;\nimport lombok.NoArgsConstructor;\nimport lombok.Setter;\nimport lombok.ToString;\n\nimport java.util.List;\n\n@NoArgsConstructor\n@AllArgsConstructor\n@Getter\n@Setter\n@ToString(exclude = \"arts\")\n@Entity\n@Table(name = \"art_group\")\n//@NamedQueries({\n//\n//})\npublic class Group {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n\n//    @Basic(optional = false)\n    @Column(nullable = false, unique = true)\n    private String name;\n\n//    @Basic(optional = true)\n//    @Column\n    private String description;\n//\n//    @OneToMany(mappedBy = \"group\", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)\n//    private List<Art> arts;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cz/cvut/fel/muzeumSys/model/Group.java b/src/main/java/cz/cvut/fel/muzeumSys/model/Group.java
+--- a/src/main/java/cz/cvut/fel/muzeumSys/model/Group.java	(revision 4129c4bb661248cb5b312556b9cb7174ba6c267b)
++++ b/src/main/java/cz/cvut/fel/muzeumSys/model/Group.java	(date 1741780645397)
+@@ -33,6 +33,6 @@
+ //    @Column
+     private String description;
+ //
+-//    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+-//    private List<Art> arts;
++    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
++    private List<Art> arts;
+ }

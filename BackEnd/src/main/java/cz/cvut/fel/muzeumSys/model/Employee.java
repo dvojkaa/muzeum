@@ -1,17 +1,13 @@
 package cz.cvut.fel.muzeumSys.model;
 
-import cz.cvut.fel.muzeumSys.model.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "employee")
+@ToString
+@Entity
+@Table(name = "employee")
 //@NamedQueries({
 //        @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Employee c WHERE c.email = :username"),
 //        @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Employee c WHERE c.email = :email"),
@@ -26,32 +22,28 @@ public class Employee{
     private Long id;
 
 //    @Basic(optional = false)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String email;
 
 //    @Basic(optional = false)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String password;
 
-//    @Basic(optional = false)
-    @Column(nullable = false)
-    private Role role;
 
-
-    @Column(nullable = false)
+//    @Column(nullable = false)
 //    @Basic(optional = false)
     private String firstName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
 //    @Basic(optional = false)
     private String lastName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
 //    @Basic(optional = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
-    @Basic(optional = false)
+//    @Column(nullable = false)
+//    @Basic(optional = false)
     private Boolean suspended;
 
 }

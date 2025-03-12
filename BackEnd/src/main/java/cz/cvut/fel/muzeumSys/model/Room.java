@@ -5,12 +5,10 @@ import lombok.*;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "arts")
 @Table(name = "room")
 
 

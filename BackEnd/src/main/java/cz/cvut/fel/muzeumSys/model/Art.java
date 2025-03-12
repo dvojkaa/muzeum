@@ -35,6 +35,8 @@ public class Art{
 
     private String qrCode;
 
+    private String imgPath;
+
     private String color;
 
     private String description;

@@ -2,16 +2,13 @@ package cz.cvut.fel.muzeumSys.model;
 
 import cz.cvut.fel.muzeumSys.model.enums.Color;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
-@Setter
-@Entity(name = "qrcode")
+@Setter@ToString
+@Entity
+@Table(name = "qrcode")
 @NamedQueries({
 
        })

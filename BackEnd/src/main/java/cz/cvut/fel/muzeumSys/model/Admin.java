@@ -2,19 +2,16 @@ package cz.cvut.fel.muzeumSys.model;
 
 import cz.cvut.fel.muzeumSys.model.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "admins")
-@NamedQueries({
-        @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.email = :email")
-})
+@ToString
+@Entity
+@Table(name = "admins")
+//@NamedQueries({
+//        @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.email = :email")
+//})
 public class Admin{
 
     @Id

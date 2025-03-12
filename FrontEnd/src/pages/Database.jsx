@@ -1,12 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../components/Modal'; // Importujeme Modal komponentu
 import '../CSS/Login.css';
-import '../CSS/Database.css'
+import '../CSS/Database.css';
 
 const Database = () => {
     const navigate = useNavigate();
     const [arts, setArt] = useState([]);
+    const [filteredArts, setFilteredArts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState(''); // Určuje, zda přidáváme dílo nebo zaměstnance
+    const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' }); // Pro třídení
 
     useEffect(() => {
         fetchArts();
@@ -17,14 +22,15 @@ const Database = () => {
             const response = await fetch('http://localhost:8080/art/info', {
                 method: 'POST',
                 headers: {
-                    'Connection': 'keep-alive',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 credentials: 'include',
             });
-
             if (response.ok) {
                 const data = await response.json();
                 setArt(data);
+                setFilteredArts(data); // Nastavíme výchozí hodnotu pro filtrování
                 setIsLoading(false);
             } else {
                 console.error('Error fetching Arts:', response.statusText);
@@ -36,34 +42,80 @@ const Database = () => {
     };
 
     const handleAddArt = () => {
-        // navigate('/add-art');
-        fetchArts();
+        setModalType('art');
+        setIsModalOpen(true);
+    };
 
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleModalSubmit = (formData) => {
+        console.log(formData);
+        // Zde můžete zavolat API pro odeslání dat nebo upravit stav komponenty pro přidání nového díla
+        setIsModalOpen(false);
+    };
+
+    const handleSearch = (event) => {
+        const query = event.target.value.toLowerCase();
+        const filtered = arts.filter((art) =>
+            Object.values(art)
+                .join(' ')
+                .toLowerCase()
+                .includes(query)
+        );
+        setFilteredArts(filtered);
+    };
+
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+
+        const sorted = [...filteredArts].sort((a, b) => {
+            if (a[key] < b[key]) {
+                return direction === 'asc' ? -1 : 1;
+            }
+            if (a[key] > b[key]) {
+                return direction === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+
+        setFilteredArts(sorted);
     };
 
     return (
         <div className="employer-dashboard">
-            <h1>Správa zaměstnanců</h1>
+            <h1>Správa děl</h1>
             <button className="add-employee-btn" onClick={handleAddArt}>
                 Přidat nové umění
             </button>
+            <input
+                type="text"
+                placeholder="Vyhledat dílo..."
+                onChange={handleSearch}
+                className="search-input"
+            />
             {isLoading ? (
                 <p>Načítání...</p>
             ) : (
                 <table className="art-table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Název</th>
-                        <th>Éra</th>
-                        <th>Typ</th>
-                        <th>Autor</th>
-                        <th>Barva</th>
-                        <th>Popis</th>
+                        <th onClick={() => handleSort('id')}>ID</th>
+                        <th onClick={() => handleSort('name')}>Název</th>
+                        <th onClick={() => handleSort('era')}>Éra</th>
+                        <th onClick={() => handleSort('type')}>Typ</th>
+                        <th onClick={() => handleSort('author')}>Autor</th>
+                        <th onClick={() => handleSort('color')}>Priorita</th>
+                        <th onClick={() => handleSort('description')}>Popis</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {arts.map((art) => (
+                    {filteredArts.map((art) => (
                         <tr key={art.id}>
                             <td>{art.id}</td>
                             <td>{art.name}</td>
@@ -76,7 +128,14 @@ const Database = () => {
                     ))}
                     </tbody>
                 </table>
+            )}
 
+            {isModalOpen && (
+                <Modal
+                    type={modalType}
+                    onClose={handleModalClose}
+                    onSubmit={handleModalSubmit}
+                />
             )}
         </div>
     );
