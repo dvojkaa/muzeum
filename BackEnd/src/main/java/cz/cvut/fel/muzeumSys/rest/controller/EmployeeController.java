@@ -1,8 +1,6 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
-import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
-import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.service.EmployeeService;
 import org.springframework.http.MediaType;

@@ -6,7 +6,6 @@ import cz.cvut.fel.muzeumSys.service.ArtService;
 import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")

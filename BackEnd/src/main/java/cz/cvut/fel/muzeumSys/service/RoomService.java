@@ -6,7 +6,6 @@ import cz.cvut.fel.muzeumSys.mapper.RoomMapper;
 //import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Room;
 import cz.cvut.fel.muzeumSys.repository.RoomRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

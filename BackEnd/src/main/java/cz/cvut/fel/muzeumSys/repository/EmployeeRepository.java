@@ -1,6 +1,5 @@
 package cz.cvut.fel.muzeumSys.repository;
 
-import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

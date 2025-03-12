@@ -1,6 +1,5 @@
 package cz.cvut.fel.muzeumSys.model;
 
-import cz.cvut.fel.muzeumSys.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,22 +18,18 @@ public class Admin{
     private Long id;
 
 //    @Basic(optional = false)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String email;
 
 //    @Basic(optional = false)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String password;
 
-//    @Basic(optional = false)
-    @Column(nullable = false)
-    private Role role;
-
-    @Column(nullable = false)
+//    @Column(nullable = false)
 //    @Basic(optional = false)
     private String firstName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)false
 //    @Basic(optional = false)
     private String lastName;
 

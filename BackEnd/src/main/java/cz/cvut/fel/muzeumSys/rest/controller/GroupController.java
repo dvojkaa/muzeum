@@ -1,8 +1,6 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
-import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.dto.Record.GroupDto;
-import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Group;
 import cz.cvut.fel.muzeumSys.service.GroupService;
 import org.springframework.http.MediaType;

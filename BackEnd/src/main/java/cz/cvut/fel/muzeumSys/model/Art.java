@@ -6,8 +6,6 @@ import cz.cvut.fel.muzeumSys.model.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.awt.*;
-
 @Getter
 @Setter
 @ToString

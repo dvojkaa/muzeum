@@ -1,7 +1,6 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
 import cz.cvut.fel.muzeumSys.dto.Record.RoomDto;
-//import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Room;
 import cz.cvut.fel.muzeumSys.service.RoomService;
 import org.springframework.http.MediaType;

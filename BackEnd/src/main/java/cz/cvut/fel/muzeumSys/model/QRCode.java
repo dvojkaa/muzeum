@@ -9,9 +9,6 @@ import lombok.*;
 @Setter@ToString
 @Entity
 @Table(name = "qrcode")
-@NamedQueries({
-
-       })
 public class QRCode  {
 
     @Id
