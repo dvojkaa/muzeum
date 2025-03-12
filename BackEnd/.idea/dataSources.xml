@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MuzeumSysDBS" uuid="11f079a2-b19e-4db0-b017-d51d11aa11f7">
+    <data-source source="LOCAL" name="muzeumSys" uuid="8a55ef99-b49e-412d-9d67-3343d73db4e3">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

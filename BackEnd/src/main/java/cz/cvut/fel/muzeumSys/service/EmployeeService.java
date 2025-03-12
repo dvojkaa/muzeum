@@ -7,6 +7,8 @@ import cz.cvut.fel.muzeumSys.repository.EmployeeRepository;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -24,5 +26,9 @@ public class EmployeeService {
 
         employeeRepository.save(employee);
         return employee;
+    }
+
+    public List<Employee> getEmployees() {
+        return employeeRepository.findAll();
     }
 }

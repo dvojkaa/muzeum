@@ -19,10 +19,11 @@ const Employee = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await fetch('http://localhost:8080/employees/info/all', {
-                method: 'GET',
+            const response = await fetch('http://localhost:8080/employee/info', {
+                method: 'POST',
                 headers: {
-                    'Connection': 'keep-alive',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 credentials: 'include',
             });
@@ -108,7 +109,6 @@ const Employee = () => {
                         <th onClick={() => handleSort('id')}>ID</th>
                         <th onClick={() => handleSort('firstName')}>Jméno</th>
                         <th onClick={() => handleSort('email')}>Email</th>
-                        <th onClick={() => handleSort('role')}>Role</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,6 @@ const Employee = () => {
                             <td>{employee.id}</td>
                             <td>{employee.firstName} {employee.lastName}</td>
                             <td>{employee.email}</td>
-                            <td>{employee.role}</td>
                         </tr>
                     ))}
                     </tbody>
