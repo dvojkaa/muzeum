@@ -3,6 +3,7 @@ package cz.cvut.fel.muzeumSys.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+@DiscriminatorValue("EMPLOYEE")
 @Getter
 @Setter
 @ToString
@@ -15,35 +16,8 @@ import lombok.*;
 //        @NamedQuery(name = "Customer.findByEmailAndPassword", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber ")
 //
 //})
-public class Employee{
+public class Employee extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-//    @Basic(optional = false)
-//    @Column(nullable = false)
-    private String email;
-
-//    @Basic(optional = false)
-//    @Column(nullable = false)
-    private String password;
-
-
-//    @Column(nullable = false)
-//    @Basic(optional = false)
-    private String firstName;
-
-//    @Column(nullable = false)
-//    @Basic(optional = false)
-    private String lastName;
-
-//    @Column(nullable = false)
-//    @Basic(optional = false)
-    private String phoneNumber;
-
-//    @Column(nullable = false)
-//    @Basic(optional = false)
     private Boolean suspended;
 
 }
