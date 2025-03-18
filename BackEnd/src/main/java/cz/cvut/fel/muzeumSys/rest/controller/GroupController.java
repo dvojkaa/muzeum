@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/group")
 public class GroupController {
@@ -25,4 +27,10 @@ public class GroupController {
     public ResponseEntity<Group> createGroup(@RequestBody GroupDto groupDto) {
         return ResponseEntity.ok(groupService.createGroup(groupDto));
     }
+
+    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Group>> getGroups() {
+        return ResponseEntity.ok(groupService.getGroups());
+    }
+
 }

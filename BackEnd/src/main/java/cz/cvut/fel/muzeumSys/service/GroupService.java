@@ -6,6 +6,8 @@ import cz.cvut.fel.muzeumSys.model.Group;
 import cz.cvut.fel.muzeumSys.repository.GroupRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class GroupService {
@@ -23,5 +25,9 @@ public class GroupService {
 
         groupRepository.save(group);
         return group;
+    }
+
+    public List<Group> getGroups() {
+        return groupRepository.findAll();
     }
 }

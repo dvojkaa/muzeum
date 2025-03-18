@@ -31,4 +31,9 @@ public class EmployeeService {
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
+
+    public Employee login() {
+//        return employeeRepository;
+        return null;
+    }
 }

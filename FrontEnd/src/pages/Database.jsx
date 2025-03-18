@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../components/Modal'; // Importujeme Modal komponentu
 import '../CSS/Login.css';
 import '../CSS/Database.css';
+import AddArtModal from "../components/AddArtModal.jsx";
 
 const Database = () => {
     const navigate = useNavigate();
@@ -10,7 +10,6 @@ const Database = () => {
     const [filteredArts, setFilteredArts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState(''); // Určuje, zda přidáváme dílo nebo zaměstnance
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' }); // Pro třídení
 
     useEffect(() => {
@@ -42,7 +41,6 @@ const Database = () => {
     };
 
     const handleAddArt = () => {
-        setModalType('art');
         setIsModalOpen(true);
     };
 
@@ -131,8 +129,7 @@ const Database = () => {
             )}
 
             {isModalOpen && (
-                <Modal
-                    type={modalType}
+                <AddArtModal
                     onClose={handleModalClose}
                     onSubmit={handleModalSubmit}
                 />

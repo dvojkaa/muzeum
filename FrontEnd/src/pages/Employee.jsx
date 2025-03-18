@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../components/Modal'; // Importujeme Modal komponentu
 import '../CSS/Login.css';
 import '../CSS/Employee.css';
+import AddEmployeeModal from "../components/AddEmployeeModal";
 
 const Employee = () => {
     const navigate = useNavigate();
@@ -10,8 +10,9 @@ const Employee = () => {
     const [filteredEmployees, setFilteredEmployees] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState(''); // Určuje, zda přidáváme dílo nebo zaměstnance
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' }); // Pro třídení
+    const [showEmployeeModal, setShowEmployeeModal] = useState(false);
+
 
     useEffect(() => {
         fetchEmployees();
@@ -43,7 +44,6 @@ const Employee = () => {
     };
 
     const handleAddEmployee = () => {
-        setModalType('employee');
         setIsModalOpen(true);
     };
 
@@ -124,8 +124,7 @@ const Employee = () => {
             )}
 
             {isModalOpen && (
-                <Modal
-                    type={modalType}
+                <AddEmployeeModal
                     onClose={handleModalClose}
                     onSubmit={handleModalSubmit}
                 />
