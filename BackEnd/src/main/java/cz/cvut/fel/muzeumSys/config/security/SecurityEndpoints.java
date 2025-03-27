@@ -42,9 +42,9 @@ public class SecurityEndpoints {
 
     public static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
             new AntPathRequestMatcher("/login", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/register", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/employee/login", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/art", HttpMethod.GET.name())
+            new AntPathRequestMatcher("/user/register", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/user/login", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/art", HttpMethod.POST.name())
     );
 
     public static final RequestMatcher ADMIN_URLS = new AntPathRequestMatcher("/admin/**");

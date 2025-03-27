@@ -1,60 +1,53 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
-//import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
-//import cz.cvut.fel.muzeumSys.model.User;
-//import cz.cvut.fel.muzeumSys.repository.UserRepository;
-//import cz.cvut.fel.muzeumSys.service.UserService;
-//import jdk.jshell.spi.ExecutionControl;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.userdetails.UserDetails;
+import cz.cvut.fel.muzeumSys.config.security.JwtService;
+//import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
+import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
+//import cz.cvut.fel.muzeumSys.model.Employee;
+import cz.cvut.fel.muzeumSys.model.User;
+import cz.cvut.fel.muzeumSys.repository.UserRepository;
+import cz.cvut.fel.muzeumSys.service.UserService;
+import jdk.jshell.spi.ExecutionControl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import cz.cvut.fel.muzeumSys.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 public class UserController {
 
-//    private UserService userService;
-//
-//    private AuthenticationManager authenticationManager;
-//
-//    private JwtUtil jwtUtil;
-//    private UserRepository userRepository;
-//
-//    @Override
-//    public ResponseEntity<AuthResponse> registerParent(RegisterRequest request) {
-//        String email = request.email();
-//        String password = request.password();
-//
-//        userService.registerParent(request);
-//
-//        User user = userRepository.findByEmail(email).orElseThrow(()-> new ExecutionControl.UserException("User not found.", HttpStatus.NOT_FOUND));
-//
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-//
-//        final UserDetails userDetails = userService.loadUserByUsername(email);
-//        final String accessToken = jwtUtil.generateToken(userDetails);
-//        final String refreshToken = jwtUtil.generateRefreshToken(userDetails);
-//
-//        return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, "ROLE_PARENT", user.getFirstName(), user.getLastName()));
-//    }
-//
-//    @Override
-//    public ResponseEntity<AuthResponse> registerTrainer(RegisterRequest request) {
-//        String email = request.email();
-//        String password = request.password();
-//
-//        userService.registerTrainer(request);
-//
-//        User user = userRepository.findByEmail(email).orElseThrow(()-> new UserException("User not found.", HttpStatus.NOT_FOUND));
-//
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-//
-//        final UserDetails userDetails = userService.loadUserByUsername(email);
-//        final String accessToken = jwtUtil.generateToken(userDetails);
-//        final String refreshToken = jwtUtil.generateRefreshToken(userDetails);
-//
-//        return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, "ROLE_TRAINER", user.getFirstName(), user.getLastName()));
-//    }
+    private UserService userService;
+    private AuthenticationManager authenticationManager;
+
+    private JwtService jwtUtil;
+    private UserRepository userRepository;
+
+    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok(userService.getUsers());
+    }
+
+    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User register(@RequestBody UserDto userDto) {
+        return userService.register(userDto);
+
+    }
+
+    @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String login(@RequestBody UserDto userDto) {
+
+        return userService.verify(userDto);
+    }
+
+
+
 //
 //    @Override
 //    public ResponseEntity<AuthResponse> login(LoginRequest request) {

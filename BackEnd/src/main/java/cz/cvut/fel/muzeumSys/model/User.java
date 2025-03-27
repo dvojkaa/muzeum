@@ -9,14 +9,15 @@ import lombok.ToString;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@ToString
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "users")
 
-public abstract class User {
+public class User {
 
 
     @Id
@@ -30,8 +31,8 @@ public abstract class User {
 //    @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
-
 
     private String firstName;
 

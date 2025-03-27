@@ -86,6 +86,7 @@ package cz.cvut.fel.muzeumSys.config.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -121,9 +122,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(SecurityEndpoints.PUBLIC_URLS).permitAll()
-                        .requestMatchers(SecurityEndpoints.ADMIN_URLS).hasAuthority("ADMIN")
-                        .requestMatchers(SecurityEndpoints.EMPLOYEE_URLS).hasAnyAuthority("ADMIN", "EMPLOYEE")
+                        .requestMatchers(SecurityEndpoints.ADMIN_URLS).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(SecurityEndpoints.EMPLOYEE_URLS).hasAnyAuthority("ROLE_ADMIN", "ROLE_EMPLOYEE")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
