@@ -1,13 +1,15 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
-import cz.cvut.fel.muzeumSys.config.security.JwtService;
 //import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
+import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
+import cz.cvut.fel.muzeumSys.dto.Record.AuthRequestDto;
 import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 //import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import cz.cvut.fel.muzeumSys.service.UserService;
 import jdk.jshell.spi.ExecutionControl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +18,26 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 
 import cz.cvut.fel.muzeumSys.service.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
-    private AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
 
-    private JwtService jwtUtil;
-    private UserRepository userRepository;
+    private final JwtUtil jwtUtil;
+    private final UserRepository userRepository;
 
     @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getUsers() {
@@ -35,36 +45,45 @@ public class UserController {
     }
 
     @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User register(@RequestBody UserDto userDto) {
-        return userService.register(userDto);
+    public  ResponseEntity<Map<String, String>> register(@RequestBody UserDto userDto) {
+        String email = userDto.email();
+        String password = userDto.password();
 
+        userService.register(userDto);
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+
+        final UserDetails userDetails = userService.loadUserByUsername(email);
+
+        String token = jwtUtil.generateToken(userDetails);
+
+
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String login(@RequestBody UserDto userDto) {
+    public  ResponseEntity<Map<String, String>> login(@RequestBody AuthRequestDto authRequestDto) {
+        String email = authRequestDto.email();
+        String password = authRequestDto.password();
+        User user = userService.login(email, password);
 
-        return userService.verify(userDto);
-    }
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+
+        final UserDetails userDetails = userService.loadUserByUsername(email);
+
+        String token = jwtUtil.generateToken(userDetails);
 
 
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
 
-//
-//    @Override
-//    public ResponseEntity<AuthResponse> login(LoginRequest request) {
-//        String email = request.email();
-//        String password = request.password();
-//        User user = userService.login(email, password);
-//
-//        authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(email, password)
-//        );
-//
-//        final UserDetails userDetails = userService.loadUserByUsername(email);
-//        final String accessToken = jwtUtil.generateToken(userDetails);
-//        final String refreshToken = jwtUtil.generateRefreshToken(userDetails);
-//
-//        return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, user.getRole().toString(), user.getFirstName(), user.getLastName()));
-//    }
+        return ResponseEntity.ok(response);    }
+
 //
 //    @Override
 //    public ResponseEntity<AuthResponse> refreshToken(RefreshTokenRequestDto request) {

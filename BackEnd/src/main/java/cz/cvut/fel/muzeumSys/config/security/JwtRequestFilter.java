@@ -84,10 +84,10 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtUtil;
+    private final JwtUtil jwtUtil;
     private final ApplicationContext context;
 
-    public JwtRequestFilter(JwtService jwtUtil, ApplicationContext context) {
+    public JwtRequestFilter(JwtUtil jwtUtil, ApplicationContext context) {
         this.jwtUtil = jwtUtil;
         this.context = context;
     }
@@ -104,7 +104,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         String jwt = authorizationHeader.substring(7);
-        String username = jwtUtil.extractEmail(jwt);
+        String username = jwtUtil.extractUsername(jwt);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = context.getBean(UserService.class).loadUserByUsername(username);

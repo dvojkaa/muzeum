@@ -117,7 +117,7 @@ import '../CSS/Login.css';
 const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        username: "",
+        email: "",
         password: ""
     });
 
@@ -132,11 +132,11 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const customer = new FormData();
-        customer.append("username", formData.username);
+        customer.append("email", formData.email);
         customer.append("password", formData.password);
 
         try {
-            const response = await fetch('http://localhost:8080/login', {
+            const response = await fetch('http://localhost:8080/user/login', {
                 method: 'POST',
                 headers: {
                     'Connection': 'keep-alive',
@@ -193,7 +193,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username"></label>
-                    <input onChange={handleChange} value={formData.username} type="text" id="username" name="username" placeholder="Uživatelské jméno:" />
+                    <input onChange={handleChange} value={formData.username} type="text" id="username" name="username" placeholder="Email:" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password"></label>

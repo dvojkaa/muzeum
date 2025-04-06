@@ -10,6 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../CSS/App.css';
 import Employee from "./Employee.jsx";
 import Database from "./Database.jsx";
+import Registration from "./Registration.jsx";
 
 
 function App() {
@@ -18,10 +19,10 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/art" element={<Art />} />
+                <Route path="/art/:id" element={<Art />} />
                 <Route path="/employee" element={<Employee />} />
                 <Route path="/database" element={<Database />} />
-
+                <Route path="/registration" element={<Registration/>} />
                 <Route path="/login" element={<Login />} />
             </Routes>
             <Footer />

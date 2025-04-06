@@ -1,14 +1,16 @@
 package cz.cvut.fel.muzeumSys.service;
 
 
-import cz.cvut.fel.muzeumSys.config.security.JwtService;
+import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
 import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.mapper.UserMapper;
 //import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.model.User;
+import cz.cvut.fel.muzeumSys.model.enums.Role;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,71 +33,24 @@ public class UserService implements UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private JwtService jwtService;
+//    private final AuthenticationManager authManager;
 
-    AuthenticationManager authManager;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
-//
-//    public void registerParent(RegisterRequest request) {
-//
-//        if (userRepository.findByEmail(request.email()).isPresent()) {
-//            throw new UserException("User with email: " + request.email() + " already exists.", HttpStatus.CONFLICT);
-//        }
-//
-//        Parent parent = new Parent(
-//                request.firstName(),
-//                request.lastName(),
-//                request.email(),
-//                request.phoneNumber(),
-//                passwordEncoder.encode(request.password())
-//        );
-//
-//        try {
-//            userRepository.save(parent);
-//        } catch (Exception e) {
-//            throw new UserException(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
-//
-//    public void registerTrainer(RegisterRequest request) {
-//        if (userRepository.findByEmail(request.email()).isPresent()) {
-//            throw new UserException("User with email: " + request.email() + " already exists.", HttpStatus.CONFLICT);
-//        }
-//
-//        Trainer trainer = new Trainer(
-//                request.firstName(),
-//                request.lastName(),
-//                request.email(),
-//                request.phoneNumber(),
-//                passwordEncoder.encode(request.password())
-//        );
-//
-//        try {
-//            userRepository.save(trainer);
-//        } catch (Exception e) {
-//            throw new UserException(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
-    public String verify(UserDto userDto) {
+    public void register(UserDto userDto) {
         User user = userMapper.toEntity(userDto);
-        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-        if (authentication.isAuthenticated()) {
 
-            return jwtService.generateToken(user.getEmail())  ;
-        } else {
-            return "fail";
-        }
+        user.setRole(Role.ROLE_EMPLOYEE);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 
-    public User register(UserDto userDto) {
-        User user = userMapper.toEntity(userDto);
+    public User login(String email, String password) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        }
 
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+        throw new BadCredentialsException("Wrong password");
     }
 
 

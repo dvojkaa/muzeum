@@ -1,0 +1,10 @@
+BackEnd:
+1. kontrolovat na kazdem API access token
+2. API pro kontrolu Acces tokenu
+
+
+FrontEnd:
+1. Posilat AccessToken s kazdym fetch
+2. zlepsit header aby ukazoval jen to co ma ve spravnou chvili
+3. pokusit se udealt Security na stranky na ktere bez access tokenu neni pristup -> 4.
+4. Udelat fetch na BackEnd pro kontrolu jakej je acces token (employee, admin) -> 2.BackEnd
