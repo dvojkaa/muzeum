@@ -1,23 +1,18 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
-//import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
 import cz.cvut.fel.muzeumSys.dto.Record.AuthRequestDto;
 import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
-//import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import cz.cvut.fel.muzeumSys.service.UserService;
-import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import cz.cvut.fel.muzeumSys.service.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,7 +77,10 @@ public class UserController {
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
 
-        return ResponseEntity.ok(response);    }
+        return ResponseEntity.ok(response);
+    }
+   }
+
 
 //
 //    @Override
@@ -112,5 +110,4 @@ public class UserController {
 //        String newRefreshToken = jwtUtil.generateRefreshToken(userDetails);
 //
 //        return ResponseEntity.ok(new AuthResponse(newAccessToken, newRefreshToken, user.getRole().toString(), user.getFirstName(), user.getLastName()));
-//    }
-}
+//

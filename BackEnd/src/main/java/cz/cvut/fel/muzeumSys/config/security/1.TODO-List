@@ -1,6 +1,6 @@
 BackEnd:
 1. kontrolovat na kazdem API access token
-2. API pro kontrolu Acces tokenu
+2. DONE API pro kontrolu Acces tokenu
 3. DBINIT pro rychli start DBS
 
 FrontEnd:

@@ -1,0 +1,61 @@
+<changelist name="Uncommitted_changes_before_Update_at_08_04_2025_12_03_[Changes]" date="1744106587783" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2025_12_03_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 08/04/2025 12:03 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16488" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16489" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16462" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16490" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".idea/dataSources/11f079a2-b19e-4db0-b017-d51d11aa11f7/storage_v2/_src_/database/muzeumSys.IgrCgw/schema/public.abK9xQ.meta" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16479" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16484" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".idea/dataSources/11f079a2-b19e-4db0-b017-d51d11aa11f7/storage_v2/_src_/database/muzeumSys.IgrCgw.meta" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16454" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16483" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16461" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16480" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16460" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16481" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16474" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/pg_internal.init" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16475" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16453" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="muzeum-sys-postgres/global/pg_internal.init" />
+  </binary>
+</changelist>
