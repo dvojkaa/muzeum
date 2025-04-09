@@ -29,7 +29,7 @@ public class DBINIT implements CommandLineRunner {
         if (userRepository.count() > 0) return; // Pokud už data existují, neprovádět znovu
 
         // Users
-        User admin = new User();
+        User admin = new Admin();
         admin.setEmail("admin@muzeum.cz");
         admin.setPassword(passwordEncoder.encode("admin123"));
         admin.setRole(Role.ROLE_ADMIN);
@@ -37,7 +37,7 @@ public class DBINIT implements CommandLineRunner {
         admin.setLastName("User");
         admin.setPhoneNumber("123456789");
 
-        User employee = new User();
+        User employee = new Employee();
         employee.setEmail("employee@muzeum.cz");
         employee.setPassword(passwordEncoder.encode("employee123"));
         employee.setRole(Role.ROLE_EMPLOYEE);

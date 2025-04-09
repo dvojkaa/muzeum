@@ -3,59 +3,97 @@
   <option name="DESCRIPTION" value="Uncommitted changes before Update at 08/04/2025 12:03 [Changes]" />
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16488" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16489" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16462" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16490" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value=".idea/dataSources/11f079a2-b19e-4db0-b017-d51d11aa11f7/storage_v2/_src_/database/muzeumSys.IgrCgw/schema/public.abK9xQ.meta" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16479" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16484" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value=".idea/dataSources/11f079a2-b19e-4db0-b017-d51d11aa11f7/storage_v2/_src_/database/muzeumSys.IgrCgw.meta" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16454" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16483" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16461" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16480" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16460" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16481" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16474" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/pg_internal.init" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16475" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/base/16384/16453" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
   <binary>
     <option name="BEFORE_PATH" value="muzeum-sys-postgres/global/pg_internal.init" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
   </binary>
 </changelist>

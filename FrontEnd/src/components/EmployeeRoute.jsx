@@ -1,16 +1,53 @@
-import { Navigate } from "react-router-dom";
-import * as jwt_decode from 'jwt-decode';
+
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const EmployeeRoute = ({ children }) => {
-    const token = sessionStorage.getItem("accessToken");
-    if (!token) return <Navigate to="/login" />;
+    const [role, setRole] = useState(null);
+    const token = sessionStorage.getItem('accessToken');
 
-    try {
-        const decoded = jwt_decode(token);
-        return decoded.role === "ROLE_EMPLOYEE" ? children : <Navigate to="/" />;
-    } catch (error) {
+    useEffect(() => {
+        // Ověření platnosti tokenu a získání role
+        const getRole = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/auth/validateToken', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'Connection': 'keep-alive',
+                    },
+                    credentials: "include",  // Pokud server používá cookies nebo potřebuje autentizaci přes cookies
+                });
+
+                if (response.ok) {
+                    const data = await response.json(); // Přiřazení výsledků do data
+                    console.log('Auth successful:', data);
+
+                    setRole(data.role);  // Nastavíme roli uživatele
+                } else {
+                    console.error('Error validating token:', response.statusText);
+                    setRole(null);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setRole(null);
+            }
+        };
+
+        if (token) {
+            getRole();
+        } else {
+            setRole(null);  // Pokud není token, roli nezkontrolujeme
+        }
+    }, [token]);
+
+    // Pokud není uživatel přihlášený nebo nemá roli ADMIN, přesměruj ho
+    if (role !== 'ROLE_EMPLOYEE') {
         return <Navigate to="/login" />;
     }
+
+    return children;  // Pokud má uživatel roli ADMIN, vrátí admin obsah
 };
 
 export default EmployeeRoute;

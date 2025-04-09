@@ -9,41 +9,9 @@ import Employee from "./Employee.jsx";
 import Database from "./Database.jsx";
 import Registration from "./Registration.jsx";
 import AdminRoute from "../components/AdminRoute.jsx";
-import EmployeeRoute from "../components/EmployeeRoute.jsx";
+import Logout from "./Logout.jsx";
 
 function App() {
-    const [role, setRole] = useState(null);
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        const validateToken = async () => {
-            if (!token) {
-                setRole(null);
-                return;
-            }
-
-            try {
-                const response = await fetch('http://localhost:8080/auth/validateToken', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setRole(data.role);
-                    sessionStorage.setItem("Role", data.role);
-                }
-            } catch (error) {
-                console.error("Token validation failed", error);
-            }
-        };
-
-        validateToken();
-    }, [token]);
 
     return (
         <>
@@ -53,7 +21,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/art/:id" element={<Art />} />
-
+                <Route path="/logout" element={<Logout />} />
                 {/* Admin Routes */}
                 <Route path="/employee" element={
                     <AdminRoute>
@@ -67,10 +35,10 @@ function App() {
                 } />
 
                 {/* Employee Routes */}
-                <Route path="/employee/*" element={
-                    <EmployeeRoute>
+                <Route path="/art/*" element={
+                    <AdminRoute>
                         <Employee />
-                    </EmployeeRoute>
+                    </AdminRoute>
                 } />
             </Routes>
             <Footer />

@@ -1,7 +1,9 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
 import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
+import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.dto.Record.AuthRequestDto;
+import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
@@ -39,12 +41,36 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Map<String, String>> register(@RequestBody UserDto userDto) {
+
+    @PostMapping(value ="/registerEmployee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Map<String, String>> registerEmployee(@RequestBody EmployeeDto userDto) {
         String email = userDto.email();
         String password = userDto.password();
 
-        userService.register(userDto);
+        userService.registerEmployee(userDto);
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+
+        final UserDetails userDetails = userService.loadUserByUsername(email);
+
+        String token = jwtUtil.generateToken(userDetails);
+
+
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Map<String, String>> register(@RequestBody AdminDto userDto) {
+        String email = userDto.email();
+        String password = userDto.password();
+
+        userService.registerAdmin(userDto);
 
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 

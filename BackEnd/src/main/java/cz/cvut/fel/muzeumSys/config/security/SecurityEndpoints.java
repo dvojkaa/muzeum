@@ -1,11 +1,8 @@
 package cz.cvut.fel.muzeumSys.config.security;
 
+import lombok.Getter;
 import lombok.experimental.UtilityClass;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.security.web.util.matcher.OrRequestMatcher;
-//import org.springframework.security.web.util.matcher.RequestMatcher;
-//
-//import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 
 @UtilityClass
 public class SecurityEndpoints {
@@ -24,6 +21,8 @@ public class SecurityEndpoints {
                 "/employee/**",
                 "/group/create"
         };
+
+
 
 //    final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
 //            antMatcher(HttpMethod.POST,"/user/register"),

@@ -1,49 +1,60 @@
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
-// AdminRoute komponenta kontroluje roli uživatele a přístup
 const AdminRoute = ({ children }) => {
     const [role, setRole] = useState(null);
-    const token = localStorage.getItem('token');  // Předpokládáme, že token je uložen v localStorage
+    const [loading, setLoading] = useState(true); // Přidáme stav pro načítání
+    const token = sessionStorage.getItem('accessToken');
 
     useEffect(() => {
-        const validateToken = async () => {
-            if (!token) {
-                setRole(null);
-                return;
-            }
-
+        const getRole = async () => {
             try {
                 const response = await fetch('http://localhost:8080/auth/validateToken', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json',
+                        'Connection': 'keep-alive',
                     },
+                    credentials: "include",
                 });
 
                 if (response.ok) {
                     const data = await response.json();
+                    //console.log('Auth successful:', data);
                     setRole(data.role);
-                    sessionStorage.setItem("role", data.role);// Uložení role do stavu
+                } else {
+                    console.error('Error validating token:', response.statusText);
+                    setRole(null);
                 }
             } catch (error) {
-                console.error("Token validation failed", error);
+                console.error('Error:', error);
+                setRole(null);
+            } finally {
+                setLoading(false); // Po dokončení nastavíme loading na false
             }
         };
 
-        validateToken();
+        if (token) {
+            getRole();
+        } else {
+            setRole(null);
+            setLoading(false); // Pokud není token, rovnou ukončíme načítání
+        }
     }, [token]);
 
-
-
-    if (role !== 'ADMIN') {
-        return <Navigate to="/login" />; // Přesměrování na login pokud není ADMIN
+    if (loading) {
+        return <div>Loading...</div>; // Můžeš zde zobrazit nějaký loading indikátor
     }
 
-    // Pokud má uživatel správnou roli (ADMIN), zobrazí se obsah stránky
+    if (role !== 'ROLE_ADMIN') {
+        //console.log('Redirecting to login, current role:', role); // Logování před přesměrováním
+        return <Navigate to="/login" />;
+    }
+
+    console.log('Rendering admin content');
     return children;
 };
 
 export default AdminRoute;
+
