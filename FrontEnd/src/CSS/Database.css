@@ -59,3 +59,19 @@ h1 {
 .art-table tr:hover {
     background-color: #f1f1f1;
 }
+.qr-result {
+    margin-top: 10px;
+    background: #e6ffe6;
+    padding: 10px;
+    border: 1px solid #00cc00;
+    border-radius: 5px;
+}
+
+.qr-error {
+    margin-top: 10px;
+    background: #ffe6e6;
+    padding: 10px;
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+}
+

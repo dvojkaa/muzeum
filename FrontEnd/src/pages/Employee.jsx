@@ -12,6 +12,8 @@ const Employee = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' }); // Pro třídení
     const [showEmployeeModal, setShowEmployeeModal] = useState(false);
+    const token = sessionStorage.getItem('accessToken');
+
 
 
     useEffect(() => {
@@ -23,6 +25,7 @@ const Employee = () => {
             const response = await fetch('http://localhost:8080/employee/info', {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },

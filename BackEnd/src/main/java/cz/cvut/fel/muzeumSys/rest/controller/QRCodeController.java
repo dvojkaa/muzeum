@@ -21,11 +21,12 @@ public class QRCodeController {
     }
 
     @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<QRCode> createQRCode(@RequestBody QRCodeDto qrCodeDto){
+    public ResponseEntity<QRCode> createQRCode(@RequestBody Long artId){
         try {
-            QRCode qrCode = qrCodeService.createQRCode(qrCodeDto);
+            QRCode qrCode = qrCodeService.createQRCode(artId);
             return ResponseEntity.ok(qrCode);
         } catch (WriterException | IOException e) {
             return ResponseEntity.internalServerError().build();
-        }    }
+        }
+    }
 }

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Art from "../pages/Art.jsx";
@@ -10,30 +10,42 @@ import Database from "./Database.jsx";
 import Registration from "./Registration.jsx";
 import AdminRoute from "../components/AdminRoute.jsx";
 import Logout from "./Logout.jsx";
+import EmployeeRoute from "../components/EmployeeRoute.jsx";
+import EmployeeMainPage from "./EmployeeMainPage.jsx";
 
 function App() {
+    const location = useLocation();
+    const hideLayout = location.pathname.startsWith('/art/');
 
     return (
         <>
-            <Header />
+            {!hideLayout && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/art/:id" element={<Art />} />
                 <Route path="/logout" element={<Logout />} />
+
+
+
+                <Route path="/employee/" element={
+                    <EmployeeRoute>
+                        <EmployeeMainPage />
+                    </EmployeeRoute>
+                } />
+
                 {/* Admin Routes */}
-                <Route path="/employee" element={
+                <Route path="/admin/employee" element={
                     <AdminRoute>
                         <Employee />
                     </AdminRoute>
                 } />
-                <Route path="/database" element={
+                <Route path="/admin/database" element={
                     <AdminRoute>
                         <Database />
                     </AdminRoute>
                 } />
-
                 {/* Employee Routes */}
                 <Route path="/art/*" element={
                     <AdminRoute>
@@ -41,7 +53,7 @@ function App() {
                     </AdminRoute>
                 } />
             </Routes>
-            <Footer />
+            {!hideLayout && <Footer />}
         </>
     );
 }

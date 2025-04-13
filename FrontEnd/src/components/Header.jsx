@@ -12,8 +12,8 @@ const Header = () => {
             <nav>
 
                 <Link to="/">Home</Link>
-                <Link to="/database">View Database</Link>
-                <Link to="/employee">Add Personal</Link>
+                <Link to="/admin/database">View Database</Link>
+                <Link to="/admin/employee">Add Personal</Link>
                 <Link to="/logout">Logout</Link>
 
                 <Link to="/registration"><button className="btn">Sign up</button></Link>

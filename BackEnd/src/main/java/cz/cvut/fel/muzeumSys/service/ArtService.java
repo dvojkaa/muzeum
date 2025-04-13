@@ -6,7 +6,7 @@ import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
@@ -27,6 +27,10 @@ public class ArtService {
         artRepository.save(art);
 
         return art;
+    }
+
+    public Optional<Art> getArtById(Long id) {
+        return artRepository.findById(id);
     }
 
 

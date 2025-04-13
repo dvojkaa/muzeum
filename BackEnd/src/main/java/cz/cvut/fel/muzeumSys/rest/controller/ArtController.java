@@ -31,6 +31,13 @@ public class ArtController {
         return "Hello";
     }
 
+    @GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Art> getArtById(@PathVariable Long id) {
+        return artService.getArtById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 
     @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Art>> getArt() {
