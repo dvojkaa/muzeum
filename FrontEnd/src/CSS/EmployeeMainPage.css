@@ -1,87 +1,29 @@
-
 .employee-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     padding: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9fc;
-    min-height: 100vh;
-    gap: 1rem;
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border-radius: 10px;
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 1rem;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
-    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform: scale(1.05);
 }
 
-/* Barevné varianty */
 .btn.blue {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
+    background-color: #007bff;
     color: white;
-}
-
-.btn.blue:hover {
-    background: linear-gradient(to right, #1f65e0, #5a0fc8);
 }
 
 .btn.red {
-    background: linear-gradient(to right, #e74c3c, #c0392b);
+    background-color: #dc3545;
     color: white;
 }
-
-.btn.red:hover {
-    background: linear-gradient(to right, #c0392b, #a93226);
-}
-
-
-/*employee-page {*/
-/*    height: 100vh;*/
-/*    background: radial-gradient(circle at center, #f5f0e8, #a17967);*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    font-family: 'Arial', sans-serif;*/
-/*}*/
-
-/*.title {*/
-/*    font-size: 2.5rem;*/
-/*    font-weight: bold;*/
-/*    color: #001246;*/
-/*    margin-bottom: 2rem;*/
-/*}*/
-
-/*.button-group {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 1rem;*/
-/*    width: 60%;*/
-/*}*/
-
-/*.btn {*/
-/*    padding: 1rem;*/
-/*    font-size: 1.2rem;*/
-/*    border: none;*/
-/*    border-radius: 8px;*/
-/*    color: white;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.blue {*/
-/*    background-color: #0000cc;*/
-/*}*/
-
-/*.red {*/
-/*    background-color: #ff0000;*/
-/*}*/

@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div className="logo">🌀 ◊MuzeumSys◊</div>
+            <div className="logo">MuzeumSys</div>
             <nav>
                 <Link to="/">Home</Link>
 
