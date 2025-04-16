@@ -31,7 +31,7 @@ public class Art{
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    private String qrCode;
+    private String qrCodePath;
 
     private String imgPath;
 

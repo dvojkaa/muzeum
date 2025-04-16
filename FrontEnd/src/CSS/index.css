@@ -1,0 +1,273 @@
+/*!* === ZÁKLADNÍ NASTAVENÍ PROMĚNNÝCH === *!*/
+/*:root {*/
+/*    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+
+/*    !* světlo *!*/
+/*    --bg: #f9f9fc;*/
+/*    --bg-alt: #ffffff;*/
+/*    --text: #2c3e50;*/
+/*    --text-muted: #555;*/
+/*    --primary: #6a11cb;*/
+/*    --primary-alt: #2575fc;*/
+/*    --button-hover: #5a0fc8;*/
+/*    --border: #ddd;*/
+
+/*    !* dark mode *!*/
+/*    --bg-dark: #121212;*/
+/*    --bg-alt-dark: #1e1e1e;*/
+/*    --text-dark: #f5f5f5;*/
+/*    --text-muted-dark: #aaa;*/
+/*    --border-dark: #333;*/
+/*}*/
+
+/*!* === DARK MODE === *!*/
+/*body.dark-mode {*/
+/*    --bg: var(--bg-dark);*/
+/*    --bg-alt: var(--bg-alt-dark);*/
+/*    --text: var(--text-dark);*/
+/*    --text-muted: var(--text-muted-dark);*/
+/*    --border: var(--border-dark);*/
+/*}*/
+
+/*!* === RESET === *!*/
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    background-color: var(--bg);*/
+/*    color: var(--text);*/
+/*    font-family: var(--font-main);*/
+/*    transition: background-color 0.3s ease, color 0.3s ease;*/
+/*}*/
+
+/*a {*/
+/*    color: var(--primary);*/
+/*    text-decoration: none;*/
+/*    transition: color 0.2s;*/
+/*}*/
+
+/*a:hover {*/
+/*    color: var(--primary-alt);*/
+/*}*/
+
+/*button {*/
+/*    font-family: inherit;*/
+/*    transition: background 0.3s, transform 0.2s;*/
+/*}*/
+
+/*!* === FORMULÁŘE === *!*/
+/*input, select, textarea {*/
+/*    font-family: inherit;*/
+/*    border: 1px solid var(--border);*/
+/*    background-color: var(--bg-alt);*/
+/*    color: var(--text);*/
+/*    padding: 0.6rem 1rem;*/
+/*    border-radius: 8px;*/
+/*    font-size: 1rem;*/
+/*    transition: border 0.2s, background-color 0.2s;*/
+/*}*/
+
+/*input:focus, select:focus, textarea:focus {*/
+/*    outline: none;*/
+/*    border-color: var(--primary);*/
+/*}*/
+
+/*!* === TLAČÍTKA === *!*/
+/*.btn-primary {*/
+/*    background: linear-gradient(to right, var(--primary), var(--primary-alt));*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 0.6rem 1.4rem;*/
+/*    border-radius: 8px;*/
+/*    cursor: pointer;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*.btn-primary:hover {*/
+/*    background: linear-gradient(to right, var(--button-hover), var(--primary-alt));*/
+/*}*/
+
+/*!* === TABULKY === *!*/
+/*table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    margin-bottom: 2rem;*/
+/*}*/
+
+/*th, td {*/
+/*    padding: 0.75rem;*/
+/*    text-align: left;*/
+/*    border: 1px solid var(--border);*/
+/*}*/
+
+/*th {*/
+/*    background-color: var(--primary);*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*tr:nth-child(even) {*/
+/*    background-color: rgba(0, 0, 0, 0.02);*/
+/*}*/
+
+/*!* === OSTATNÍ === *!*/
+/*.container {*/
+/*    max-width: 1200px;*/
+/*    margin: 0 auto;*/
+/*    padding: 2rem;*/
+/*}*/
+
+
+/* === MUZEJNÍ PROMĚNNÉ === */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+:root {
+    --font-main: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+
+    /* světlý motiv */
+    --bg: #fdf8f2;              /* pozadí stránky */
+    --bg-alt: #fffaf3;           /* pozadí boxů */
+    --text: #3b2f2f;             /* hlavní text */
+    --text-muted: #6b4e4e;       /* tlumený text */
+    --primary: #8b5e3c;          /* knižní hnědá */
+    --primary-alt: #a97449;
+    --button-hover: #5e3e28;
+    --border: #d4c5b2;
+
+    /* tmavý motiv */
+    --bg-dark: #1a1410;
+    --bg-alt-dark: #2a1e17;
+    --text-dark: #f1e9de;
+    --text-muted-dark: #c5b8a6;
+    --border-dark: #3a2d22;
+}
+
+/* === DARK MODE === */
+body.dark-mode {
+    --bg: var(--bg-dark);
+    --bg-alt: var(--bg-alt-dark);
+    --text: var(--text-dark);
+    --text-muted: var(--text-muted-dark);
+    --border: var(--border-dark);
+}
+
+/* === RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    line-height: 1.7;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-image: url('/images/paper-texture.jpg'); /* Pokud chceš strukturu papíru */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--primary-alt);
+}
+
+button {
+    font-family: inherit;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+/* === FORMULÁŘE === */
+input, select, textarea {
+    font-family: inherit;
+    border: 1px solid var(--border);
+    background-color: var(--bg-alt);
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #fffef9;
+}
+
+/* === TLAČÍTKA === */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--primary-alt));
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, var(--button-hover), var(--primary-alt));
+    transform: translateY(-1px);
+}
+
+/* === TABULKY === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background-color: var(--bg-alt);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* === KONTEJNERY === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* === HLAVIČKA A PATIČKA === */
+header, footer {
+    background-color: var(--bg-alt);
+    color: var(--text);
+    padding: 1.5rem 2rem;
+    border-top: 3px double var(--primary);
+    border-bottom: 3px double var(--primary);
+    text-align: center;
+}
+

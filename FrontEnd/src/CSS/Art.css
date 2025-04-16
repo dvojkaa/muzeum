@@ -1,76 +1,54 @@
-/* Obecný styl */
 .art-container {
-    max-width: 100%;
-    margin: auto;
-    font-family: Arial, sans-serif;
-    background: #F5EFE3;
-    padding: 10px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* Header */
 .art-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    margin-bottom: 2rem;
 }
 
 .login-link {
-    color: black;
+    color: var(--primary);
+    font-weight: 500;
     text-decoration: none;
-    font-size: 14px;
+}
+
+.login-link:hover {
+    color: var(--primary-alt);
 }
 
 .museum-name {
-    font-size: 18px;
+    font-size: 1.8rem;
+    color: var(--text);
 }
 
-/* Obrázek */
 .art-image img {
     width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Text */
-.art-details {
-    padding: 10px;
-    text-align: center;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
 }
 
 .art-details h2 {
-    font-size: 22px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .art-details p {
-    font-size: 16px;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
 }
 
 .art-material {
-    font-weight: bold;
-}
-
-/* 📌 Responzivita pro mobilní zařízení */
-@media (max-width: 600px) {
-    .art-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .login-link {
-        font-size: 12px;
-    }
-
-    .museum-name {
-        font-size: 16px;
-    }
-
-    .art-details h2 {
-        font-size: 18px;
-    }
-
-    .art-details p {
-        font-size: 14px;
-    }
+    font-style: italic;
 }

@@ -22,7 +22,7 @@ public class Room {
     //    @Basic(optional = false)
 //    @Column(nullable = false)
     private String name;
-//
+
 //    @Basic(optional = false)
 //    @Column(nullable = false)
     private Integer floorNumber;

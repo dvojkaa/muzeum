@@ -10,7 +10,8 @@ public record QRCodeDto(
     Long id,
     String qrCode,
     String color,
-    String imagePath
+    String imagePath,
+    String base64Image
 ){
 
 }

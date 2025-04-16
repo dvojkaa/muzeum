@@ -29,7 +29,7 @@ function App() {
 
 
 
-                <Route path="/employee/" element={
+                <Route path="/employee" element={
                     <EmployeeRoute>
                         <EmployeeMainPage />
                     </EmployeeRoute>

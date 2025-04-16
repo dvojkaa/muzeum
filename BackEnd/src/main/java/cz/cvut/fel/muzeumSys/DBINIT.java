@@ -39,7 +39,7 @@ public class DBINIT implements CommandLineRunner {
 
         User employee = new Employee();
         employee.setEmail("employee@muzeum.cz");
-        employee.setPassword(passwordEncoder.encode("employee123"));
+        employee.setPassword(passwordEncoder.encode("lol"));
         employee.setRole(Role.ROLE_EMPLOYEE);
         employee.setFirstName("Employee");
         employee.setLastName("User");
@@ -86,7 +86,6 @@ public class DBINIT implements CommandLineRunner {
         art1.setColor("RED");         // ✅ jako String
         art1.setDescription("A famous Greek statue.");
         art1.setParameters("203 cm, Marble");
-        art1.setQrCode("VENUS_QR");
         art1.setGroup(group1);
         art1.setRoom(room1);
 
@@ -98,7 +97,6 @@ public class DBINIT implements CommandLineRunner {
         art2.setColor("YELLOW");
         art2.setDescription("Famous post-impressionist painting.");
         art2.setParameters("74 cm × 92 cm");
-        art2.setQrCode("STARRY_QR");
         art2.setGroup(group2);
         art2.setRoom(room2);
 
@@ -110,7 +108,6 @@ public class DBINIT implements CommandLineRunner {
         art3.setColor("GREEN");
         art3.setDescription("A sculpture of a man in deep thought.");
         art3.setParameters("Height: 186 cm");
-        art3.setQrCode("THINKER_QR");
         art3.setGroup(group1);
         art3.setRoom(room1);
 
@@ -122,7 +119,6 @@ public class DBINIT implements CommandLineRunner {
         art4.setColor("YELLOW");
         art4.setDescription("A famous depiction of a night sky.");
         art4.setParameters("73.7 cm × 92.1 cm, Oil on canvas");
-        art4.setQrCode("STARRY_QR");
         art4.setGroup(group1);
         art4.setRoom(room1);
 
@@ -134,25 +130,10 @@ public class DBINIT implements CommandLineRunner {
         art5.setColor("RED");
         art5.setDescription("One of the many clay soldiers from the Terracotta Army.");
         art5.setParameters("Life-size, Clay");
-        art5.setQrCode("TERRACOTTA_QR");
         art5.setGroup(group1);
         art5.setRoom(room1);
 
 
         artRepository.saveAll(List.of(art1, art2,art3,art4,art5));
-
-        // QR Codes
-        QRCode qr1 = new QRCode();
-        qr1.setArtId(art1.getId());
-        qr1.setQrCode("VENUS_QR");
-        qr1.setColor(Color.YELLOW); // ✅ použitelné barvy: GREEN, YELLOW, RED
-
-
-        QRCode qr2 = new QRCode();
-        qr2.setArtId(art2.getId());
-        qr2.setQrCode("STARRY_QR");
-        qr2.setColor(Color.RED); // např. RED pro kontrast
-
-        qrCodeRepository.saveAll(List.of(qr1, qr2));
     }
 }

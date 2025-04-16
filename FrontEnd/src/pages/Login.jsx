@@ -1,10 +1,12 @@
-
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Login.css';
+import { AuthContext } from '../components/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -20,9 +22,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const customer = new FormData();
-        customer.append("email", formData.email);
-        customer.append("password", formData.password);
 
         try {
             const response = await fetch('http://localhost:8080/user/login', {
@@ -32,15 +31,12 @@ const Login = () => {
                     'Connection': 'keep-alive',
                 },
                 credentials: "include",
-                body: JSON.stringify(formData) // Odeslání celého formData jako JSON
+                body: JSON.stringify(formData)
             });
 
             if (response.ok) {
-                const data = await response.json(); // Přiřazení výsledků do data
-                console.log('Login successful:', data);
-
-                // Uložení do sessionStorage a přechod na profil
-                sessionStorage.setItem("accessToken", data.token);
+                const data = await response.json();
+                login(data.token); // použijeme funkci z contextu
                 navigate('/');
             } else {
                 console.error('Login failed:', response.statusText);
@@ -48,28 +44,25 @@ const Login = () => {
         } catch (error) {
             console.error('Error:', error);
         }
-    }
-
+    };
 
     return (
         <div className="login">
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="email"></label>
                     <input
                         onChange={handleChange}
-                        value={formData.email || ''}  // Ujisti se, že hodnota není undefined
+                        value={formData.email || ''}
                         type="email"
                         id="email"
-                        name="email"  // Používáme email místo username
+                        name="email"
                         placeholder="Email:"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password"></label>
                     <input
                         onChange={handleChange}
-                        value={formData.password || ''}  // Ujisti se, že hodnota není undefined
+                        value={formData.password || ''}
                         type="password"
                         id="password"
                         name="password"
@@ -83,4 +76,3 @@ const Login = () => {
 };
 
 export default Login;
-

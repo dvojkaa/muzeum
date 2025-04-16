@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
+    const { logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Odstranit token z localStorage
-        sessionStorage.removeItem('accessToken');
-
-        // (Volitelně) můžeš smazat i refreshToken, pokud ho máš
-        // localStorage.removeItem('refreshToken');
-
-        // Přesměrovat na login stránku
+        logout();
         navigate('/');
-    }, [navigate]);
+    }, []);
 
-    return null; // Nebo něco jako: <p>Logging out...</p>
+    return null;
 };
 
 export default Logout;

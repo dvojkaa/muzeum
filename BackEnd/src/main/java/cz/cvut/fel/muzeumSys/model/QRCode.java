@@ -22,4 +22,6 @@ public class QRCode  {
     private Color color;
 
     private String imagePath;
+
+    private String base64Image;
 }

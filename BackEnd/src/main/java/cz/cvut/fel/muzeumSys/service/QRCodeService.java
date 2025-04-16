@@ -19,8 +19,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -62,7 +64,7 @@ public class QRCodeService {
         BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
 
         // Složka
-        File directory = new File("src/main/resources/QRCodes");
+        File directory = new File("src/main/resources/static/qrcodes");
         if (!directory.exists()) {
             directory.mkdirs();
         }
@@ -81,51 +83,11 @@ public class QRCodeService {
         qrCode.setArtId(art.getId());
         qrCode.setImagePath(filePath.toString());
 
+        art.setQrCodePath(filePath.toString());
+
         return qrCodeRepository.save(qrCode);
     }
 
-
-//    public QRCode createQRCode(Long artId) throws WriterException, IOException {
-//
-//
-//
-//
-//
-//        int width = 300;
-//        int height = 300;
-//
-//        // Konverze HEX barvy na RGB
-//        int qrColor = Color.decode(ColorDecode(qrCodeDto.color())).getRGB();
-//        int backgroundColor = Color.WHITE.getRGB(); // Bílé pozadí
-//
-//        // Vygenerování QR kódu
-//        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-//        BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeDto.qrCode(), BarcodeFormat.QR_CODE, width, height);
-//
-//        // Nastavení barvy QR kódu
-//        MatrixToImageConfig config = new MatrixToImageConfig(qrColor, backgroundColor);
-//        BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
-//
-//        // Cesta k uložení souboru
-//        String fileName = "QR_" + qrCodeDto.qrCode() + ".png";
-//        Path filePath = Paths.get("src/main/resources/QRCodes/" + fileName);
-//
-//        // Vytvoření složky, pokud neexistuje
-//        File directory = new File("src/main/resources/QRCodes");
-//        if (!directory.exists()) {
-//            directory.mkdirs();
-//        }
-//
-//        // Uložení QR obrázku
-//        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", filePath, config);
-//
-//        // Převedení DTO na entitu
-//        QRCode qrCode = qrCodeMapper.toEntity(qrCodeDto);
-//        qrCode.setImagePath(filePath.toString());
-//
-//        // Uložení do databáze
-//        return qrCodeRepository.save(qrCode);
-//    }
 
     private String ColorDecode(String color) {
         return switch (color) {
@@ -138,5 +100,27 @@ public class QRCodeService {
             default -> "Unknown color"; // Pro neznámou barvu
 
         };
+    }
+
+    public QRCodeDto getQRCodeByArtId(Long artId) throws IOException {
+        Optional<Art> optionalArt = artRepository.findById(artId);
+        if (optionalArt.isEmpty()) {
+            throw new IllegalArgumentException("Artwork not found for ID: " + artId);
+        }
+
+        Art art = optionalArt.get();
+
+        // Načtení QR obrázku podle cesty v Art
+        File imgFile = new File(art.getQrCodePath());
+        byte[] fileContent = Files.readAllBytes(imgFile.toPath());
+        String base64Image = Base64.getEncoder().encodeToString(fileContent);
+
+        return new QRCodeDto(
+                null,
+                ("http://localhost:5173/art/" + artId),         // obsah QR kódu
+                art.getColor(),          // barva
+                art.getQrCodePath(),        // cesta k obrázku
+                base64Image              // base64 obrázek
+        );
     }
 }

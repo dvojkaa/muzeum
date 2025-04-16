@@ -29,4 +29,14 @@ public class QRCodeController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping(value = "/get", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<QRCodeDto> getQRCode(@RequestBody Long artId) {
+        try {
+            QRCodeDto dto = qrCodeService.getQRCodeByArtId(artId);
+            return ResponseEntity.ok(dto);
+        } catch (IOException | IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
