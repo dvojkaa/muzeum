@@ -35,4 +35,22 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.login());
     }
 
+
+
+    @PostMapping(value="/edit", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> edit() {
+        return ResponseEntity.ok(employeeService.login());
+    }
+    @PostMapping(value="/move", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> move() {
+        return ResponseEntity.ok(employeeService.login());
+    }
+    @PostMapping(value="/editGroup", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> editGroup() {
+        return ResponseEntity.ok(employeeService.login());
+    }
+    @PostMapping(value="/emergency", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> emergency() {
+        return ResponseEntity.ok(employeeService.login());
+    }
 }

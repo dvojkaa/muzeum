@@ -1,45 +1,3 @@
-// import React, { useRef } from 'react';
-// import QrUploader from '../components/QrUploader';
-// import '../CSS/EmployeeMainPage.css';
-//
-// const EmployeeMainPage = () => {
-//     const fileInputRef = useRef(null);
-//
-//     const handleAction = (actionType) => {
-//         // otevři input pro vybrání fotky
-//         fileInputRef.current.click();
-//         fileInputRef.current.dataset.action = actionType;
-//     };
-//
-//     const handleImageSelected = async (imageFile) => {
-//         const action = fileInputRef.current.dataset.action;
-//         const formData = new FormData();
-//         formData.append('image', imageFile);
-//         formData.append('action', action);
-//
-//         const response = await fetch('http://localhost:8080/qr/process', {
-//             method: 'POST',
-//             body: formData
-//         });
-//
-//         const data = await response.json();
-//         console.log(data);
-//         // na základě odpovědi přesměrovat nebo zobrazit výsledek
-//     };
-//
-//     return (
-//         <div className="employee-container">
-//             <button className="btn blue" onClick={() => handleAction('edit')}>Edit</button>
-//             <button className="btn blue" onClick={() => handleAction('move')}>Move</button>
-//             <button className="btn blue" onClick={() => handleAction('editGroup')}>Edit Group</button>
-//             <button className="btn red" onClick={() => handleAction('emergency')}>Emergency</button>
-//
-//             <QrUploader onImageSelected={handleImageSelected} ref={fileInputRef} />
-//         </div>
-//     );
-// };
-//
-// export default EmployeeMainPage;
 import React, { useState } from 'react';
 import QRMethodModal from '../components/QRMethods/QRMethodModal.jsx';
 import '../CSS/EmployeeMainPage.css';
@@ -75,13 +33,30 @@ const EmployeeMainPage = () => {
 
         formData.append('action', actionType);
 
-        // const response = await fetch('http://localhost:8080/qr/process', {
-        //     method: 'POST',
-        //     body: formData
-        // });
 
-        // const data = await response.json();
-        // console.log(data);
+
+//Odesílání požadavku
+        try {
+            const response = await fetch('http://localhost:8080/employee/' + actionType, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Connection': 'keep-alive',
+                },
+                body: formData,
+                credentials: "include",
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Successful:', data);
+            } else {
+                console.error('Error validating token:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
         handleCloseModal();
         // TODO: přesměrování, zobrazení detailu, notifikace...
     };
