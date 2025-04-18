@@ -38,6 +38,29 @@ public class ArtService {
         return artRepository.findAll();
     }
 
+
+
+    public List<Art> editArt(List<ArtDto> artList) {
+        return artList.stream()
+                .map(artDto -> {
+                    Art existingArt = artRepository.findById(artDto.id())
+                            .orElseThrow(() -> new RuntimeException("Art not found with id: " + artDto.id()));
+
+                    artMapper.updateArtFromDto(artDto, existingArt);
+
+                    return artRepository.save(existingArt);
+                })
+                .toList();
+    }
+
+
+
+
+    public List<Art> emergency(List<ArtDto> artList) {
+        return null;
+    }
+
+
 //    public List getArts(ArtDto artDto) {
 //        return artRepository.findBy(artDto);
 //    }

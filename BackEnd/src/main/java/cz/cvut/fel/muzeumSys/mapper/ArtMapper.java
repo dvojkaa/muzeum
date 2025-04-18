@@ -4,9 +4,7 @@ import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Group;
 import cz.cvut.fel.muzeumSys.model.Room;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface ArtMapper {
@@ -19,6 +17,9 @@ public interface ArtMapper {
     @Mapping(source = "room_id", target = "room", qualifiedByName = "roomFromId")
     @Mapping(source = "group_id", target = "group", qualifiedByName = "groupFromId")
     Art toEntity(ArtDto artDto);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateArtFromDto(ArtDto dto, @MappingTarget Art entity);
 
     @Named("roomFromId")
     static Room roomFromId(Long id) {

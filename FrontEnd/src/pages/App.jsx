@@ -22,18 +22,13 @@ function App() {
             {!hideLayout && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/art/:id" element={<Art />} />
                 <Route path="/logout" element={<Logout />} />
 
 
 
-                <Route path="/employee" element={
-                    <EmployeeRoute>
-                        <EmployeeMainPage />
-                    </EmployeeRoute>
-                } />
+
 
                 {/* Admin Routes */}
                 <Route path="/admin/employee" element={
@@ -54,6 +49,12 @@ function App() {
                 } />
             </Routes>
             {!hideLayout && <Footer />}
+            <Route path="/login" element={<Login />} />
+            <Route path="/employee" element={
+                <EmployeeRoute>
+                    <EmployeeMainPage />
+                </EmployeeRoute>
+            } />
         </>
     );
 }

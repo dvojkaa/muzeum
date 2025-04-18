@@ -9,6 +9,7 @@ public record ArtDto(
         String name,
         String era,
         String type,
+        String color,
         String description,
         String parameters,
         String author,
