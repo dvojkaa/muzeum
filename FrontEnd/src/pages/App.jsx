@@ -15,20 +15,23 @@ import EmployeeMainPage from "./EmployeeMainPage.jsx";
 
 function App() {
     const location = useLocation();
-    const hideLayout = location.pathname.startsWith('/art/');
+    const path = location.pathname;
+
+    const hideLayout =
+        path === "/login" ||
+        path === "/employee" ||
+        path.startsWith("/employee/") ||
+        path.startsWith("/art/");
 
     return (
         <>
             {!hideLayout && <Header />}
+
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/art/:id" element={<Art />} />
                 <Route path="/logout" element={<Logout />} />
-
-
-
-
 
                 {/* Admin Routes */}
                 <Route path="/admin/employee" element={
@@ -41,20 +44,17 @@ function App() {
                         <Database />
                     </AdminRoute>
                 } />
+
                 {/* Employee Routes */}
-                <Route path="/art/*" element={
-                    <AdminRoute>
-                        <Employee />
-                    </AdminRoute>
+                <Route path="/login" element={<Login />} />
+                <Route path="/employee" element={
+                    <EmployeeRoute>
+                        <EmployeeMainPage />
+                    </EmployeeRoute>
                 } />
             </Routes>
+
             {!hideLayout && <Footer />}
-            <Route path="/login" element={<Login />} />
-            <Route path="/employee" element={
-                <EmployeeRoute>
-                    <EmployeeMainPage />
-                </EmployeeRoute>
-            } />
         </>
     );
 }

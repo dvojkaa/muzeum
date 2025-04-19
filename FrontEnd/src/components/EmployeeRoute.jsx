@@ -1,6 +1,7 @@
 //
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+
 //
 // const EmployeeRoute = ({ children }) => {
 //     const [role, setRole] = useState(null);
@@ -109,7 +110,7 @@ const EmployeeRoute = ({ children }) => {
     }, [token]);
 
     if (role === null) return <div>Loading...</div>;
-    if (role !== 'ROLE_EMPLOYEE' && role !== 'ROLE_ADMIN') return <Navigate to="/login" />;
+    if ((role !== 'ROLE_EMPLOYEE' && role !== 'ROLE_ADMIN')||token == null) return <Navigate to="/login" />;
 
     return children;
 };

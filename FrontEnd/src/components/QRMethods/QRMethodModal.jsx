@@ -1,62 +1,105 @@
 import React, { useState } from 'react';
-import CameraScanner from './CameraScanner.jsx';
-import FileUploader from './FileUploader.jsx';
+import CameraScanner from './CameraScanner';
+import FileUploader from './FileUploader';
 
-const QRMethodModal = ({ onClose, onScanComplete }) => {
-    const [mode, setMode] = useState(null); // 'camera' | 'upload' | null
+const QRMethodModal = ({ onClose, onScanComplete, isMultiScan, actionType }) => {
+    const [method, setMethod] = useState(null);
+    const [scannedArts, setScannedArts] = useState([]);
 
-    const renderMode = () => {
-        if (mode === 'camera') {
-            return <CameraScanner onDetected={onScanComplete} />;
-        } else if (mode === 'upload') {
-            return <FileUploader onFileSelected={onScanComplete} onCancel={onClose} />;
+    const handleScannedArt = async (qrText) => {
+        if (actionType === 'edit' && scannedArts.length >= 1) {
+            console.warn("V režimu editace lze naskenovat pouze jedno dílo.");
+            handleFinalDone()
+            return; // Zabráníme naskenování více než jednoho díla
         }
 
-        return (
-            <>
-                <h2>Jak chceš načíst QR kód?</h2>
-                <button style={buttonStyle} onClick={() => setMode('camera')}>📷 Kamera</button>
-                <button style={buttonStyle} onClick={() => setMode('upload')}>🖼️ Fotka</button>
-                <button style={buttonStyle} onClick={onClose}>Zavřít</button>
-            </>
-        );
+        try {
+            const url = new URL(qrText);
+            const id = url.pathname.split('/').pop();
+            const response = await fetch(`http://localhost:8080/art/${id}`);
+            const data = await response.json();
+
+            if (!scannedArts.some(a => a.id === data.id)) {
+                setScannedArts(prev => [...prev, data]);
+            }
+        } catch (err) {
+            console.error("Chyba při načítání díla:", err);
+        }
     };
 
+    const handleRemoveArt = (idToRemove) => {
+        setScannedArts(prev => prev.filter(a => a.id !== idToRemove));
+    };
+
+    const handleFinalDone = () => {
+        onScanComplete(scannedArts); // vždy posíláme pole ArtDto
+    };
+
+    const renderScanner = () => (
+        <>
+            {method === 'camera' && (
+                <CameraScanner
+                    onDetected={handleScannedArt}
+                    scannedArts={scannedArts}
+                    onDone={handleFinalDone}
+                />
+            )}
+
+            {method === 'file' && (
+                <FileUploader
+                    onFileSelected={handleScannedArt}
+                    onCancel={onClose}
+                    scannedArts={scannedArts}
+                    onDone={handleFinalDone}
+                    onRemove={handleRemoveArt}
+                />
+            )}
+
+            {scannedArts.length > 0 && (
+                <div style={{marginTop: '1rem'}}>
+                    <h4>Naskenovaná díla:</h4>
+                    <ul>
+                        {scannedArts.map((art) => (
+                            <li key={art.id} style={{display: 'flex', justifyContent: 'space-between'}}>
+                                {art.name}
+                                <button onClick={() => handleRemoveArt(art.id)} style={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: 'red',
+                                    cursor: 'pointer'
+                                }}>❌
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                    <button className="btn-primary" onClick={handleFinalDone}>Done</button>
+                </div>
+            )}
+
+            <button className="btn-secondary" onClick={onClose}>Zrušit</button>
+        </>
+    );
+
     return (
-        <div style={modalStyle}>
-            <div style={modalContentStyle}>
-                {renderMode()}
+        <div className="modal-overlay">
+            <div className="modal-content">
+                {!method ? (
+                    <>
+                        <h2>Vyber způsob načtení QR</h2>
+                        <div className="modal-btn-group">
+                            <button className="btn-primary" onClick={() => setMethod('camera')}>📷 Naskenovat kamerou
+                            </button>
+                            <button className="btn-primary" onClick={() => setMethod('file')}>🖼️ Nahrát obrázek</button>
+                        </div>
+                        <button className="btn-secondary" onClick={onClose}>Zrušit</button>
+                    </>
+                ) : (
+                    renderScanner()
+                )}
             </div>
         </div>
+
     );
-};
-
-const modalStyle = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 999,
-};
-
-const modalContentStyle = {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '10px',
-    textAlign: 'center',
-    width: '90%',
-    maxWidth: '400px',
-};
-
-const buttonStyle = {
-    padding: '10px 20px',
-    margin: '10px',
-    fontSize: '1em',
 };
 
 export default QRMethodModal;

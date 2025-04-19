@@ -1,29 +1,63 @@
 .employee-container {
-    text-align: center;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 1rem;
+    font-family: var(--font-main);
+    background-color: var(--bg);
 }
 
+/* Obecné tlačítko */
 .btn {
-    padding: 12px 20px;
-    margin: 10px;
-    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 24px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.3s;
 }
 
+/* Hover efekt */
 .btn:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
+/* Barvy */
 .btn.blue {
-    background-color: #007bff;
+    background: linear-gradient(to right, var(--primary), var(--primary-alt));
     color: white;
+}
+
+.btn.blue:hover {
+    background: linear-gradient(to right, var(--button-hover), var(--primary-alt));
+    transform: translateY(-1px);
 }
 
 .btn.red {
-    background-color: #dc3545;
+    background: linear-gradient(to right, #e74c3c, #c0392b);
     color: white;
+}
+
+.btn.red:hover {
+    background: linear-gradient(to right, #c0392b, #a93226);
+}
+
+/* === RESPONSIVITA === */
+@media (min-width: 768px) {
+    .employee-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 0.5rem;
+        width: auto;
+        min-width: 180px;
+    }
 }

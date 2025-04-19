@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 
-const CameraScanner = ({ onDetected }) => {
+const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
     const [cameras, setCameras] = useState([]);
     const [selectedCameraId, setSelectedCameraId] = useState(null);
     const scannerRef = useRef(null);
     const isRunningRef = useRef(false);
 
-    // Načtení seznamu kamer
     useEffect(() => {
         Html5Qrcode.getCameras()
             .then((devices) => {
                 setCameras(devices);
                 if (devices.length > 0) {
-                    setSelectedCameraId(devices[0].id); // výchozí kamera
+                    setSelectedCameraId(devices[0].id);
                 }
             })
             .catch((err) => {
@@ -21,7 +20,6 @@ const CameraScanner = ({ onDetected }) => {
             });
     }, []);
 
-    // Spuštění skeneru
     useEffect(() => {
         if (!selectedCameraId) return;
 
@@ -29,11 +27,8 @@ const CameraScanner = ({ onDetected }) => {
         const html5QrCode = new Html5Qrcode(qrRegionId);
         scannerRef.current = html5QrCode;
 
-        // ⬇️ Čištění divu, aby se nespustily dvě kamery
         const readerElement = document.getElementById(qrRegionId);
-        if (readerElement) {
-            readerElement.innerHTML = "";
-        }
+        if (readerElement) readerElement.innerHTML = "";
 
         html5QrCode
             .start(
@@ -45,9 +40,7 @@ const CameraScanner = ({ onDetected }) => {
                         html5QrCode.stop().then(() => onDetected(decodedText));
                     }
                 },
-                (error) => {
-                    // Ignoruj drobné chyby při skenování
-                }
+                (error) => {}
             )
             .then(() => {
                 isRunningRef.current = true;
@@ -72,7 +65,6 @@ const CameraScanner = ({ onDetected }) => {
         <div>
             <h3>Skenuj QR kód</h3>
 
-            {/* Výběr kamery pokud je víc */}
             {cameras.length > 1 && (
                 <select
                     onChange={(e) => setSelectedCameraId(e.target.value)}

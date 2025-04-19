@@ -4,7 +4,6 @@ package cz.cvut.fel.muzeumSys.service;
 
 import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
-import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.mapper.AdminMapper;
 import cz.cvut.fel.muzeumSys.mapper.EmployeeMapper;
 import cz.cvut.fel.muzeumSys.model.Admin;
@@ -12,11 +11,12 @@ import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.model.enums.Role;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,8 +24,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-    @Service
+@Service
     @RequiredArgsConstructor
     public class UserService implements UserDetailsService {
 
@@ -57,6 +58,11 @@ import java.util.List;
         }
 
 
+        public User getCurrentUser() {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String username = auth.getName();
+            return userRepository.findByEmail(username).orElseThrow();
+        }
 
 
 
@@ -88,4 +94,10 @@ import java.util.List;
         public List<User> getUsers() {
             return userRepository.findAll();
         }
+
+        public User getUserById(Long userId) {
+            return userRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Uživatel s ID " + userId + " nebyl nalezen."));
+        }
+
     }

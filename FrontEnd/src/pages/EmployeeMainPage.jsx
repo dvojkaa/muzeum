@@ -1,64 +1,59 @@
 import React, { useState } from 'react';
 import QRMethodModal from '../components/QRMethods/QRMethodModal.jsx';
+import ActionModal from '../components/QRMethods/ActionModal.jsx';
 import '../CSS/EmployeeMainPage.css';
 
 const EmployeeMainPage = () => {
     const [actionType, setActionType] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showQRModal, setShowQRModal] = useState(false);
+    const [showActionModal, setShowActionModal] = useState(false);
+    const [scannedArts, setScannedArts] = useState([]); // List<ArtDto>
 
     const handleActionClick = (action) => {
         setActionType(action);
-        setShowModal(true);
+        setScannedArts([]);
+        setShowQRModal(true);
     };
 
-    const handleCloseModal = () => {
-        setShowModal(false);
+    const handleCloseQRModal = () => {
+        setShowQRModal(false);
         setActionType(null);
     };
 
-    const handleScanResult = async (qrTextOrFile) => {
-        const formData = new FormData();
+    const handleScanComplete = (artList) => {
+        setScannedArts(artList);
+        setShowQRModal(false);
+        setShowActionModal(true);
+    };
 
-        if (typeof qrTextOrFile === 'string') {
-            formData.append('qrText', qrTextOrFile);
-        } else {
-            formData.append('image', qrTextOrFile);
-        }
+    const handleSubmitAction = async (updatedList) => {
+        const token = sessionStorage.getItem('accessToken');
 
-        if (typeof qrTextOrFile === 'string') {
-            console.log("📦 QR text:", qrTextOrFile); // ⬅️ Přímo QR obsah
-        } else {
-            console.log("🖼️ Soubor nahrán:", qrTextOrFile.name);
-        }
-
-        formData.append('action', actionType);
-
-
-
-//Odesílání požadavku
         try {
-            const response = await fetch('http://localhost:8080/employee/' + actionType, {
+            const response = await fetch(`http://localhost:8080/employee/${actionType}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                    'Connection': 'keep-alive',
+                    'Content-Type': 'application/json'
                 },
-                body: formData,
-                credentials: "include",
+                body: JSON.stringify(updatedList)
             });
 
             if (response.ok) {
-                const data = await response.json();
-                console.log('Successful:', data);
-            } else {
-                console.error('Error validating token:', response.statusText);
+                console.log("Upraveno/odesláno:", await response.json());
             }
-        } catch (error) {
-            console.error('Error:', error);
+        } catch (err) {
+            console.error("Chyba při odesílání:", err);
         }
-        handleCloseModal();
-        // TODO: přesměrování, zobrazení detailu, notifikace...
+
+        resetAll();
+    };
+
+    const resetAll = () => {
+        setActionType(null);
+        setScannedArts([]);
+        setShowQRModal(false);
+        setShowActionModal(false);
     };
 
     return (
@@ -68,10 +63,21 @@ const EmployeeMainPage = () => {
             <button className="btn blue" onClick={() => handleActionClick('editGroup')}>Edit Group</button>
             <button className="btn red" onClick={() => handleActionClick('emergency')}>Emergency</button>
 
-            {showModal && (
+            {showQRModal && (
                 <QRMethodModal
-                    onClose={handleCloseModal}
-                    onScanComplete={handleScanResult}
+                    onClose={handleCloseQRModal}
+                    onScanComplete={handleScanComplete}
+                    isMultiScan={actionType === 'editGroup' || actionType === 'emergency' || actionType === 'edit'}
+                    actionType={actionType}
+                />
+            )}
+
+            {showActionModal && (
+                <ActionModal
+                    actionType={actionType}
+                    artList={scannedArts}
+                    onSubmit={handleSubmitAction}
+                    onCancel={resetAll}
                 />
             )}
         </div>
