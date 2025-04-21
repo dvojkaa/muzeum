@@ -8,6 +8,7 @@ package cz.cvut.fel.muzeumSys.dto.Record;
 
 public record QRCodeDto(
     Long id,
+    Long artId,
     String qrCode,
     String color,
     String imagePath,

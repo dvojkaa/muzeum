@@ -1,4 +1,32 @@
 /* === Database.css === */
+.pagination {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.pagination button {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.pagination .active-page {
+    background-color: var(--primary-alt);
+    color: white;
+}
+
+.pagination .active-page:hover {
+    background-color: var(--primary);
+}
 .btn-generate {
     background: linear-gradient(to right, #b65d0f, #e67e22);
     color: white;

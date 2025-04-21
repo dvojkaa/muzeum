@@ -8,6 +8,7 @@ import lombok.experimental.UtilityClass;
 public class SecurityEndpoints {
 
         public static final String[] PUBLIC_URLS = {
+                "/qrcodes/**",
                 "/user/register",
                 "/user/login",
                 "/art"

@@ -1,3 +1,38 @@
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.form-layout label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+.form-layout input,
+.form-layout select,
+.form-layout textarea {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--bg-alt);
+    color: var(--text);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+
 .modal-overlay {
     position: fixed;
     top: 0;

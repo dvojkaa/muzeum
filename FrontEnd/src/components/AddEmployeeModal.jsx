@@ -45,7 +45,7 @@ const AddEmployeeModal = ({ onClose }) => {
             <div className="modal-content">
                 <button className="close-btn" onClick={onClose}>X</button>
                 <h2>Přidat nového zaměstnance</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="form-layout">
                     <label>
                         Jméno:
                         <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />

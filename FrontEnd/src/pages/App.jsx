@@ -12,6 +12,7 @@ import AdminRoute from "../components/AdminRoute.jsx";
 import Logout from "./Logout.jsx";
 import EmployeeRoute from "../components/EmployeeRoute.jsx";
 import EmployeeMainPage from "./EmployeeMainPage.jsx";
+import EmergencyRecords from "./EmergencyRecords.jsx";
 
 function App() {
     const location = useLocation();
@@ -42,6 +43,12 @@ function App() {
                 <Route path="/admin/database" element={
                     <AdminRoute>
                         <Database />
+                    </AdminRoute>
+                } />
+
+                <Route path="/admin/emergency" element={
+                    <AdminRoute>
+                        <EmergencyRecords />
                     </AdminRoute>
                 } />
 
