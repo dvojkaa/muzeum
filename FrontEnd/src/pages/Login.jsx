@@ -4,6 +4,8 @@ import '../CSS/Login.css';
 import { AuthContext } from '../components/AuthContext';
 
 const Login = () => {
+
+
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
@@ -20,6 +22,7 @@ const Login = () => {
         });
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,16 +31,21 @@ const Login = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Connection': 'keep-alive',
                 },
-                credentials: "include",
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
                 const data = await response.json();
-                login(data.token); // použijeme funkci z contextu
-                navigate('/');
+                await login(data.token,data.role);
+
+                if (data.role === 'ROLE_EMPLOYEE') {
+                    navigate('/employee');
+                } else if (data.role === 'ROLE_ADMIN') {
+                    navigate('/');
+                } else {
+                    navigate('/login');
+                }
             } else {
                 console.error('Login failed:', response.statusText);
             }
@@ -69,7 +77,7 @@ const Login = () => {
                         placeholder="Heslo:"
                     />
                 </div>
-                <button id="login" type="submit">Přihlásit se</button>
+                <button className="btn-primary" type="submit">Přihlásit se</button>
             </form>
         </div>
     );

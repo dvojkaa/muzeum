@@ -31,10 +31,10 @@ public class ArtController {
         return "Hello";
     }
 
-//    @GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Art> getArtById(@PathVariable Long id) {
-//        return artService.getArtById(id);
-//    }
+    @GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Art> getArtById(@PathVariable Long id) {
+        return ResponseEntity.ok(artService.getArtById(id));
+    }
 
 
     @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)

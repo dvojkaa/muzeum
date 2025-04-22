@@ -40,11 +40,11 @@ const Art = () => {
 
             <div className="art-image">
                 {/* Nahraď správnou cestou k obrázku */}
-                <img src={art.imagePath || "/default-image.jpg"} alt={art.name} />
+                <img src={`http://localhost:8080/${art.imgPath}`} alt={art.name}/>
             </div>
 
             <div className="art-details">
-                <h2>{art.name}</h2>
+            <h2>{art.name}</h2>
                 <p>{art.description}</p>
                 <p className="art-material">
                     {art.parameters}

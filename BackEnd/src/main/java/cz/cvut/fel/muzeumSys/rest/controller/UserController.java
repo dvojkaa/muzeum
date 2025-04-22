@@ -98,10 +98,11 @@ public class UserController {
         final UserDetails userDetails = userService.loadUserByUsername(email);
 
         String token = jwtUtil.generateToken(userDetails);
-
+        String role = user.getRole().toString();
 
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
+        response.put("role", role);
 
         return ResponseEntity.ok(response);
     }

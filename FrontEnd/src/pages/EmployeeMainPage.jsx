@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import QRMethodModal from '../components/QRMethods/QRMethodModal.jsx';
 import ActionModal from '../components/QRMethods/ActionModal.jsx';
 import '../CSS/EmployeeMainPage.css';
+import {Link} from "react-router-dom";
 
 const EmployeeMainPage = () => {
     const [actionType, setActionType] = useState(null);
@@ -62,6 +63,8 @@ const EmployeeMainPage = () => {
             <button className="btn blue" onClick={() => handleActionClick('move')}>Move</button>
             <button className="btn blue" onClick={() => handleActionClick('editGroup')}>Edit Group</button>
             <button className="btn red" onClick={() => handleActionClick('emergency')}>Emergency</button>
+            <Link to="/logout">Logout</Link>
+
 
             {showQRModal && (
                 <QRMethodModal

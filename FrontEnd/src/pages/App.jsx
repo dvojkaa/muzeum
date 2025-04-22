@@ -54,6 +54,7 @@ function App() {
 
                 {/* Employee Routes */}
                 <Route path="/login" element={<Login />} />
+
                 <Route path="/employee" element={
                     <EmployeeRoute>
                         <EmployeeMainPage />

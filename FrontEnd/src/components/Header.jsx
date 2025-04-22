@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 import DarkModeToggle from './DarkModeToggle';
 import '../CSS/Header.css';
+import Logo from "./Logo.jsx";
 
 const Header = () => {
     const { isLoggedIn } = useContext(AuthContext);
 
     return (
         <header className="header">
+            {/*<img src="/assets/Logoo.png" alt="Logo" className="logo"/>*/}
             <div className="logo">MuzeumSys</div>
             <nav>
                 <Link to="/">Home</Link>
@@ -32,7 +34,7 @@ const Header = () => {
                     </>
                 )}
             </nav>
-            <DarkModeToggle />
+            <DarkModeToggle/>
         </header>
     );
 };

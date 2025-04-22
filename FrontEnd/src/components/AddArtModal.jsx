@@ -68,17 +68,17 @@ const AddArtModal = ({ onClose }) => {
                 <form onSubmit={handleSubmit} className="form-layout">
                     <label>
                         Název:
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                        <input className="form-group" type="text" name="name" value={formData.name} onChange={handleChange} required />
                     </label>
 
                     <label>
                         Autor:
-                        <input type="text" name="author" value={formData.author} onChange={handleChange} required />
+                        <input className="form-group" type="text" name="author" value={formData.author} onChange={handleChange} required />
                     </label>
 
                     <label>
                         Typ:
-                        <select name="type" value={formData.type} onChange={handleChange}>
+                        <select className="form-group" name="type" value={formData.type} onChange={handleChange}>
                             <option value="">-- Nechat beze změny --</option>
                             {types.map(type => (
                                 <option key={type} value={type}>{type}</option>
@@ -88,7 +88,7 @@ const AddArtModal = ({ onClose }) => {
 
                     <label>
                         Éra:
-                        <select name="era" value={formData.era} onChange={handleChange}>
+                        <select className="form-group" name="era" value={formData.era} onChange={handleChange}>
                             <option value="">-- Nechat beze změny --</option>
                             {eras.map(era => (
                                 <option key={era} value={era}>{era}</option>
@@ -98,7 +98,7 @@ const AddArtModal = ({ onClose }) => {
 
                     <label>
                         Priorita:
-                        <select name="color" value={formData.color} onChange={handleChange}>
+                        <select className="form-group" name="color" value={formData.color} onChange={handleChange}>
                             <option value="">-- Nechat beze změny --</option>
                             {priorities.map(color => (
                                 <option key={color} value={color}>{color}</option>
@@ -109,6 +109,7 @@ const AddArtModal = ({ onClose }) => {
                     <label>
                         Popis:
                         <textarea
+                            className="form-group"
                             name="description"
                             value={formData.description}
                             onChange={handleChange}

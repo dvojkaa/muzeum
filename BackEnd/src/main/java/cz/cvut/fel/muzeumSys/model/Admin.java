@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "admin")
 //@NamedQueries({
 //        @NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM admins a WHERE a.email = :email")
 //})

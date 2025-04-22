@@ -83,7 +83,7 @@ const EmergencyRecords = () => {
             <h1 className="title">Nouzově označená díla</h1>
             <input
                 type="text"
-                placeholder="Vyhledat dílo..."
+                placeholder="Vyhledat záznam..."
                 onChange={handleSearchAndSetId}
                 className="search-input"
             />
