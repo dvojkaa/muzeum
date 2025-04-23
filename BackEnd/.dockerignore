@@ -1,3 +1,7 @@
 .git
 node_modules/
 *.log
+*.iml
+.idea/
+target/
+!target/semestralka-0.0.1-SNAPSHOT.jar
