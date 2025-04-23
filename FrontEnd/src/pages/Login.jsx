@@ -39,6 +39,8 @@ const Login = () => {
                 const data = await response.json();
                 await login(data.token,data.role);
 
+
+
                 if (data.role === 'ROLE_EMPLOYEE') {
                     navigate('/employee');
                 } else if (data.role === 'ROLE_ADMIN') {

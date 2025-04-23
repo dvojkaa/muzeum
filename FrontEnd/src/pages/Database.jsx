@@ -12,6 +12,8 @@ const Database = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
 
+    const [selectedArt, setSelectedArt] = useState(null);
+
     const [qrId, setQrId] = useState('');
     const [qrResult, setQrResult] = useState(null);
     const [qrError, setQrError] = useState(null);
@@ -50,12 +52,23 @@ const Database = () => {
         }
     };
 
-    const handleAddArt = () => setIsModalOpen(true);
-    const handleModalClose = () => setIsModalOpen(false);
-    const handleModalSubmit = (formData) => {
-        console.log(formData);
+    const handleAddArt = () => {
+        setSelectedArt(null);
+        setIsModalOpen(true);
+    };
+
+    const handleEditArt = (art) => {
+        setSelectedArt(art);
+        setIsModalOpen(true);
+    };
+
+    const handleModalSubmit = () => {
+        fetchArts(); // refetch
         setIsModalOpen(false);
     };
+
+    const handleModalClose = () => setIsModalOpen(false);
+
 
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
@@ -90,6 +103,49 @@ const Database = () => {
         setFilteredArts(sorted);
         setCurrentPage(1);
     };
+
+    const handleExport = () => {
+        const json = JSON.stringify(arts, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'muzeum_export.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleImport = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+            const data = JSON.parse(text);
+
+            const response = await fetch('http://localhost:8080/art/import', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                alert('Import úspěšný!');
+                fetchArts(); // refetch
+            } else {
+                alert('Import selhal.');
+            }
+        } catch (error) {
+            console.error('Chyba při importu:', error);
+            alert('Chyba při importu.');
+        }
+    };
+
+
 
     const handleCreateQR = async () => {
         if (!qrId) {
@@ -130,13 +186,24 @@ const Database = () => {
 
     return (
         <div className="database-container">
-            <button
-                className="btn-secondary"
-                onClick={() => navigate('/admin/emergency')}
-                style={{ marginBottom: '1rem' }}
-            >
-                🚨 Nouzové záznamy
-            </button>
+            <div style={{display: 'flex', gap: '1rem', marginBottom: '1rem'}}>
+                <button className="btn-secondary" onClick={() => navigate('/admin/emergency')}>
+                    🚨 Nouzové záznamy
+                </button>
+                <button className="btn-secondary" onClick={handleExport}>
+                    🧾 Export JSON
+                </button>
+                <label className="btn-secondary" style={{cursor: 'pointer'}}>
+                    📂 Import JSON
+                    <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleImport}
+                        style={{display: 'none'}}
+                    />
+                </label>
+            </div>
+
 
             <h1 className="title">Správa děl</h1>
             <button className="add-employee-btn" onClick={handleAddArt}>
@@ -164,6 +231,7 @@ const Database = () => {
                             <th onClick={() => handleSort('author')}>Autor</th>
                             <th onClick={() => handleSort('color')}>Priorita</th>
                             <th onClick={() => handleSort('description')}>Popis</th>
+                            <th onClick={() => handleSort('edit')}>Editace</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -176,6 +244,11 @@ const Database = () => {
                                 <td>{art.author}</td>
                                 <td>{art.color}</td>
                                 <td>{art.description}</td>
+                                <td>
+                                    <button className="btn-secondary" onClick={() => handleEditArt(art)}>
+                                        Upravit
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                         </tbody>
@@ -183,7 +256,7 @@ const Database = () => {
 
                     {/* Stránkování */}
                     <div className="pagination">
-                        {Array.from({ length: totalPages }, (_, i) => (
+                        {Array.from({length: totalPages}, (_, i) => (
                             <button
                                 key={i}
                                 className={currentPage === i + 1 ? 'active-page' : ''}
@@ -226,16 +299,18 @@ const Database = () => {
 
             {qrError && (
                 <div className="qr-error">
-                    <p style={{ color: 'red' }}>{qrError}</p>
+                    <p style={{color: 'red'}}>{qrError}</p>
                 </div>
             )}
 
             {isModalOpen && (
                 <AddArtModal
                     onClose={handleModalClose}
-                    onSubmit={handleModalSubmit}
+                    initialData={selectedArt}
+                    onSuccess={handleModalSubmit}
                 />
             )}
+
         </div>
     );
 };

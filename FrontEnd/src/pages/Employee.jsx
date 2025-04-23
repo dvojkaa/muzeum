@@ -13,6 +13,8 @@ const Employee = () => {
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' }); // Pro třídení
     const [showEmployeeModal, setShowEmployeeModal] = useState(false);
     const token = sessionStorage.getItem('accessToken');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
 
 
 
@@ -22,7 +24,7 @@ const Employee = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await fetch('http://localhost:8080/employee/info', {
+            const response = await fetch('http://localhost:8080/user/info', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -38,7 +40,7 @@ const Employee = () => {
                 setFilteredEmployees(data); // Nastavíme výchozí hodnotu pro filtrování
                 setIsLoading(false);
             } else {
-                console.error('Error fetching employees:', response.statusText);
+                console.error('Error fetching users:', response.statusText);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -46,19 +48,27 @@ const Employee = () => {
         }
     };
 
+
     const handleAddEmployee = () => {
-        setIsModalOpen(true);
+        setSelectedEmployee(null);
+        setModalOpen(true);
     };
+
+    const handleEditEmployee = (employee) => {
+        setSelectedEmployee(employee);
+        setModalOpen(true);
+    };
+
+    const handleModalSubmit = () => {
+        fetchEmployees(); // znovu načte data
+        setModalOpen(false);
+    };
+
 
     const handleModalClose = () => {
         setIsModalOpen(false);
     };
 
-    const handleModalSubmit = (formData) => {
-        console.log(formData);
-        // Zde můžete zavolat API pro odeslání dat nebo upravit stav komponenty pro přidání nového zaměstnance
-        setIsModalOpen(false);
-    };
 
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
@@ -112,26 +122,37 @@ const Employee = () => {
                         <th onClick={() => handleSort('id')}>ID</th>
                         <th onClick={() => handleSort('firstName')}>Jméno</th>
                         <th onClick={() => handleSort('email')}>Email</th>
+                        <th onClick={() => handleSort('role')}>Role</th>
+                        <th onClick={() => handleSort('edit')}>Editace</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredEmployees.map((employee) => (
-                        <tr key={employee.id}>
-                            <td>{employee.id}</td>
-                            <td>{employee.firstName} {employee.lastName}</td>
-                            <td>{employee.email}</td>
+                    {filteredEmployees.map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.firstName} {user.lastName}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role}</td>
+                            <td>
+                                <button className="btn-secondary" onClick={() => handleEditEmployee(user)}>
+                                    Upravit
+                                </button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
             )}
 
-            {isModalOpen && (
+            {modalOpen && (
                 <AddEmployeeModal
-                    onClose={handleModalClose}
-                    onSubmit={handleModalSubmit}
+                    onClose={() => setModalOpen(false)}
+                    initialData={selectedEmployee}
+                    onSuccess={handleModalSubmit}
                 />
             )}
+
         </div>
     );
 };

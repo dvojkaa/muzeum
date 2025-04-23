@@ -5,10 +5,7 @@ import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.service.AdminService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/admin")
 @RestController
@@ -24,4 +21,5 @@ public class AdminController {
     public ResponseEntity<Admin> createAdmin(@RequestBody AdminDto adminDto) {
         return ResponseEntity.ok(adminService.createAdmin(adminDto));
     }
+
 }

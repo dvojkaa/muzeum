@@ -25,9 +25,9 @@ const Header = () => {
 
                 {!isLoggedIn && (
                     <>
-                        <Link to="/registration">
-                            <button className="btn">Sign up</button>
-                        </Link>
+                        {/*<Link to="/registration">*/}
+                        {/*    <button className="btn">Sign up</button>*/}
+                        {/*</Link>*/}
                         <Link to="/login">
                             <button className="btn">Log In</button>
                         </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../CSS/Modal.css';
 
 const eras = [
@@ -20,7 +20,7 @@ const types = [
 
 const priorities = ["RED", "YELLOW", "GREEN"];
 
-const AddArtModal = ({ onClose }) => {
+const AddArtModal = ({ onClose, initialData, onSuccess }) => {
     const [formData, setFormData] = useState({
         name: '',
         author: '',
@@ -30,16 +30,52 @@ const AddArtModal = ({ onClose }) => {
         color: '',
     });
 
+    useEffect(() => {
+        if (initialData) {
+            setFormData(initialData);
+        }
+    }, [initialData]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleDeleteArt = async (id) => {
+        const confirmed = window.confirm("Opravdu chcete smazat toto dílo?");
+        if (!confirmed) return;
+
+        try {
+            const response = await fetch(`http://localhost:8080/art/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                console.log("Dílo smazáno.");
+                fetchArts(); // načti znovu
+            } else {
+                console.error("Chyba při mazání:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Chyba:", error);
+        }
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const url = initialData
+            ? `http://localhost:8080/art/update/${initialData.id}`
+            : 'http://localhost:8080/art/create';
+
+        const method = initialData ? 'POST' : 'POST';
+
         try {
-            const response = await fetch('http://localhost:8080/art/create', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method,
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -49,10 +85,11 @@ const AddArtModal = ({ onClose }) => {
             });
 
             if (response.ok) {
-                console.log('Dílo úspěšně vytvořeno');
+                console.log(initialData ? 'Dílo upraveno' : 'Dílo vytvořeno');
+                onSuccess(); // např. refetch dat
                 onClose();
             } else {
-                console.error('Chyba při vytváření díla:', response.statusText);
+                console.error('Chyba:', response.statusText);
             }
         } catch (error) {
             console.error('Chyba:', error);
@@ -63,25 +100,25 @@ const AddArtModal = ({ onClose }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <button className="close-btn" onClick={onClose}>X</button>
-                <h2>Přidat nové dílo</h2>
+                <h2>{initialData ? 'Upravit dílo' : 'Přidat nové dílo'}</h2>
 
                 <form onSubmit={handleSubmit} className="form-layout">
                     <label>
-                        Název:
-                        <input className="form-group" type="text" name="name" value={formData.name} onChange={handleChange} required />
-                    </label>
+                                     Název:
+                                     <input className="form-group" type="text" name="name" value={formData.name} onChange={handleChange} required />
+                                 </label>
 
-                    <label>
-                        Autor:
-                        <input className="form-group" type="text" name="author" value={formData.author} onChange={handleChange} required />
-                    </label>
+                             <label>
+                                 Autor:
+                                 <input className="form-group" type="text" name="author" value={formData.author} onChange={handleChange} required />
+                             </label>
 
-                    <label>
-                        Typ:
-                        <select className="form-group" name="type" value={formData.type} onChange={handleChange}>
-                            <option value="">-- Nechat beze změny --</option>
-                            {types.map(type => (
-                                <option key={type} value={type}>{type}</option>
+                             <label>
+                                 Typ:
+                                 <select className="form-group" name="type" value={formData.type} onChange={handleChange}>
+                                     <option value="">-- Nechat beze změny --</option>
+                                     {types.map(type => (
+                    <option key={type} value={type}>{type}</option>
                             ))}
                         </select>
                     </label>
@@ -118,7 +155,10 @@ const AddArtModal = ({ onClose }) => {
                     </label>
 
                     <div className="form-buttons">
-                        <button type="submit" className="btn-primary">Odeslat</button>
+                        <button type="submit" className="btn-primary">
+                            {initialData ? 'Uložit změny' : 'Odeslat'}
+                        </button>
+                        <button className="btn-danger" onClick={() => handleDeleteArt(art.id)}>Smazat</button>
                         <button type="button" className="btn-secondary" onClick={onClose}>Zrušit</button>
                     </div>
                 </form>
@@ -128,3 +168,113 @@ const AddArtModal = ({ onClose }) => {
 };
 
 export default AddArtModal;
+
+//
+// const AddArtModal = ({ onClose }) => {
+//     const [formData, setFormData] = useState({
+//         name: '',
+//         author: '',
+//         era: '',
+//         type: '',
+//         description: '',
+//         color: '',
+//     });
+//
+//     const handleChange = (e) => {
+//         const { name, value } = e.target;
+//         setFormData(prev => ({ ...prev, [name]: value }));
+//     };
+//
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         try {
+//             const response = await fetch('http://localhost:8080/art/create', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'Accept': 'application/json',
+//                 },
+//                 credentials: 'include',
+//                 body: JSON.stringify(formData),
+//             });
+//
+//             if (response.ok) {
+//                 console.log('Dílo úspěšně vytvořeno');
+//                 onClose();
+//             } else {
+//                 console.error('Chyba při vytváření díla:', response.statusText);
+//             }
+//         } catch (error) {
+//             console.error('Chyba:', error);
+//         }
+//     };
+//
+//     return (
+//         <div className="modal-overlay">
+//             <div className="modal-content">
+//                 <button className="close-btn" onClick={onClose}>X</button>
+//                 <h2>Přidat nové dílo</h2>
+//
+//                 <form onSubmit={handleSubmit} className="form-layout">
+//                     <label>
+//                         Název:
+//                         <input className="form-group" type="text" name="name" value={formData.name} onChange={handleChange} required />
+//                     </label>
+//
+//                     <label>
+//                         Autor:
+//                         <input className="form-group" type="text" name="author" value={formData.author} onChange={handleChange} required />
+//                     </label>
+//
+//                     <label>
+//                         Typ:
+//                         <select className="form-group" name="type" value={formData.type} onChange={handleChange}>
+//                             <option value="">-- Nechat beze změny --</option>
+//                             {types.map(type => (
+//                                 <option key={type} value={type}>{type}</option>
+//                             ))}
+//                         </select>
+//                     </label>
+//
+//                     <label>
+//                         Éra:
+//                         <select className="form-group" name="era" value={formData.era} onChange={handleChange}>
+//                             <option value="">-- Nechat beze změny --</option>
+//                             {eras.map(era => (
+//                                 <option key={era} value={era}>{era}</option>
+//                             ))}
+//                         </select>
+//                     </label>
+//
+//                     <label>
+//                         Priorita:
+//                         <select className="form-group" name="color" value={formData.color} onChange={handleChange}>
+//                             <option value="">-- Nechat beze změny --</option>
+//                             {priorities.map(color => (
+//                                 <option key={color} value={color}>{color}</option>
+//                             ))}
+//                         </select>
+//                     </label>
+//
+//                     <label>
+//                         Popis:
+//                         <textarea
+//                             className="form-group"
+//                             name="description"
+//                             value={formData.description}
+//                             onChange={handleChange}
+//                             rows="3"
+//                         />
+//                     </label>
+//
+//                     <div className="form-buttons">
+//                         <button type="submit" className="btn-primary">Odeslat</button>
+//                         <button type="button" className="btn-secondary" onClick={onClose}>Zrušit</button>
+//                     </div>
+//                 </form>
+//             </div>
+//         </div>
+//     );
+// };
+//
+// export default AddArtModal;

@@ -2,10 +2,17 @@
 
 
 /* === MUZEJNÍ PROMĚNNÉ === */
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Danfo&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=EB+Garamond&display=swap');
 
 :root {
-    --font-main: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+    /* === HLAVNÍ FONT - AKTIVUJ POUZE JEDEN! === */
+
+    /*main*/
+    /*--font-main: 'EB Garamond', 'Georgia', 'Times New Roman', serif;*/
+     --font-main: 'Special Gothic Expanded One', sans-serif;
+    /* --font-main: 'Danfo', serif;*/
+    /* --font-main: 'Roboto Mono', monospace;*/
+
 
     /* světlý motiv */
     --bg: #fdf8f2;              /* pozadí stránky */
@@ -47,7 +54,6 @@ body {
     font-family: var(--font-main);
     line-height: 1.7;
     transition: background-color 0.4s ease, color 0.4s ease;
-    background-image: url('/images/paper-texture.jpg'); /* Pokud chceš strukturu papíru */
     background-size: cover;
     background-attachment: fixed;
 }
@@ -172,6 +178,21 @@ input:focus, select:focus, textarea:focus {
     background: linear-gradient(to right, var(--button-hover), var(--primary-alt));
     transform: translateY(-1px);
 }
+
+.btn-danger {
+    background-color: #d9534f;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}
+
 
 /* === TABULKY === */
 table {

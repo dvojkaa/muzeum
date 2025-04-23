@@ -1,6 +1,8 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
+import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
+import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.service.ArtService;
 import java.util.List;
@@ -42,9 +44,20 @@ public class ArtController {
         return ResponseEntity.ok(artService.getArts());
     }
 
-//    @PostMapping(value="/info", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<List<Art>> getArt(@RequestBody ArtDto artDto) {
-//        return ResponseEntity.ok(artService.getArts(artDto));
-//    }
+    @PostMapping(value="/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Art> updateArt(@RequestBody ArtDto artDto) {
+        return ResponseEntity.ok(artService.updateArt(artDto));
+    }
+
+    @DeleteMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Art> deleteArt(@RequestBody ArtDto artDto) {
+        return ResponseEntity.ok(artService.deleteArt(artDto));
+    }
+
+    @PostMapping(value = "/import", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> importArtList(@RequestBody List<ArtDto> artDtos) {
+        artService.importArtList(artDtos);
+        return ResponseEntity.ok("Import úspěšný");
+    }
 
 }

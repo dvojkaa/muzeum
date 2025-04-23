@@ -2,6 +2,7 @@ package cz.cvut.fel.muzeumSys.service;
 
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.mapper.ArtMapper;
+import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
@@ -67,7 +68,7 @@ public class ArtService {
 
 
     public List<Art> emergency(List<ArtDto> artList) {
-        User currentUser = userService.getCurrentUser(); // metoda, která vrátí přihlášeného uživatele
+        User currentUser = userService.getCurrentUser();
 
         List<Art> affected = new ArrayList<>();
 
@@ -80,9 +81,42 @@ public class ArtService {
         return affected;
     }
 
+    public Art updateArt(ArtDto artDto) {
+        if (artDto.id() == null) {
+            throw new IllegalArgumentException("ID nesmí být null při aktualizaci díla.");
+        }
+
+        Art existingArt = artRepository.findById(artDto.id())
+                .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + artDto.id() + " nebylo nalezeno."));
+
+        artMapper.updateArtFromDto(artDto, existingArt);
+
+        return artRepository.save(existingArt);
+    }
 
 
-//    public List getArts(ArtDto artDto) {
-//        return artRepository.findBy(artDto);
-//    }
+    public Art deleteArt(ArtDto artDto) {
+        if (artDto.id() == null) {
+            throw new IllegalArgumentException("ID nesmí být null při mazání díla.");
+        }
+
+        Art art = artRepository.findById(artDto.id())
+                .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + artDto.id() + " nebylo nalezeno."));
+
+        artRepository.delete(art);
+
+        return art;
+    }
+
+
+    public void importArtList(List<ArtDto> artDtos) {
+        for (ArtDto dto : artDtos) {
+            try {
+                Art art = artMapper.toEntity(dto);
+                artRepository.save(art);
+            } catch (Exception e) {
+                System.err.println("Chyba při importu díla: " + dto.name() + " – " + e.getMessage());
+            }
+        }
+    }
 }
