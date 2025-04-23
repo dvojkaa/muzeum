@@ -1,17 +1,56 @@
+#version: "3.9"
+#
+#volumes:
+#  muzeum-sys-postgres:
+#
+#services:
+#  muzeum-sys-postgres:
+#    image: postgres:latest
+#    hostname: muzeum-sys-host
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./muzeum-sys-postgres:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: root
+#      POSTGRES_DB: muzeumSys
 version: "3.9"
 
 volumes:
   muzeum-sys-postgres:
 
+networks:
+  muzeum-net:
+
 services:
   muzeum-sys-postgres:
     image: postgres:latest
+    container_name: muzeum-sys-postgres
     hostname: muzeum-sys-host
     ports:
       - "5432:5432"
     volumes:
-      - ./muzeum-sys-postgres:/var/lib/postgresql/data
+      - muzeum-sys-postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: muzeumSys
+    networks:
+      - muzeum-net
+
+  muzeum-sys-app:
+    build:
+      context: .
+    container_name: muzeum-sys-app
+    depends_on:
+      - muzeum-sys-postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://muzeum-sys-postgres:5432/muzeumSys
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      JWT_SECRET: EsSoubhgDYSPj6J7i+2n8ZH0kmWlMnR4aVxIj9GH2LoitPu9LTAF7YU5SY4lnBmY
+    networks:
+      - muzeum-net
