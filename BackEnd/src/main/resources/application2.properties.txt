@@ -1,0 +1,19 @@
+# Application name
+spring.application.name=MuzeumSys
+
+# PostgreSQL databáze
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://muzeum-sys-postgres:5432/muzeumSys}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:root}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:root}
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.web.resources.static-locations=file:./files/qrcodes/
+
+# Hibernate - zm?? dle pot?eby
+spring.jpa.hibernate.ddl-auto=update
+
+# Logging
+logging.level.org.springframework.security=DEBUG
+
+# JWT
+jwt.secret=${JWT_SECRET:defaultSecret}
