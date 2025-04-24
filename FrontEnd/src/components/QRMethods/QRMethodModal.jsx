@@ -16,7 +16,7 @@ const QRMethodModal = ({ onClose, onScanComplete, isMultiScan, actionType }) => 
         try {
             const url = new URL(qrText);
             const id = url.pathname.split('/').pop();
-            const response = await fetch(`http://localhost:8080/art/${id}`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/art/${id}`);
             const data = await response.json();
 
             if (!scannedArts.some(a => a.id === data.id)) {

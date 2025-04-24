@@ -11,7 +11,7 @@ const Art = () => {
     useEffect(() => {
         const fetchArt = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/art/${id}`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/art/${id}`);
                 if (!response.ok) {
                     throw new Error('Artwork not found');
                 }

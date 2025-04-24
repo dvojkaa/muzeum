@@ -31,7 +31,7 @@ const EmployeeMainPage = () => {
         const token = sessionStorage.getItem('accessToken');
 
         try {
-            const response = await fetch(`http://localhost:8080/employee/${actionType}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/employee/${actionType}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

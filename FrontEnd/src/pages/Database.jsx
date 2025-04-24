@@ -29,7 +29,7 @@ const Database = () => {
 
     const fetchArts = async () => {
         try {
-            const response = await fetch('http://localhost:8080/art/info', {
+            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/art/info', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -124,7 +124,7 @@ const Database = () => {
             const text = await file.text();
             const data = JSON.parse(text);
 
-            const response = await fetch('http://localhost:8080/art/import', {
+            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/art/import', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ const Database = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/qrcode/create', {
+            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/qrcode/create', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

@@ -144,7 +144,7 @@ const EditArtForm = ({ art, onSubmit, onCancel }) => {
     useEffect(() => {
         const fetchArt = async () => {
             try {
-                const res = await fetch(`http://localhost:8080/art/${art.id}`);
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/art/${art.id}`);
                 const data = await res.json();
                 setFormData(data);
             } catch (err) {
