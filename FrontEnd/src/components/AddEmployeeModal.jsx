@@ -28,7 +28,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/delete/${id}`, {
+            const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -53,8 +53,8 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         e.preventDefault();
 
         const url = initialData
-            ? `${import.meta.env.VITE_API_BASE_URL}/admin/update/${initialData.id}`
-            : `${import.meta.env.VITE_API_BASE_URL}/admin/create`;
+            ? `https://muzeum-production.up.railway.app/admin/update/${initialData.id}`
+            : `https://muzeum-production.up.railway.app/admin/create`;
 
         const method = initialData ? 'PUT' : 'POST';
 
