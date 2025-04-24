@@ -31,7 +31,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.context = context;
     }
 
-
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.equals("/user/login")|| path.startsWith("/art");
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain)
