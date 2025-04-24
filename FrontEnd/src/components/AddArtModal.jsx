@@ -69,7 +69,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         e.preventDefault();
         const url = initialData
             ? `${import.meta.env.VITE_API_BASE_URL}/art/update/${initialData.id}`
-            : '${import.meta.env.VITE_API_BASE_URL}/art/create';
+            : `${import.meta.env.VITE_API_BASE_URL}/art/create`;
 
         const method = initialData ? 'POST' : 'POST';
 

@@ -54,7 +54,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
 
         const url = initialData
             ? `${import.meta.env.VITE_API_BASE_URL}/admin/update/${initialData.id}`
-            : '${import.meta.env.VITE_API_BASE_URL}/admin/create';
+            : `${import.meta.env.VITE_API_BASE_URL}/admin/create`;
 
         const method = initialData ? 'PUT' : 'POST';
 

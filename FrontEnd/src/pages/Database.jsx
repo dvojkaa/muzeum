@@ -154,7 +154,7 @@ const Database = () => {
         }
 
         try {
-            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/qrcode/create', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/qrcode/create`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
