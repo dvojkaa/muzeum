@@ -11,6 +11,7 @@ public class SecurityEndpoints {
                 "/qrcodes/**",
                 "/user/register",
                 "/user/login",
+                "/login",
                 "/art"
         };
 
