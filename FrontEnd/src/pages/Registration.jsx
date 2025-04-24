@@ -27,6 +27,7 @@ const Registration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         try {
             const response = await fetch(`https://muzeum-production.up.railway.app/user/register`, {
                 method: 'POST',
