@@ -27,6 +27,7 @@ const Database = () => {
         fetchArts();
     }, []);
 
+    
     const fetchArts = async () => {
         try {
             const response = await fetch('https://muzeum-production.up.railway.app/art/info', {
