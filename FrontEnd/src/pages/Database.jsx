@@ -287,7 +287,7 @@ const Database = () => {
                     <p>QR kód vygenerován pro dílo ID {qrResult.artId}</p>
                     <div id="print-section">
                         <img
-                            src={`http://localhost:8080/${encodeURIComponent(qrResult.imagePath)}`}
+                            src={`https://muzeum-production.up.railway.app/${encodeURIComponent(qrResult.imagePath)}`}
                             alt="QR kód"
                             className="qr-image"
                         />

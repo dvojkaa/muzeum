@@ -63,9 +63,6 @@ const Home = () => {
                             <button className="btn-primary" onClick={() => navigate('/login')}>
                                 Přihlásit se
                             </button>
-                            <button className="btn-secondary" onClick={() => navigate('/register')}>
-                                Registrovat se
-                            </button>
                         </div>
                     )}
                 </div>
