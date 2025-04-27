@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../CSS/Modal.css';
 
 const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
+    const token = sessionStorage.getItem(accesToken);
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -23,7 +24,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleDeleteEmployee = async (id) => {
+    const handleDeleteEmployee = async () => {
         const confirmed = window.confirm("Opravdu chcete smazat tohoto zaměstnance?");
         if (!confirmed) return;
 
