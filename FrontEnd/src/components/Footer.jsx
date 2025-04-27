@@ -7,10 +7,10 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-title">🌀 DataStorage</div>
             <div className="footer-links">
-                <Link to="/product">Product</Link>
-                <Link to="/company">Company</Link>
-                <Link to="/support">Support</Link>
-                <Link to="/legal">Legal</Link>
+                <Link >Product</Link>
+                <Link >Company</Link>
+                <Link >Support</Link>
+                <Link >Legal</Link>
             </div>
         </footer>
     );
