@@ -13,7 +13,6 @@ const Database = () => {
     const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
 
     const [selectedArt, setSelectedArt] = useState(null);
-
     const [qrId, setQrId] = useState('');
     const [qrResult, setQrResult] = useState(null);
     const [qrError, setQrError] = useState(null);
