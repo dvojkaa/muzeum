@@ -25,7 +25,6 @@ const Database = () => {
     useEffect(() => {
         fetchArts();
     }, []);
-
     
     const fetchArts = async () => {
         try {
