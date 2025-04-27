@@ -41,10 +41,10 @@ import java.util.Optional;
         private final EmployeeMapper employeeMapper;
 
         private final PasswordEncoder passwordEncoder;
+    private final EmergencyRecordService emergencyRecordService;
 
 
-
-        public void registerAdmin(AdminDto userDto) {
+    public void registerAdmin(AdminDto userDto) {
             Admin user = adminMapper.toEntity(userDto);
 
             user.setRole(Role.ROLE_ADMIN);
@@ -133,6 +133,7 @@ import java.util.Optional;
             User user = userRepository.findById(userDto.id())
                     .orElseThrow(() -> new EntityNotFoundException("Zamestnanec s ID " + userDto.id() + " nebylo nalezeno."));
 
+            emergencyRecordService.clearUserReferences(userDto.id());
 
             userRepository.delete(user);
 

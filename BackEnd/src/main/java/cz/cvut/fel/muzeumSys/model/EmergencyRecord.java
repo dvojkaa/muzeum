@@ -22,8 +22,8 @@ public class EmergencyRecord {
     @JoinColumn(name = "art.id", nullable = false)
     private Art art;
 
-    @ManyToOne
-    @JoinColumn(name = "user.id", nullable = false)
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "user.id", nullable = true)
     private User user;
 
     private LocalDateTime timestamp;

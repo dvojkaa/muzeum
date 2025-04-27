@@ -35,6 +35,20 @@ public class EmergencyRecordService {
         emergencyRecordRepository.deleteAll(emergencyRecordRepository.findByArtId(id));
     }
 
+
+    public void deleteAllByUserId(Long id) {
+        emergencyRecordRepository.deleteAll(emergencyRecordRepository.findByUserId(id));
+    }
+
+
+    public void clearUserReferences(Long userId) {
+        List<EmergencyRecord> records = emergencyRecordRepository.findByUserId(userId);
+        for (EmergencyRecord record : records) {
+            record.setUser(null);
+        }
+        emergencyRecordRepository.saveAll(records);
+    }
+
 //    public List<EmergencyRecord> getByUser(Long userId) {
 //        return repository.findByUserId(userId);
 //    }
