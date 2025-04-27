@@ -29,7 +29,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete`, {
+            const response = await fetch(`https://muzeum-production.up.railway.app/user/delete`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,8 +58,8 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         e.preventDefault();
 
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/admin/update`
-            : `https://muzeum-production.up.railway.app/admin/create`;
+            ? `https://muzeum-production.up.railway.app/user/update`
+            : `https://muzeum-production.up.railway.app/user/create`;
 
         const method = initialData ? 'POST' : 'POST';
 
