@@ -12,11 +12,10 @@ import java.util.List;
 @Service
 public class EmergencyRecordService {
 
-    private final EmergencyRecordRepository repository;
+    private final EmergencyRecordRepository emergencyRecordRepository;
 
-
-    public EmergencyRecordService(EmergencyRecordRepository repository) {
-        this.repository = repository;
+    public EmergencyRecordService( EmergencyRecordRepository emergencyRecordRepository) {
+        this.emergencyRecordRepository = emergencyRecordRepository;
     }
 
     public EmergencyRecord create(Art art, User user, String note) {
@@ -25,11 +24,15 @@ public class EmergencyRecordService {
         record.setUser(user);
         record.setTimestamp(LocalDateTime.now());
         record.setNote(note);
-        return repository.save(record);
+        return emergencyRecordRepository.save(record);
     }
 
     public List<EmergencyRecord> getAll() {
-        return repository.findAll();
+        return emergencyRecordRepository.findAll();
+    }
+
+    public void deleteAllByArtId(Long id) {
+        emergencyRecordRepository.deleteAll(emergencyRecordRepository.findByArtId(id));
     }
 
 //    public List<EmergencyRecord> getByUser(Long userId) {

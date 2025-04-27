@@ -7,6 +7,7 @@ import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class ArtService {
         return artRepository.save(existingArt);
     }
 
-
+    @Transactional
     public Art deleteArt(ArtDto artDto) {
         if (artDto.id() == null) {
             throw new IllegalArgumentException("ID nesmí být null při mazání díla.");
@@ -103,10 +104,26 @@ public class ArtService {
         Art art = artRepository.findById(artDto.id())
                 .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + artDto.id() + " nebylo nalezeno."));
 
+
+        emergencyService.deleteAllByArtId(art.getId()); // smažeme napojené emergency záznamy
+
         artRepository.delete(art);
 
         return art;
     }
+//
+//    public Art deleteArt(ArtDto artDto) {
+//        if (artDto.id() == null) {
+//            throw new IllegalArgumentException("ID nesmí být null při mazání díla.");
+//        }
+//
+//        Art art = artRepository.findById(artDto.id())
+//                .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + artDto.id() + " nebylo nalezeno."));
+//
+//        artRepository.delete(art);
+//
+//        return art;
+//    }
 
 
     public void importArtList(List<ArtDto> artDtos) {
