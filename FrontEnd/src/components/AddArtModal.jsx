@@ -21,6 +21,7 @@ const types = [
 const priorities = ["RED", "YELLOW", "GREEN"];
 
 const AddArtModal = ({ onClose, initialData, onSuccess }) => {
+    const token = sessionStorage.getItem("accessToken")
     const [formData, setFormData] = useState({
         name: '',
         author: '',
