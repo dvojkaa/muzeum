@@ -46,11 +46,15 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/art/delete/${id}`, {
+            const response = await fetch(`https://muzeum-production.up.railway.app/art/delete/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
+                credentials: 'include',
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
@@ -68,7 +72,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/art/update/${initialData.id}`
+            ? `https://muzeum-production.up.railway.app/art/update/`
             : `https://muzeum-production.up.railway.app/art/create`;
 
         const method = initialData ? 'POST' : 'POST';
@@ -77,6 +81,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
             const response = await fetch(url, {
                 method,
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
