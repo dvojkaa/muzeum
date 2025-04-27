@@ -47,7 +47,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
 
         try {
             const response = await fetch('https://muzeum-production.up.railway.app/art/delete', {
-                method: 'DELETE',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,

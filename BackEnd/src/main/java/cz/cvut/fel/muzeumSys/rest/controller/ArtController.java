@@ -49,7 +49,7 @@ public class ArtController {
         return ResponseEntity.ok(artService.updateArt(artDto));
     }
 
-    @DeleteMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> deleteArt(@RequestBody ArtDto artDto) {
         return ResponseEntity.ok(artService.deleteArt(artDto));
     }
