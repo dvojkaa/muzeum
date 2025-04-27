@@ -46,19 +46,18 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/art/delete/`, {
+            const response = await fetch('https://muzeum-production.up.railway.app/art/delete', {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formData) // NEBO celé ArtDto objekt
             });
 
+
             if (response.ok) {
-                console.log("Dílo smazáno.");
+                console.log("Dílo smazáno.", formData);
                 fetchArts(); // načti znovu
             } else {
                 console.error("Chyba při mazání:", response.statusText);
@@ -72,7 +71,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/art/update/`
+            ? `https://muzeum-production.up.railway.app/art/update`
             : `https://muzeum-production.up.railway.app/art/create`;
 
         const method = initialData ? 'POST' : 'POST';
