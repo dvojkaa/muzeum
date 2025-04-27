@@ -110,7 +110,6 @@ import java.util.Optional;
             if (userDto.id() == null) {
                 throw new IllegalArgumentException("ID nesmí být null při aktualizaci Zaměstnance.");
             }
-
             User existingUser = userRepository.findById(userDto.id())
                     .orElseThrow(() -> new EntityNotFoundException("Zaměstnance s ID " + userDto.id() + " nebylo nalezeno."));
 
@@ -120,7 +119,10 @@ import java.util.Optional;
             }else{
                 employeeMapper.updateEmployeeFromDto(userDto, existingUser);
             }
-//            userMapper.updateUserFromDto(userDto, existingUser);
+
+            if (userDto.password() != null && !userDto.password().isBlank()) {
+                existingUser.setPassword(passwordEncoder.encode(userDto.password()));
+            }
 
             return userRepository.save(existingUser);
         }
