@@ -57,8 +57,9 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
 
 
             if (response.ok) {
-                console.log("Dílo smazáno.", formData);
-                fetchArts(); // načti znovu
+                    console.log("Dílo smazáno.", formData);
+                    onSuccess();   // zavoláme callback (refetch + zavření modalu)
+                    onClose(); // načti znovu
             } else {
                 console.error("Chyba při mazání:", response.statusText);
             }
