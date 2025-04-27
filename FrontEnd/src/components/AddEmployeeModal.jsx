@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../CSS/Modal.css';
 
 const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
-    const token = sessionStorage.getItem(accesToken);
+    const token = sessionStorage.getItem("accessToken");
     const [formData, setFormData] = useState({
         username: '',
         email: '',
