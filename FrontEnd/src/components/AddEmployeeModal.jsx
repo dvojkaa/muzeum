@@ -29,7 +29,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
 
         try {
             const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete`, {
-                method: 'DELETE',
+                method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -57,7 +57,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
             ? `https://muzeum-production.up.railway.app/admin/update`
             : `https://muzeum-production.up.railway.app/admin/create`;
 
-        const method = initialData ? 'PUT' : 'POST';
+        const method = initialData ? 'POST' : 'POST';
 
         try {
             const response = await fetch(url, {
