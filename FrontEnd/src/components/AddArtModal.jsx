@@ -29,7 +29,6 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         description: '',
         color: '',
     });
-
     useEffect(() => {
         if (initialData) {
             setFormData(initialData);
