@@ -1,10 +1,8 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
 import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
-import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
-import cz.cvut.fel.muzeumSys.dto.Record.AuthRequestDto;
-import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
-import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
+import cz.cvut.fel.muzeumSys.dto.Record.*;
+import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import cz.cvut.fel.muzeumSys.service.UserService;
@@ -107,35 +105,15 @@ public class UserController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping(value="/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.updateUser (userDto));
+    }
+
+    @PostMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> deleteUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.deleteUser(userDto));
+    }
+
    }
-
-
-//
-//    @Override
-//    public ResponseEntity<AuthResponse> refreshToken(RefreshTokenRequestDto request) {
-//        String email;
-//        try {
-//            email = jwtUtil.extractUsername(request.getRefreshToken());
-//        } catch (Exception e) {
-//            throw new RuntimeException("Invalid refresh token.");
-//        }
-//
-//        UserDetails userDetails = userService.loadUserByUsername(email);
-//
-//        Claims claims = jwtUtil.getClaimsFromRefreshToken(request.getRefreshToken());
-//
-//        User user = userRepository.findByEmail(email).orElseThrow(()-> new UserException("User not found.", HttpStatus.NOT_FOUND));
-//
-//        if (!"refresh".equals(claims.get("type"))) {
-//            throw new RuntimeException("Invalid token type.");
-//        }
-//
-//        if (!jwtUtil.validateToken(request.getRefreshToken(), userDetails)) {
-//            throw new RuntimeException("Refresh token expired or invalid.");
-//        }
-//
-//        String newAccessToken = jwtUtil.generateToken(userDetails);
-//        String newRefreshToken = jwtUtil.generateRefreshToken(userDetails);
-//
-//        return ResponseEntity.ok(new AuthResponse(newAccessToken, newRefreshToken, user.getRole().toString(), user.getFirstName(), user.getLastName()));
-//

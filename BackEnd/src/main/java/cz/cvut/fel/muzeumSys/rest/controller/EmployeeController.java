@@ -56,5 +56,4 @@ public class EmployeeController {
         return ResponseEntity.ok(artService.emergency(artList));
     }
 
-
 }

@@ -3,15 +3,19 @@ package cz.cvut.fel.muzeumSys.service;
 
 
 import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
+import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
+import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.mapper.AdminMapper;
 import cz.cvut.fel.muzeumSys.mapper.EmployeeMapper;
 import cz.cvut.fel.muzeumSys.model.Admin;
+import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.model.enums.Role;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -100,4 +104,38 @@ import java.util.Optional;
                     .orElseThrow(() -> new EntityNotFoundException("Uživatel s ID " + userId + " nebyl nalezen."));
         }
 
-    }
+
+
+        public User updateUser(UserDto userDto) {
+            if (userDto.id() == null) {
+                throw new IllegalArgumentException("ID nesmí být null při aktualizaci Zaměstnance.");
+            }
+
+            User existingUser = userRepository.findById(userDto.id())
+                    .orElseThrow(() -> new EntityNotFoundException("Zaměstnance s ID " + userDto.id() + " nebylo nalezeno."));
+
+
+            if(existingUser.getRole() == Role.ROLE_ADMIN){
+                adminMapper.updateAdminFromDto(userDto, existingUser);
+            }else{
+                employeeMapper.updateEmployeeFromDto(userDto, existingUser);
+            }
+//            userMapper.updateUserFromDto(userDto, existingUser);
+
+            return userRepository.save(existingUser);
+        }
+
+        public User deleteUser(UserDto userDto) {
+            if (userDto.id() == null) {
+                throw new IllegalArgumentException("ID nesmí být null při mazání Zaměstnance.");
+            }
+
+            User user = userRepository.findById(userDto.id())
+                    .orElseThrow(() -> new EntityNotFoundException("Zamestnanec s ID " + userDto.id() + " nebylo nalezeno."));
+
+
+            userRepository.delete(user);
+
+            return user;
+        }
+}

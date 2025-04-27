@@ -6,7 +6,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         username: '',
         email: '',
         password: '',
-        role: 'EMPLOYEE',
+        role: '',
     });
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete/${id}`, {
+            const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -37,7 +37,8 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
 
             if (response.ok) {
                 console.log("Zaměstnanec smazán.");
-                fetchEmployees(); // reload dat
+                onSuccess();
+                onClose();
             } else {
                 console.error("Chyba při mazání zaměstnance:", response.statusText);
             }
@@ -53,7 +54,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         e.preventDefault();
 
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/admin/update/${initialData.id}`
+            ? `https://muzeum-production.up.railway.app/admin/update`
             : `https://muzeum-production.up.railway.app/admin/create`;
 
         const method = initialData ? 'PUT' : 'POST';
@@ -87,17 +88,6 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
                 <h2>{initialData ? 'Upravit zaměstnance' : 'Přidat zaměstnance'}</h2>
 
                 <form onSubmit={handleSubmit} className="form-layout">
-                    <label>
-                        Uživatelské jméno:
-                        <input
-                            className="form-group"
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
 
                     <label>
                         E-mail:
@@ -141,7 +131,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
                         <button type="submit" className="btn-primary">
                             {initialData ? 'Uložit změny' : 'Přidat'}
                         </button>
-                        <button className="btn-danger" onClick={() => handleDeleteEmployee(emp.id)}>Smazat</button>
+                        <button className="btn-danger" onClick={() => handleDeleteEmployee()}>Smazat</button>
 
                         <button type="button" className="btn-secondary" onClick={onClose}>
                             Zrušit
