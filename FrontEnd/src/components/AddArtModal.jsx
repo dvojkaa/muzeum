@@ -40,7 +40,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleDeleteArt = async (id) => {
+    const handleDeleteArt = async () => {
         const confirmed = window.confirm("Opravdu chcete smazat toto dílo?");
         if (!confirmed) return;
 
@@ -162,7 +162,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
                         <button type="submit" className="btn-primary">
                             {initialData ? 'Uložit změny' : 'Odeslat'}
                         </button>
-                        <button className="btn-danger" onClick={() => handleDeleteArt(art.id)}>Smazat</button>
+                        <button className="btn-danger" onClick={() => handleDeleteArt()}>Smazat</button>
                         <button type="button" className="btn-secondary" onClick={onClose}>Zrušit</button>
                     </div>
                 </form>
