@@ -343,6 +343,7 @@ public class DBINIT implements CommandLineRunner {
 
         // ===== USERS =====
         List<User> users = new ArrayList<>();
+        users.add(createUser("admin@muzeum.cz", "admin", "Admin", "Správce", Role.ROLE_ADMIN, "111111111"));
         users.add(createUser("vojta.kratina@gmail.com", "lol", "Admin", "Správce", Role.ROLE_ADMIN, "777888999"));
         users.add(createUser("employee@muzeum.cz", "lol", "Alice", "Kratka", Role.ROLE_EMPLOYEE, "777888998"));
         users.add(createUser("employee2@muzeum.cz", "pass2", "Bob", "Novák", Role.ROLE_EMPLOYEE, "777888997"));
