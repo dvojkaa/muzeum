@@ -32,8 +32,11 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
             const response = await fetch(`https://muzeum-production.up.railway.app/admin/delete`, {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
+                credentials: 'include',
+                body: JSON.stringify(formData) // NEBO celé ArtDto objekt
             });
 
             if (response.ok) {
@@ -65,6 +68,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 credentials: 'include',
                 body: JSON.stringify(formData),
