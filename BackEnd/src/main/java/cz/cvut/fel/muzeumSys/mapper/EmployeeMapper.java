@@ -19,4 +19,7 @@ public interface EmployeeMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEmployeeFromDto(UserDto userDto, @MappingTarget User existingUser);
+
+    EmployeeDto toEmployeeDto(UserDto userDto);
+
 }

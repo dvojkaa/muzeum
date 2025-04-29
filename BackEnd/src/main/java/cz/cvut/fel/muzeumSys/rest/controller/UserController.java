@@ -40,50 +40,73 @@ public class UserController {
     }
 
 
-    @PostMapping(value ="/registerEmployee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Map<String, String>> registerEmployee(@RequestBody EmployeeDto userDto) {
+//    @PostMapping(value ="/registerEmployee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public  ResponseEntity<Map<String, String>> registerEmployee(@RequestBody EmployeeDto userDto) {
+//        String email = userDto.email();
+//        String password = userDto.password();
+//
+//        userService.registerEmployee(userDto);
+//
+//        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+//
+//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+//
+//        final UserDetails userDetails = userService.loadUserByUsername(email);
+//
+//        String token = jwtUtil.generateToken(userDetails);
+//
+//
+//        Map<String, String> response = new HashMap<>();
+//        response.put("token", token);
+//
+//        return ResponseEntity.ok(response);
+//    }
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> createUser(@RequestBody UserDto userDto) {
         String email = userDto.email();
         String password = userDto.password();
 
-        userService.registerEmployee(userDto);
+        if (userDto.role().equals("ROLE_ADMIN")) {
+            userService.registerAdmin(userDto);
+        } else if (userDto.role().equals("ROLE_EMPLOYEE")) {
+            userService.registerEmployee(userDto);
+        } else {
+            throw new IllegalArgumentException("Neplatná role: " + userDto.role());
+        }
 
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-
         final UserDetails userDetails = userService.loadUserByUsername(email);
-
         String token = jwtUtil.generateToken(userDetails);
-
 
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
 
         return ResponseEntity.ok(response);
     }
-
-
-    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Map<String, String>> register(@RequestBody AdminDto userDto) {
-        String email = userDto.email();
-        String password = userDto.password();
-
-        userService.registerAdmin(userDto);
-
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-
-        final UserDetails userDetails = userService.loadUserByUsername(email);
-
-        String token = jwtUtil.generateToken(userDetails);
-
-
-        Map<String, String> response = new HashMap<>();
-        response.put("token", token);
-
-        return ResponseEntity.ok(response);
-    }
+//
+//    @PostMapping(value ="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public  ResponseEntity<Map<String, String>> register(@RequestBody AdminDto userDto) {
+//        String email = userDto.email();
+//        String password = userDto.password();
+//
+//        userService.registerAdmin(userDto);
+//
+//        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+//
+//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+//
+//        final UserDetails userDetails = userService.loadUserByUsername(email);
+//
+//        String token = jwtUtil.generateToken(userDetails);
+//
+//
+//        Map<String, String> response = new HashMap<>();
+//        response.put("token", token);
+//
+//        return ResponseEntity.ok(response);
+//    }
 
     @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Map<String, String>> login(@RequestBody AuthRequestDto authRequestDto) {

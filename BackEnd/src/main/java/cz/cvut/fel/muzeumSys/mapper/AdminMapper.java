@@ -1,6 +1,7 @@
 package cz.cvut.fel.muzeumSys.mapper;
 
 import cz.cvut.fel.muzeumSys.dto.Record.AdminDto;
+import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.model.Admin;
 import cz.cvut.fel.muzeumSys.model.User;
@@ -23,4 +24,6 @@ public interface AdminMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateAdminFromDto(UserDto userDto, @MappingTarget User existingUser);
+
+    AdminDto toAdminDto(UserDto userDto);
 }

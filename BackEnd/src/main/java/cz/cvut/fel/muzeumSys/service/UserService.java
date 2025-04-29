@@ -36,7 +36,6 @@ import java.util.Optional;
 
 
         private final UserRepository userRepository;
-//        private final UserMapper userMapper;
         private final AdminMapper adminMapper;
         private final EmployeeMapper employeeMapper;
 
@@ -44,8 +43,8 @@ import java.util.Optional;
     private final EmergencyRecordService emergencyRecordService;
 
 
-    public void registerAdmin(AdminDto userDto) {
-            Admin user = adminMapper.toEntity(userDto);
+    public void registerAdmin(UserDto userDto) {
+            Admin user = adminMapper.toEntity(adminMapper.toAdminDto(userDto));
 
             user.setRole(Role.ROLE_ADMIN);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -53,8 +52,8 @@ import java.util.Optional;
         }
 
 
-        public void registerEmployee(EmployeeDto userDto) {
-            Employee user = employeeMapper.toEntity(userDto);
+        public void registerEmployee(UserDto userDto) {
+            Employee user = employeeMapper.toEntity(employeeMapper.toEmployeeDto(userDto));
 
             user.setRole(Role.ROLE_EMPLOYEE);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
