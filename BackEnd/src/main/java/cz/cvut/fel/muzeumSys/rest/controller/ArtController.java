@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "${FRONTEND_URL}", allowCredentials = "true")
 @RestController
 @RequestMapping("/art")
 public class ArtController {
