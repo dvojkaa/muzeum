@@ -124,7 +124,7 @@ const eras = [
     "NEOCLASSICISM", "ROMANTICISM", "REALISM", "IMPRESSIONISM", "POST_IMPRESSIONISM",
     "EXPRESSIONISM", "CUBISM", "FUTURISM", "DADAISM", "SURREALISM", "ABSTRACT_ART",
     "POP_ART", "CONTEMPORARY", "DIGITAL_ART", "CONCEPTUAL_ART", "STREET_ART"
-];
+].sort((a, b) => a.localeCompare(b));
 
 const types = [
     "PAINTING", "SCULPTURE", "DRAWING", "PRINTMAKING", "PHOTOGRAPHY", "TAPESTRY",
@@ -133,9 +133,10 @@ const types = [
     "ARCHAEOLOGICAL_ARTIFACT", "CERAMICS", "METALWORK", "GLASS_ART", "TEXTILE_ART",
     "WOODWORK", "JEWELRY", "WEAPONRY", "SCIENTIFIC_INSTRUMENT", "COIN_COLLECTION",
     "MEDAL_COLLECTION"
-];
+].sort((a, b) => a.localeCompare(b));
 
-const priorities = ["RED", "YELLOW", "GREEN"];
+const priorities = ["RED", "YELLOW", "GREEN"].sort((a, b) => a.localeCompare(b));
+
 
 const EditArtForm = ({ art, onSubmit, onCancel }) => {
     const [formData, setFormData] = useState(null);

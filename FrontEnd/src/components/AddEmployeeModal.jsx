@@ -136,7 +136,14 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
                         <button type="submit" className="btn-primary">
                             {initialData ? 'Uložit změny' : 'Přidat'}
                         </button>
-                        <button className="btn-danger" onClick={() => handleDeleteEmployee()}>Smazat</button>
+
+                        {initialData && (
+                            <button className="btn-danger" onClick={handleDeleteEmployee}>
+                                Smazat
+                            </button>
+                        )}
+
+                        {/*<button className="btn-danger" onClick={() => handleDeleteEmployee()}>Smazat</button>*/}
 
                         <button type="button" className="btn-secondary" onClick={onClose}>
                             Zrušit

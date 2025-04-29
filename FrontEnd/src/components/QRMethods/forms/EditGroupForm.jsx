@@ -1,68 +1,3 @@
-// import React, { useState } from 'react';
-//
-// const eras = [
-//     "PREHISTORIC", "ANCIENT_EGYPT", "ANCIENT_MESOPOTAMIA", "ANCIENT_GREECE", "ANCIENT_ROME",
-//     "MEDIEVAL_ROMANESQUE", "MEDIEVAL_GOTHIC", "RENAISSANCE", "BAROQUE", "ROCOCO",
-//     "NEOCLASSICISM", "ROMANTICISM", "REALISM", "IMPRESSIONISM", "POST_IMPRESSIONISM",
-//     "EXPRESSIONISM", "CUBISM", "FUTURISM", "DADAISM", "SURREALISM", "ABSTRACT_ART",
-//     "POP_ART", "CONTEMPORARY", "DIGITAL_ART", "CONCEPTUAL_ART", "STREET_ART"
-// ];
-//
-// const types = [
-//     "PAINTING", "SCULPTURE", "DRAWING", "PRINTMAKING", "PHOTOGRAPHY", "TAPESTRY",
-//     "INSTALLATION", "DIGITAL_ART", "VIDEO_ART", "PERFORMANCE_ART", "RELIEF", "MOSAIC",
-//     "ICON", "CALLIGRAPHY", "ARCHITECTURAL_MODEL", "HISTORICAL_OBJECT",
-//     "ARCHAEOLOGICAL_ARTIFACT", "CERAMICS", "METALWORK", "GLASS_ART", "TEXTILE_ART",
-//     "WOODWORK", "JEWELRY", "WEAPONRY", "SCIENTIFIC_INSTRUMENT", "COIN_COLLECTION",
-//     "MEDAL_COLLECTION"
-// ];
-//
-// const priorities = ["RED", "YELLOW", "GREEN"];
-//
-//
-// const EditGroupForm = ({ artList, onSubmit, onCancel }) => {
-//     const [updates, setUpdates] = useState({
-//         color: '',
-//         type: '',
-//         era: ''
-//     });
-//
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setUpdates(prev => ({ ...prev, [name]: value }));
-//     };
-//
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const updatedArts = artList.map(art => ({
-//             ...art,
-//             ...Object.fromEntries(
-//                 Object.entries(updates).filter(([_, v]) => v !== '')
-//             )
-//         }));
-//         onSubmit(updatedArts);
-//     };
-//
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <h2>Upravit více děl</h2>
-//             <label>Typ:
-//                 <input name="type" value={updates.type} onChange={handleChange} />
-//             </label>
-//             <label>Éra:
-//                 <input name="era" value={updates.era} onChange={handleChange} />
-//             </label>
-//             <label>Priorita:
-//                 <input name="color" value={updates.color} onChange={handleChange} />
-//             </label>
-//             <button className="btn-primary" type="submit">Upravit vše</button>
-//         </form>
-//     );
-// };
-//
-// export default EditGroupForm;
-
-
 import React, { useState } from 'react';
 
 const eras = [
@@ -71,7 +6,7 @@ const eras = [
     "NEOCLASSICISM", "ROMANTICISM", "REALISM", "IMPRESSIONISM", "POST_IMPRESSIONISM",
     "EXPRESSIONISM", "CUBISM", "FUTURISM", "DADAISM", "SURREALISM", "ABSTRACT_ART",
     "POP_ART", "CONTEMPORARY", "DIGITAL_ART", "CONCEPTUAL_ART", "STREET_ART"
-];
+].sort((a, b) => a.localeCompare(b));
 
 const types = [
     "PAINTING", "SCULPTURE", "DRAWING", "PRINTMAKING", "PHOTOGRAPHY", "TAPESTRY",
@@ -80,9 +15,9 @@ const types = [
     "ARCHAEOLOGICAL_ARTIFACT", "CERAMICS", "METALWORK", "GLASS_ART", "TEXTILE_ART",
     "WOODWORK", "JEWELRY", "WEAPONRY", "SCIENTIFIC_INSTRUMENT", "COIN_COLLECTION",
     "MEDAL_COLLECTION"
-];
+].sort((a, b) => a.localeCompare(b));
 
-const priorities = ["RED", "YELLOW", "GREEN"];
+const priorities = ["RED", "YELLOW", "GREEN"].sort((a, b) => a.localeCompare(b));
 
 const EditGroupForm = ({ artList, onSubmit, onCancel }) => {
     const [updates, setUpdates] = useState({

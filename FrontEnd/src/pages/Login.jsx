@@ -50,9 +50,11 @@ const Login = () => {
                 }
             } else {
                 console.error('Login failed:', response.statusText);
+                alert('Špatné přihlášení, zkuste to znovu.');
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Chyba při loginu:', error);
+            alert('Nepodařilo se připojit k serveru.');
         }
     };
 
