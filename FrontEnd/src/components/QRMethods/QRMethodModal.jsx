@@ -108,7 +108,6 @@
 import React, { useState } from 'react';
 import CameraScanner from './CameraScanner';
 import FileUploader from './FileUploader';
-import '../CSS/Modal.css';
 
 const QRMethodModal = ({ onClose, onScanComplete, isMultiScan, actionType }) => {
     const [method, setMethod] = useState(null);
