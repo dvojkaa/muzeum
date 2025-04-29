@@ -68,14 +68,14 @@ public class ArtService {
     }
 
 
-    public List<Art> emergency(List<ArtDto> artList) {
+    public List<Art> emergency(List<ArtDto> artList,String note) {
         User currentUser = userService.getCurrentUser();
 
         List<Art> affected = new ArrayList<>();
 
         for (ArtDto artDto : artList) {
             Art art = artRepository.findById(artDto.id()).orElseThrow();
-            emergencyService.create(art, currentUser, null);
+            emergencyService.create(art, currentUser, note);
             affected.add(art);
         }
 

@@ -1,5 +1,6 @@
 package cz.cvut.fel.muzeumSys.service;
 
+import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.EmergencyRecord;
 import cz.cvut.fel.muzeumSys.model.User;

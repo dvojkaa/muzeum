@@ -1,6 +1,7 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
+import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRequestDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.Employee;
@@ -51,9 +52,14 @@ public class EmployeeController {
         return ResponseEntity.ok(artService.editArt(artList));
     }
 
+//    @PostMapping(value="/emergency", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<Art>> emergency(@RequestBody List<ArtDto> artList) {
+//        return ResponseEntity.ok(artService.emergency(artList));
+//    }
     @PostMapping(value="/emergency", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Art>> emergency(@RequestBody List<ArtDto> artList) {
-        return ResponseEntity.ok(artService.emergency(artList));
+    public ResponseEntity<List<Art>> emergency(@RequestBody EmergencyRequestDto request) {
+        return ResponseEntity.ok(artService.emergency(request.arts(), request.note()));
     }
+
 
 }
