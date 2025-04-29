@@ -82,8 +82,8 @@ const Login = () => {
                     />
                 </div>
                 <button className="btn-primary" type="submit">Přihlásit se</button>
-                {loginError && <p style={{ color: 'red', marginTop: '1rem' }}>{loginError}</p>}
 
+                {loginError && <p className="error-message">{loginError}</p>}
             </form>
         </div>
     );
