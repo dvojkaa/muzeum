@@ -5,7 +5,7 @@ import { AuthContext } from '../components/AuthContext';
 
 const Login = () => {
 
-
+    const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
@@ -50,11 +50,11 @@ const Login = () => {
                 }
             } else {
                 console.error('Login failed:', response.statusText);
-                alert('Špatné přihlášení, zkuste to znovu.');
+                setLoginError('Špatné přihlášení, zkuste to znovu.');
             }
         } catch (error) {
             console.error('Chyba při loginu:', error);
-            alert('Nepodařilo se připojit k serveru.');
+            setLoginError('Nepodařilo se připojit k serveru.');
         }
     };
 
@@ -82,6 +82,8 @@ const Login = () => {
                     />
                 </div>
                 <button className="btn-primary" type="submit">Přihlásit se</button>
+                {loginError && <p style={{ color: 'red', marginTop: '1rem' }}>{loginError}</p>}
+
             </form>
         </div>
     );
