@@ -74,6 +74,13 @@ button {
     cursor: pointer;
 }
 
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
 /* === FORMULÁŘE === */
 .form-modal {
     display: flex;
