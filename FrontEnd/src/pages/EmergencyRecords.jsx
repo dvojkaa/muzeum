@@ -41,7 +41,7 @@ const EmergencyRecords = () => {
             }
         } catch (error) {
             console.error('Chyba:', error);
-            setError('Chyba připojení k serveru.');
+            setError(error || 'Chyba připojení k serveru.');
         }
     };
     const handleSearch = (event) => {

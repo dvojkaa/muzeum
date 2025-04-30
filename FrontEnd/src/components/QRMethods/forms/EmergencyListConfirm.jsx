@@ -4,7 +4,8 @@ const EmergencyListConfirm = ({ artList, onSubmit, onCancel }) => {
     const [note, setNote] = useState('');
 
     const handleConfirm = () => {
-        onSubmit({ arts: artList, note: note });
+        const extendedList = [...artList, { note }];
+        onSubmit(extendedList);
     };
 
     return (

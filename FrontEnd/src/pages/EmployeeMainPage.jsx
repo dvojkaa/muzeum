@@ -9,6 +9,8 @@ const EmployeeMainPage = () => {
     const [showQRModal, setShowQRModal] = useState(false);
     const [showActionModal, setShowActionModal] = useState(false);
     const [scannedArts, setScannedArts] = useState([]); // List<ArtDto>
+    const [error, setError] = useState(''); // ➔ nové pole na chybu
+
 
     const handleActionClick = (action) => {
         setActionType(action);
@@ -42,13 +44,46 @@ const EmployeeMainPage = () => {
 
             if (response.ok) {
                 console.log("Upraveno/odesláno:", await response.json());
+            }else{
+                const errorText = await response.text();
+                setError(errorText || 'Chyba při akci odesílání.');
             }
-        } catch (err) {
-            console.error("Chyba při odesílání:", err);
+        } catch (error) {
+            console.error('Chyba:', error);
+            setError(error || 'Chyba připojení k serveru.');
         }
 
         resetAll();
     };
+
+    const handleSubmitEmergency = async (updatedListWithNote) => {
+        const token = sessionStorage.getItem('accessToken');
+
+        try {
+            const response = await fetch(`https://muzeum-production.up.railway.app/employee/emergency`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedListWithNote)
+            });
+
+            if (response.ok) {
+                console.log("Nouzové označení proběhlo:", await response.json());
+            } else {
+                    const errorText = await response.text();
+                    setError(errorText || 'Chyba při nouzovém označení.');
+                }
+            } catch (error) {
+                console.error('Chyba:', error);
+                setError(error || 'Chyba připojení k serveru.');
+            }
+
+        resetAll();
+    };
+
+
 
     const resetAll = () => {
         setActionType(null);
@@ -79,7 +114,7 @@ const EmployeeMainPage = () => {
                 <ActionModal
                     actionType={actionType}
                     artList={scannedArts}
-                    onSubmit={handleSubmitAction}
+                    onSubmit={actionType === 'emergency' ? handleSubmitEmergency : handleSubmitAction}
                     onCancel={resetAll}
                 />
             )}
