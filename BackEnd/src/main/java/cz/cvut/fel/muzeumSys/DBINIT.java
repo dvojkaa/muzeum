@@ -339,7 +339,7 @@ public class DBINIT implements CommandLineRunner {
         if (userRepository.count() > 0) return;
 
         // ===== Obrázky ====
-        List<String> imagePaths = loadImagePaths("/arts");
+//        List<String> imagePaths = loadImagePaths("/arts");
 
         // ===== USERS =====
         List<User> users = new ArrayList<>();
@@ -375,6 +375,7 @@ public class DBINIT implements CommandLineRunner {
 
         // ===== ARTS =====
         List<Art> arts = new ArrayList<>();
+        List<String> imagePaths = loadImagePaths();
         Random random = new Random();
 
         arts.add(createArt("Mona Lisa", "Leonardo da Vinci", Era.RENAISSANCE, Type.PAINTING, "Portrét ženy", "77x53cm", "YELLOW", groups.get(0), rooms.get(1), getRandomImage(imagePaths, random)));
@@ -425,6 +426,22 @@ public class DBINIT implements CommandLineRunner {
         }
 
         emergencyRecordRepository.saveAll(emergencyRecords);
+    }
+
+    private List<String> loadImagePaths() {
+        return List.of(
+                "/arts/dilo1.png",
+                "/arts/Dilo2.png",
+                "/arts/dilo3.jpeg",
+                "/arts/dilo4.jpeg",
+                "/arts/dilo5.jpeg",
+                "/arts/dilo9.png",
+                "/arts/dilo10.png"
+        );
+    }
+
+    private String getRandomImage(Random random, List<String> images) {
+        return images.isEmpty() ? "" : images.get(random.nextInt(images.size()));
     }
 
     private List<String> loadImagePaths(String folder) {
