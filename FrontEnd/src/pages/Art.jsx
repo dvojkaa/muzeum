@@ -40,7 +40,7 @@ const Art = () => {
 
             <div className="art-image">
                 {/* Nahraď správnou cestou k obrázku */}
-                <img src={`https://muzeum-production.up.railway.app/${art.imgPath}`} alt={art.name}/>
+                <img src={`https://muzeum-production.up.railway.app${art.imgPath}`} alt={art.name}/>
             </div>
 
             <div className="art-details">
