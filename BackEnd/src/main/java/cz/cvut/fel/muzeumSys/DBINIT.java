@@ -339,7 +339,7 @@ public class DBINIT implements CommandLineRunner {
         if (userRepository.count() > 0) return;
 
         // ===== Obrázky ====
-        List<String> imagePaths = loadImagePaths("files/arts");
+        List<String> imagePaths = loadImagePaths("static/arts");
 
         // ===== USERS =====
         List<User> users = new ArrayList<>();
