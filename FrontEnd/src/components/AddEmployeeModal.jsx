@@ -351,7 +351,7 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/user/delete`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/user/delete`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -380,8 +380,8 @@ const AddEmployeeModal = ({ onClose, initialData, onSuccess }) => {
         setError('');
 
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/user/update`
-            : `https://muzeum-production.up.railway.app/user/create`;
+            ? `${import.meta.env.VITE_API_URL}/user/update`
+            : `${import.meta.env.VITE_API_URL}/user/create`;
 
         try {
             const response = await fetch(url, {

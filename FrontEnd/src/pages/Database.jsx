@@ -28,7 +28,7 @@ const Database = () => {
     
     const fetchArts = async () => {
         try {
-            const response = await fetch('https://muzeum-production.up.railway.app/art/info', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/art/info`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -123,7 +123,7 @@ const Database = () => {
             const text = await file.text();
             const data = JSON.parse(text);
 
-            const response = await fetch('https://muzeum-production.up.railway.app/art/import', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/art/import`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ const Database = () => {
         }
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/qrcode/create`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/qrcode/create`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -285,7 +285,7 @@ const Database = () => {
                     <p>QR kód vygenerován pro dílo ID {qrResult.artId}</p>
                     <div id="print-section">
                         <img
-                            src={`https://muzeum-production.up.railway.app/${encodeURIComponent(qrResult.imagePath)}`}
+                            src={`${import.meta.env.VITE_API_URL}/${encodeURIComponent(qrResult.imagePath)}`}
                             alt="QR kód"
                             className="qr-image"
                         />

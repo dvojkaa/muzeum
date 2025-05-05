@@ -178,7 +178,7 @@ const Employee = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/user/info`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/user/info`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

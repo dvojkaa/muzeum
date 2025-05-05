@@ -235,7 +235,7 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch('https://muzeum-production.up.railway.app/art/delete', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/art/delete`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -264,8 +264,8 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
         setError('');
 
         const url = initialData
-            ? `https://muzeum-production.up.railway.app/art/update`
-            : `https://muzeum-production.up.railway.app/art/create`;
+            ? `${import.meta.env.VITE_API_URL}/art/update`
+            : `${import.meta.env.VITE_API_URL}/art/create`;
 
         try {
             const response = await fetch(url, {

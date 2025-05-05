@@ -142,7 +142,10 @@ public class SecurityConfig {
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration.setAllowedOriginPatterns(List.of("*"));
-        configuration.setAllowedOrigins(List.of("https://muzeumsys.vercel.app"));
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://muzeum-sigma.vercel.app"
+        ));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 

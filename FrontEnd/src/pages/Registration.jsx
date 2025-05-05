@@ -29,7 +29,7 @@ const Registration = () => {
 
 
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/user/register`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

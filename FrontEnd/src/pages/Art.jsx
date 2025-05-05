@@ -11,7 +11,7 @@ const Art = () => {
     useEffect(() => {
         const fetchArt = async () => {
             try {
-                const response = await fetch(`https://muzeum-production.up.railway.app/art/${id}`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/art/${id}`);
                 if (!response.ok) {
                     throw new Error('Artwork not found');
                 }

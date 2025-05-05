@@ -145,7 +145,7 @@ const EditArtForm = ({ art, onSubmit, onCancel }) => {
     useEffect(() => {
         const fetchArt = async () => {
             try {
-                const res = await fetch(`https://muzeum-production.up.railway.app/art/${art.id}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/art/${art.id}`);
                 const data = await res.json();
                 setFormData(data);
             } catch (err) {

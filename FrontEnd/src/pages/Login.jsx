@@ -25,9 +25,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(import.meta.env.VITE_API_URL);
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/user/login`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

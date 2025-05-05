@@ -21,7 +21,7 @@ const EmergencyRecords = () => {
 
     const fetchRecords = async () => {
         try {
-            const response = await fetch(`https://muzeum-production.up.railway.app/emergency/info`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/emergency/info`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

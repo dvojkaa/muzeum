@@ -123,7 +123,7 @@ const QRMethodModal = ({ onClose, onScanComplete, isMultiScan, actionType }) => 
         try {
             const url = new URL(qrText);
             const id = url.pathname.split('/').pop();
-            const response = await fetch(`https://muzeum-production.up.railway.app/art/${id}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/art/${id}`);
 
             if (!response.ok) {
                 throw new Error('Dílo nenalezeno.');
