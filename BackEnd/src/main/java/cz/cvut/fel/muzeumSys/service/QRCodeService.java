@@ -168,7 +168,7 @@ public class QRCodeService {
         }
 
         Art art = optionalArt.get();
-        String qrContent = "https://muzeumsys.vercel.app/art/" + artId;
+        String qrContent = "http://localhost:5173/art/" + artId;
         String color = art.getColor();
 
         int width = 300;
@@ -234,7 +234,7 @@ public class QRCodeService {
         return new QRCodeDto(
                 null,
                 art.getId(),
-                "https://muzeumsys.vercel.app/art/" + art.getId(),
+                "http://localhost:5173/art/" + art.getId(),
                 art.getColor(),
                 fileName,
                 base64Image
