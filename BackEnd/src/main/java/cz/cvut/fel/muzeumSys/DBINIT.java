@@ -430,13 +430,13 @@ public class DBINIT implements CommandLineRunner {
 
     private List<String> loadImagePaths() {
         return List.of(
-                "/arts/dilo1.png",
-                "/arts/Dilo2.png",
-                "/arts/dilo3.jpeg",
-                "/arts/dilo4.jpeg",
-                "/arts/dilo5.jpeg",
-                "/arts/dilo9.png",
-                "/arts/dilo10.png"
+                "dilo1.png",
+                "Dilo2.png",
+                "dilo3.jpeg",
+                "dilo4.jpeg",
+                "dilo5.jpeg",
+                "dilo9.png",
+                "dilo10.png"
         );
     }
 

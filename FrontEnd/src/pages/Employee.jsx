@@ -161,7 +161,7 @@
 
 import React, { useEffect, useState } from 'react';
 import '../CSS/Employee.css';
-import AddEmployeeModal from "../components/AddEmployeeModal";
+import AddEmployeeModal from "../components/Modals/AddEmployeeModal.jsx";
 
 const Employee = () => {
     const token = sessionStorage.getItem('accessToken');

@@ -1,9 +1,11 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
+import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRecordDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRequestDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmployeeDto;
 import cz.cvut.fel.muzeumSys.model.Art;
+import cz.cvut.fel.muzeumSys.model.EmergencyRecord;
 import cz.cvut.fel.muzeumSys.model.Employee;
 import cz.cvut.fel.muzeumSys.service.ArtService;
 import cz.cvut.fel.muzeumSys.service.EmployeeService;
@@ -51,7 +53,10 @@ public class EmployeeController {
     public ResponseEntity<List<Art>> editGroup(@RequestBody List<ArtDto> artList) {
         return ResponseEntity.ok(artService.editArt(artList));
     }
-
+    @PostMapping(value = "/updateRecord", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EmergencyRecord> updateRecord(@RequestBody EmergencyRecordDto emergencyRecordDto) {
+        return ResponseEntity.ok(artService.updateRecord(emergencyRecordDto));
+    }
 //    @PostMapping(value="/emergency", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<List<Art>> emergency(@RequestBody List<ArtDto> artList) {
 //        return ResponseEntity.ok(artService.emergency(artList));
