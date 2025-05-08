@@ -7,6 +7,8 @@
     background-color: var(--bg-alt);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     font-family: var(--font-main);
+    /*max-width: 100%;  !* Zajišťuje, že header nepřeteče *!*/
+    /*overflow-x: auto;  !* Umožní horizontální posouvání obsahu *!*/
 }
 
 .logo {
@@ -19,6 +21,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 1rem;
+    /*flex-wrap: nowrap;  !* Zabrání zalamování řádků *!*/
+    /*overflow-x: auto;*/
 }
 
 nav a {

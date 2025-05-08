@@ -182,24 +182,20 @@ public class QRCodeService {
 
         BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
 
-        // 🔥 Cesta kam ukládat soubor
         Path directory = Paths.get("files/qrcodes");
         Files.createDirectories(directory);
 
         String fileName = "QR_" + art.getName().replace(" ", "_") + art.getId() + ".png";
         Path filePath = directory.resolve(fileName);
 
-        // Ulož QR obrázek
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", filePath, config);
 
-        // QR entita
         QRCode qrCode = new QRCode();
         qrCode.setQrCode(qrContent);
         qrCode.setColor(cz.cvut.fel.muzeumSys.model.enums.Color.valueOf(color));
         qrCode.setArtId(art.getId());
         qrCode.setImagePath(fileName); // ⬅ důležité: pouze název!
 
-        // propojení i s artem
         art.setQrCodePath(fileName);
 
         return qrCodeRepository.save(qrCode);
@@ -209,7 +205,7 @@ public class QRCodeService {
         return switch (color) {
             case "RED" -> "#FF0000";
             case "GREEN" -> "#00FF00";
-            case "YELLOW" -> "#FFFF00";
+            case "YELLOW" -> "#FDB702";
             default -> "#000000";
         };
     }

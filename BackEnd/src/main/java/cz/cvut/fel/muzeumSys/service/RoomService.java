@@ -8,6 +8,8 @@ import cz.cvut.fel.muzeumSys.model.Room;
 import cz.cvut.fel.muzeumSys.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomService {
 
@@ -27,6 +29,10 @@ public class RoomService {
         return room;
 
 
+    }
+
+    public List<Room> getRooms() {
+        return roomRepository.findAll();
     }
 //
 //    public ResponseEntity<Room> addArt(Room room, Art art){

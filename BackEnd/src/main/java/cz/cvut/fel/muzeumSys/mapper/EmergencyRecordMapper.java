@@ -18,4 +18,7 @@ public class EmergencyRecordMapper {
                 record.getNote()
         );
     }
+
+    public void updateRecordFromDto(EmergencyRecordDto emergencyRecordDto, EmergencyRecord existingRecord) {
+    }
 }

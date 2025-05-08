@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../CSS/Login.css';
 import '../CSS/Database.css';
-import AddArtModal from "../components/AddArtModal.jsx";
+import AddArtModal from "../components/Modals/AddArtModal.jsx";
+import AddGroupModal from "../components/Modals/AddGroupModal.jsx";
+import AddRoomModal from "../components/Modals/AddRoomModal.jsx";
+import AddPhotoModal from "../components/Modals/AddPhotoModal.jsx";
+
 
 const Database = () => {
     const navigate = useNavigate();
     const [arts, setArt] = useState([]);
     const [filteredArts, setFilteredArts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
+    const [isModalOpen, setIsModalOpen] = useState("false");
+    const [sortConfig, setSortConfig] = useState({key: 'id', direction: 'asc'});
 
     const [selectedArt, setSelectedArt] = useState(null);
     const [qrId, setQrId] = useState('');
@@ -25,7 +29,7 @@ const Database = () => {
     useEffect(() => {
         fetchArts();
     }, []);
-    
+
     const fetchArts = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/art/info`, {
@@ -39,6 +43,7 @@ const Database = () => {
             });
             if (response.ok) {
                 const data = await response.json();
+                // console.log(data);
                 setArt(data);
                 setFilteredArts(data);
                 setIsLoading(false);
@@ -53,20 +58,31 @@ const Database = () => {
 
     const handleAddArt = () => {
         setSelectedArt(null);
-        setIsModalOpen(true);
+        setIsModalOpen("art");
+    };
+    const handleAddPhoto = (art) => {
+        setSelectedArt(art);
+        setIsModalOpen("photo");
+    };
+
+    const handleAddGroup = () => {
+        setIsModalOpen("group");
+    };
+    const handleAddRoom = () => {
+        setIsModalOpen("room");
     };
 
     const handleEditArt = (art) => {
         setSelectedArt(art);
-        setIsModalOpen(true);
+        setIsModalOpen("art");
     };
 
     const handleModalSubmit = () => {
         fetchArts(); // refetch
-        setIsModalOpen(false);
+        setIsModalOpen("false");
     };
 
-    const handleModalClose = () => setIsModalOpen(false);
+    const handleModalClose = () => setIsModalOpen("false");
 
 
     const handleSearch = (event) => {
@@ -91,7 +107,7 @@ const Database = () => {
         if (sortConfig.key === key && sortConfig.direction === 'asc') {
             direction = 'desc';
         }
-        setSortConfig({ key, direction });
+        setSortConfig({key, direction});
 
         const sorted = [...filteredArts].sort((a, b) => {
             if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
@@ -105,7 +121,7 @@ const Database = () => {
 
     const handleExport = () => {
         const json = JSON.stringify(arts, null, 2);
-        const blob = new Blob([json], { type: 'application/json' });
+        const blob = new Blob([json], {type: 'application/json'});
         const url = URL.createObjectURL(blob);
 
         const a = document.createElement('a');
@@ -143,7 +159,6 @@ const Database = () => {
             alert('Chyba při importu.');
         }
     };
-
 
 
     const handleCreateQR = async () => {
@@ -204,112 +219,155 @@ const Database = () => {
             </div>
 
 
-            <h1 className="title">Správa děl</h1>
-            <button className="add-employee-btn" onClick={handleAddArt}>
-                Přidat nové umění
-            </button>
-
-            <input
-                type="text"
-                placeholder="Vyhledat dílo..."
-                onChange={handleSearch}
-                className="search-input"
-            />
-
-            {isLoading ? (
-                <p>Načítání...</p>
-            ) : (
-                <>
-                    <table className="art-table">
-                        <thead>
-                        <tr>
-                            <th onClick={() => handleSort('id')}>ID</th>
-                            <th onClick={() => handleSort('name')}>Název</th>
-                            <th onClick={() => handleSort('era')}>Éra</th>
-                            <th onClick={() => handleSort('type')}>Typ</th>
-                            <th onClick={() => handleSort('author')}>Autor</th>
-                            <th onClick={() => handleSort('color')}>Priorita</th>
-                            <th onClick={() => handleSort('description')}>Popis</th>
-                            <th onClick={() => handleSort('edit')}>Editace</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {currentItems.map((art) => (
-                            <tr key={art.id}>
-                                <td>{art.id}</td>
-                                <td>{art.name}</td>
-                                <td>{art.era}</td>
-                                <td>{art.type}</td>
-                                <td>{art.author}</td>
-                                <td>{art.color}</td>
-                                <td>{art.description}</td>
-                                <td>
-                                    <button className="btn-secondary" onClick={() => handleEditArt(art)}>
-                                        Upravit
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-
-                    {/* Stránkování */}
-                    <div className="pagination">
-                        {Array.from({length: totalPages}, (_, i) => (
-                            <button
-                                key={i}
-                                className={currentPage === i + 1 ? 'active-page' : ''}
-                                onClick={() => setCurrentPage(i + 1)}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
-                    </div>
-                </>
-            )}
-
-            <h1 className="subtitle">Tisk QR</h1>
-            <input
-                type="text"
-                placeholder="ID díla"
-                value={qrId}
-                onChange={handleSearchAndSetId}
-                className="input-id"
-            />
-            <button className="btn-generate" onClick={handleCreateQR}>
-                Generovat QR kód
-            </button>
-
-            {qrResult && (
-                <div className="qr-section">
-                    <p>QR kód vygenerován pro dílo ID {qrResult.artId}</p>
-                    <div id="print-section">
-                        <img
-                            src={`${import.meta.env.VITE_API_URL}/${encodeURIComponent(qrResult.imagePath)}`}
-                            alt="QR kód"
-                            className="qr-image"
-                        />
-                    </div>
-                    <button onClick={handlePrint} className="btn-print">
-                        Tisknout QR kód
+            <div className="content-wrapper">
+                <h1 className="title">Správa děl</h1>
+                <div className="action-buttons">
+                    <button className="add-employee-btn" onClick={handleAddArt}>
+                        Přidat nové umění
                     </button>
+
+                    <input
+                        type="text"
+                        placeholder="Vyhledat dílo..."
+                        onChange={handleSearch}
+                        className="search-input"
+                    />
+
+                    <button className="add-employee-btn" onClick={handleAddGroup}>
+                        Přidat nové skupiny děl
+                    </button>
+
+                    <button className="add-employee-btn" onClick={handleAddRoom}>
+                        Přidat nové místnosti
+                    </button>
+
+                    {isLoading ? (
+                        <p>Načítání...</p>
+                    ) : (
+                        <>
+                            <div className="table-wrapper">
+                                <table className="art-table">
+                                    <thead>
+                                    <tr>
+                                        <th onClick={() => handleSort('id')}>ID</th>
+                                        <th onClick={() => handleSort('name')}>Název</th>
+                                        <th onClick={() => handleSort('era')}>Éra</th>
+                                        <th onClick={() => handleSort('type')}>Typ</th>
+                                        <th onClick={() => handleSort('room')}>Místnost</th>
+                                        <th onClick={() => handleSort('group')}>Skupina</th>
+                                        <th onClick={() => handleSort('author')}>Autor</th>
+                                        <th onClick={() => handleSort('color')}>Priorita</th>
+                                        <th onClick={() => handleSort('description')}>Popis</th>
+                                        <th onClick={() => handleSort('edit')}>Editace</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {currentItems.map((art) => (
+                                        <tr key={art.id}>
+                                            <td>{art.id}</td>
+                                            <td>{art.name}</td>
+                                            <td>{art.era}</td>
+                                            <td>{art.type}</td>
+                                            <td>{art.room.name}</td>
+                                            <td>{art.group.name}</td>
+                                            <td>{art.author}</td>
+                                            <td>{art.color}</td>
+                                            <td>{art.description}</td>
+                                            <td>
+                                                <button className="btn-secondary-small"
+                                                        onClick={() => handleEditArt(art)}>
+                                                    📝
+                                                </button>
+                                                <button className="btn-secondary-small"
+                                                        onClick={() => handleAddPhoto(art)}>
+                                                     🖼️
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {/* Stránkování */}
+                            <div className="pagination">
+                                {Array.from({length: totalPages}, (_, i) => (
+                                    <button
+                                        key={i}
+                                        className={currentPage === i + 1 ? 'active-page' : ''}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    <h1 className="subtitle">Tisk QR</h1>
+                    <input
+                        type="text"
+                        placeholder="ID díla"
+                        value={qrId}
+                        onChange={handleSearchAndSetId}
+                        className="input-id"
+                    />
+                    <button className="btn-generate" onClick={handleCreateQR}>
+                        Generovat QR kód
+                    </button>
+
+                    {qrResult && (
+                        <div className="qr-section">
+                            <p>QR kód vygenerován pro dílo ID {qrResult.artId}</p>
+                            <div id="print-section">
+                                <img
+                                    src={`${import.meta.env.VITE_API_URL}/qrcodes/${encodeURIComponent(qrResult.imagePath)}`}
+                                    alt="QR kód"
+                                    className="qr-image"
+                                />
+                            </div>
+                            <button onClick={handlePrint} className="btn-print">
+                                Tisknout QR kód
+                            </button>
+                        </div>
+                    )}
+
+                    {qrError && (
+                        <div className="qr-error">
+                            <p style={{color: 'red'}}>{qrError}</p>
+                        </div>
+                    )}
+
+                    {isModalOpen === 'art' && (
+                        <AddArtModal
+                            onClose={handleModalClose}
+                            initialData={selectedArt}
+                            onSuccess={handleModalSubmit}
+                        />
+                    )}
+                    {isModalOpen === 'photo' && (
+                        <AddPhotoModal
+                            onClose={handleModalClose}
+                            initialData={selectedArt}
+                            onSuccess={handleModalSubmit}
+                        />
+                    )}
+
+                    {isModalOpen === 'group' && (
+                        <AddGroupModal
+                            onClose={handleModalClose}
+                            onSuccess={handleModalSubmit}
+                        />
+                    )}
+
+                    {isModalOpen === 'room' && (
+                        <AddRoomModal
+                            onClose={handleModalClose}
+                            onSuccess={handleModalSubmit}
+                        />
+                    )}
                 </div>
-            )}
-
-            {qrError && (
-                <div className="qr-error">
-                    <p style={{color: 'red'}}>{qrError}</p>
-                </div>
-            )}
-
-            {isModalOpen && (
-                <AddArtModal
-                    onClose={handleModalClose}
-                    initialData={selectedArt}
-                    onSuccess={handleModalSubmit}
-                />
-            )}
-
+            </div>
         </div>
     );
 };

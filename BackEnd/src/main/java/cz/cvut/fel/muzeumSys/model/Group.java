@@ -1,5 +1,6 @@
 package cz.cvut.fel.muzeumSys.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +35,6 @@ public class Group {
     private String description;
 //
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Art> arts;
 }

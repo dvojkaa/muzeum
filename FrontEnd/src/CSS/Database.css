@@ -57,12 +57,32 @@
     background: linear-gradient(to right, #964b0b, #d35400);
 }
 
+/*.database-container {*/
+/*    max-width: 1200px;*/
+/*    margin: 0 auto;*/
+/*    padding: 1rem;*/
+/*    background-color: var(--bg);*/
+/*    font-family: var(--font-main);*/
+/*}*/
 .database-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     background-color: var(--bg);
     font-family: var(--font-main);
+    overflow-x: auto; /* Přidáno - umožní horizontální scroll */
+}
+
+.art-table-wrapper {
+    overflow-x: auto; /* Přidáno - pro tabulku */
+    width: 100%;
+}
+
+.art-table {
+    width: 100%;
+    min-width: 1000px; /* Minimální šířka pro zachování struktury */
+    border-collapse: collapse;
+    margin-bottom: 2rem;
 }
 
 .title {
@@ -79,11 +99,11 @@
     color: var(--text-muted);
 }
 
-.art-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 2rem;
-}
+/*.art-table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    margin-bottom: 2rem;*/
+/*}*/
 
 .art-table th,
 .art-table td {

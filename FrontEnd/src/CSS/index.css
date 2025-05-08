@@ -22,7 +22,7 @@
     --primary: #8b5e3c;          /* knižní hnědá */
     --primary-alt: #a97449;
     --button-hover: #5e3e28;
-    --border: #d4c5b2;
+    --border: #ffffff;
 
     /* tmavý motiv */
     --bg-dark: #1a1410;
@@ -343,6 +343,22 @@ header, footer {
     color: white;
 }
 
+.btn-secondary-small {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem; /* Zmenšené padding */
+    border-radius: 4px; /* Mírně zmenšený radius */
+    font-size: 0.85rem; /* Zmenšené písmo */
+    font-weight: 500;
+    margin-top: 0.5rem; /* Mírně zmenšený margin */
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-small:hover {
+    background-color: var(--primary);
+    color: white;
+}
 
 .logo {
     height: 40px;
