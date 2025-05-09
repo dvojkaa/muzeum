@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface EmergencyRecordRepository extends JpaRepository<EmergencyRecord, Long> {
     List<EmergencyRecord> findByUserId(Long userId);
+
     List<EmergencyRecord> findByArtId(Long artId);
 }
 

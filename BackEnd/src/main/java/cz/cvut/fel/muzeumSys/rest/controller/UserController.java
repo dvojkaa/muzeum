@@ -1,8 +1,9 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 //
+
 import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
-import cz.cvut.fel.muzeumSys.dto.Record.*;
-import cz.cvut.fel.muzeumSys.model.Art;
+import cz.cvut.fel.muzeumSys.dto.Record.AuthRequestDto;
+import cz.cvut.fel.muzeumSys.dto.Record.UserDto;
 import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import cz.cvut.fel.muzeumSys.service.UserService;
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,13 +34,13 @@ public class UserController {
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
-    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
 
 
-//    @PostMapping(value ="/registerEmployee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    //    @PostMapping(value ="/registerEmployee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public  ResponseEntity<Map<String, String>> registerEmployee(@RequestBody EmployeeDto userDto) {
 //        String email = userDto.email();
 //        String password = userDto.password();
@@ -108,8 +108,8 @@ public class UserController {
 //        return ResponseEntity.ok(response);
 //    }
 
-    @PostMapping(value ="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Map<String, String>> login(@RequestBody AuthRequestDto authRequestDto) {
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> login(@RequestBody AuthRequestDto authRequestDto) {
         String email = authRequestDto.email();
         String password = authRequestDto.password();
         User user = userService.login(email, password);
@@ -129,14 +129,14 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping(value="/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.updateUser (userDto));
+        return ResponseEntity.ok(userService.updateUser(userDto));
     }
 
-    @PostMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> deleteUser(@RequestBody UserDto userDto) {
         return ResponseEntity.ok(userService.deleteUser(userDto));
     }
 
-   }
+}

@@ -2,11 +2,7 @@ package cz.cvut.fel.muzeumSys.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -17,23 +13,19 @@ import java.util.List;
 @ToString(exclude = "arts")
 @Entity
 @Table(name = "art_group")
-//@NamedQueries({
-//
-//})
+
 public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Basic(optional = false)
     @Column(nullable = false, unique = true)
     private String name;
 
-//    @Basic(optional = true)
-//    @Column
+
     private String description;
-//
+
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Art> arts;

@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import React, {useContext} from 'react';
+import {Link} from 'react-router-dom';
+import {AuthContext} from './AuthContext';
 import DarkModeToggle from './DarkModeToggle';
 import '../CSS/Header.css';
-import Logo from "./Logo.jsx";
 
 const Header = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const {isLoggedIn} = useContext(AuthContext);
 
     return (
         <header className="header">
-            {/*<img src="/assets/Logoo.png" alt="Logo" className="logo"/>*/}
             <div className="logo">MuzeumSys</div>
             <nav>
                 <Link to="/">Home</Link>
@@ -25,9 +23,6 @@ const Header = () => {
 
                 {!isLoggedIn && (
                     <>
-                        {/*<Link to="/registration">*/}
-                        {/*    <button className="btn">Sign up</button>*/}
-                        {/*</Link>*/}
                         <Link to="/login">
                             <button className="btn">Log In</button>
                         </Link>

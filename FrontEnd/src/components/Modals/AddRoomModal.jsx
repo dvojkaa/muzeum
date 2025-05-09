@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../../CSS/Modal.css';
 
-const AddRoomModal = ({ onClose, onSuccess }) => {
+const AddRoomModal = ({onClose, onSuccess}) => {
     const token = sessionStorage.getItem("accessToken");
     const [error, setError] = useState('');
     const [formData, setFormData] = useState({
@@ -9,8 +9,8 @@ const AddRoomModal = ({ onClose, onSuccess }) => {
         floorNumber: ''
     });
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}));
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const AddRoomModal = ({ onClose, onSuccess }) => {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ formData }),
+                body: JSON.stringify({formData}),
             });
 
             if (response.ok) {

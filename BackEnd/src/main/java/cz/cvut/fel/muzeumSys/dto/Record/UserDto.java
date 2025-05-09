@@ -1,6 +1,6 @@
 package cz.cvut.fel.muzeumSys.dto.Record;
 
-public record UserDto (
+public record UserDto(
 
         Long id,
         String firstName,
@@ -10,4 +10,5 @@ public record UserDto (
         String role,
         String phoneNumber
 
-){}
+) {
+}

@@ -142,9 +142,10 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -169,7 +170,7 @@ public class QRCodeService {
 
         Art art = optionalArt.get();
 //        String qrContent = "http://localhost:5173/art/" + artId;
-        String qrContent ="https://muzeumsys.vercel.app/art/" + art.getId();
+        String qrContent = "https://muzeumsys.vercel.app/art/" + art.getId();
         ;
 
         String color = art.getColor();

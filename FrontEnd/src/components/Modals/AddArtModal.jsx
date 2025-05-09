@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../CSS/Modal.css';
 
 const eras = [
@@ -20,7 +20,7 @@ const types = [
 
 const priorities = ["RED", "YELLOW", "GREEN"].sort((a, b) => a.localeCompare(b));
 
-const AddArtModal = ({ onClose, initialData, onSuccess }) => {
+const AddArtModal = ({onClose, initialData, onSuccess}) => {
     const token = sessionStorage.getItem("accessToken");
     const [formData, setFormData] = useState({
         name: '',
@@ -44,8 +44,8 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
     }, [initialData]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}));
     };
 
     const fetchRoomsAndGroups = async () => {
@@ -119,11 +119,13 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
 
                 <form onSubmit={handleSubmit} className="form-layout">
                     <label>Název:
-                        <input className="form-group" type="text" name="name" value={formData.name} onChange={handleChange} required />
+                        <input className="form-group" type="text" name="name" value={formData.name}
+                               onChange={handleChange} required/>
                     </label>
 
                     <label>Autor:
-                        <input className="form-group" type="text" name="author" value={formData.author} onChange={handleChange} required />
+                        <input className="form-group" type="text" name="author" value={formData.author}
+                               onChange={handleChange} required/>
                     </label>
 
                     <label>Typ:
@@ -166,7 +168,8 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
                     </label>
 
                     <label>Popis:
-                        <textarea className="form-group" name="description" value={formData.description} onChange={handleChange} rows="3" />
+                        <textarea className="form-group" name="description" value={formData.description}
+                                  onChange={handleChange} rows="3"/>
                     </label>
 
                     {error && <p className="error-message">{error}</p>}
@@ -177,7 +180,8 @@ const AddArtModal = ({ onClose, initialData, onSuccess }) => {
                         </button>
 
                         {initialData && (
-                            <button type="button" className="btn-danger" onClick={() => {}}>
+                            <button type="button" className="btn-danger" onClick={() => {
+                            }}>
                                 Smazat
                             </button>
                         )}

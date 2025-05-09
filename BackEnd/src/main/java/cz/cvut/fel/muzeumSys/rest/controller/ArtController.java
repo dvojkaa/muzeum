@@ -3,15 +3,15 @@ package cz.cvut.fel.muzeumSys.rest.controller;
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.service.ArtService;
-
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/art")
 public class ArtController {
@@ -21,9 +21,10 @@ public class ArtController {
     public ArtController(ArtService artService) {
         this.artService = artService;
     }
-//
+
+    //
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> createArt(@RequestBody ArtDto artDto) {
         return ResponseEntity.ok(artService.createArt(artDto));
     }
@@ -33,23 +34,23 @@ public class ArtController {
         return "Hello";
     }
 
-    @GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> getArtById(@PathVariable Long id) {
         return ResponseEntity.ok(artService.getArtById(id));
     }
 
 
-    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Art>> getArt() {
         return ResponseEntity.ok(artService.getArts());
     }
 
-    @PostMapping(value="/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> updateArt(@RequestBody ArtDto artDto) {
         return ResponseEntity.ok(artService.updateArt(artDto));
     }
 
-    @PostMapping(value="/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Art> deleteArt(@RequestBody ArtDto artDto) {
         return ResponseEntity.ok(artService.deleteArt(artDto));
     }

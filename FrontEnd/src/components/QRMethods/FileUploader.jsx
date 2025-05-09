@@ -1,7 +1,7 @@
 import React from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import {Html5Qrcode} from 'html5-qrcode';
 
-const FileUploader = ({ onFileSelected, onCancel, scannedArts = [], onDone, onRemove }) => {
+const FileUploader = ({onFileSelected, onCancel, scannedArts = [], onDone, onRemove}) => {
     const handleChange = async (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
@@ -24,8 +24,8 @@ const FileUploader = ({ onFileSelected, onCancel, scannedArts = [], onDone, onRe
         <div style={uploaderWrapper}>
             <button style={closeButtonStyle} onClick={onCancel}>✖</button>
             <h3>Nahraj fotku QR kódu</h3>
-            <input type="file" accept="image/*" onChange={handleChange} />
-            <div id="qr-file-scanner" style={{ display: 'none' }}></div>
+            <input type="file" accept="image/*" onChange={handleChange}/>
+            <div id="qr-file-scanner" style={{display: 'none'}}></div>
         </div>
     );
 };

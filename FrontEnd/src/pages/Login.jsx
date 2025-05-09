@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../CSS/Login.css';
-import { AuthContext } from '../components/AuthContext';
+import {AuthContext} from '../components/AuthContext';
 
 const Login = () => {
 
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -15,7 +15,7 @@ const Login = () => {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -25,7 +25,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(import.meta.env.VITE_API_URL);
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
                 method: 'POST',
@@ -37,8 +36,7 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                await login(data.token,data.role);
-
+                await login(data.token, data.role);
 
 
                 if (data.role === 'ROLE_EMPLOYEE') {

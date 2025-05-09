@@ -1,12 +1,14 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
 import cz.cvut.fel.muzeumSys.dto.Record.RoomDto;
-import cz.cvut.fel.muzeumSys.model.Group;
 import cz.cvut.fel.muzeumSys.model.Room;
 import cz.cvut.fel.muzeumSys.service.RoomService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -21,11 +23,12 @@ public class RoomController {
     }
 
 
-    @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Room> createRoom(@RequestBody RoomDto roomDto) {
         return ResponseEntity.ok(roomService.createRoom(roomDto));
     }
-    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Room>> getRooms() {
         return ResponseEntity.ok(roomService.getRooms());
     }

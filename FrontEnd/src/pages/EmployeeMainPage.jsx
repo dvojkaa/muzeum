@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import QRMethodModal from '../components/QRMethods/QRMethodModal.jsx';
 import ActionModal from '../components/QRMethods/ActionModal.jsx';
 import '../CSS/EmployeeMainPage.css';
@@ -44,7 +44,7 @@ const EmployeeMainPage = () => {
 
             if (response.ok) {
                 console.log("Upraveno/odesláno:", await response.json());
-            }else{
+            } else {
                 const errorText = await response.text();
                 setError(errorText || 'Chyba při akci odesílání.');
             }
@@ -72,17 +72,16 @@ const EmployeeMainPage = () => {
             if (response.ok) {
                 console.log("Nouzové označení proběhlo:", await response.json());
             } else {
-                    const errorText = await response.text();
-                    setError(errorText || 'Chyba při nouzovém označení.');
-                }
-            } catch (error) {
-                console.error('Chyba:', error);
-                setError(error || 'Chyba připojení k serveru.');
+                const errorText = await response.text();
+                setError(errorText || 'Chyba při nouzovém označení.');
             }
+        } catch (error) {
+            console.error('Chyba:', error);
+            setError(error || 'Chyba připojení k serveru.');
+        }
 
         resetAll();
     };
-
 
 
     const resetAll = () => {

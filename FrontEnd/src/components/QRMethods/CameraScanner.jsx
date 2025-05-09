@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import React, {useEffect, useRef, useState} from 'react';
+import {Html5Qrcode} from 'html5-qrcode';
 
-const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
+const CameraScanner = ({onDetected, scannedArts = [], onDone}) => {
     const [cameras, setCameras] = useState([]);
     const [selectedCameraId, setSelectedCameraId] = useState(null);
     const scannerRef = useRef(null);
@@ -12,7 +12,6 @@ const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
             .then((devices) => {
                 setCameras(devices);
                 if (devices.length > 0) {
-                    // Pokud je druhá kamera, vezmi ji, jinak použij první
                     const cameraId = devices[1]?.id || devices[0].id;
                     setSelectedCameraId(cameraId);
                 } else {
@@ -37,14 +36,15 @@ const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
         html5QrCode
             .start(
                 selectedCameraId,
-                { fps: 10, qrbox: 250 },
+                {fps: 10, qrbox: 250},
                 (decodedText) => {
                     if (isRunningRef.current) {
                         isRunningRef.current = false;
                         html5QrCode.stop().then(() => onDetected(decodedText));
                     }
                 },
-                (error) => {}
+                (error) => {
+                }
             )
             .then(() => {
                 isRunningRef.current = true;
@@ -73,7 +73,7 @@ const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
                 <select
                     onChange={(e) => setSelectedCameraId(e.target.value)}
                     value={selectedCameraId}
-                    style={{ marginBottom: '1rem' }}
+                    style={{marginBottom: '1rem'}}
                 >
                     {cameras.map((cam) => (
                         <option key={cam.id} value={cam.id}>
@@ -83,7 +83,7 @@ const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
                 </select>
             )}
 
-            <div id="reader" style={{ width: "100%" }} />
+            <div id="reader" style={{width: "100%"}}/>
         </div>
     );
 };

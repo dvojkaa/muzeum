@@ -1,6 +1,5 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
-import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRecordDto;
 import cz.cvut.fel.muzeumSys.mapper.EmergencyRecordMapper;
 import cz.cvut.fel.muzeumSys.model.EmergencyRecord;
 import cz.cvut.fel.muzeumSys.service.EmergencyRecordService;
@@ -26,7 +25,7 @@ public class EmergencyRecordController {
 //        return ResponseEntity.ok(service.update(emergencyRecordDto));
 //    }
 
-    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EmergencyRecord>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-const EmergencyListConfirm = ({ artList, onSubmit, onCancel }) => {
+const EmergencyListConfirm = ({artList, onSubmit, onCancel}) => {
     const [note, setNote] = useState('');
 
     const handleConfirm = () => {
@@ -27,10 +27,10 @@ const EmergencyListConfirm = ({ artList, onSubmit, onCancel }) => {
                 placeholder="Zadejte poznámku k nouzovému označení..."
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem', minHeight: '100px' }}
+                style={{width: '100%', marginTop: '1rem', marginBottom: '1rem', minHeight: '100px'}}
             />
 
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{display: 'flex', gap: '1rem'}}>
                 <button className="btn-primary" onClick={handleConfirm}>
                     Odeslat na backend
                 </button>

@@ -1,8 +1,5 @@
 package cz.cvut.fel.muzeumSys.service;
 
-import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
-import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRecordDto;
-import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRequestDto;
 import cz.cvut.fel.muzeumSys.mapper.EmergencyRecordMapper;
 import cz.cvut.fel.muzeumSys.model.Art;
 import cz.cvut.fel.muzeumSys.model.EmergencyRecord;
@@ -61,20 +58,19 @@ public class EmergencyRecordService {
     }
 
 
-
     public EmergencyRecord delete(Long id) {
         if (!emergencyRecordRepository.existsById(id)) {
             throw new EntityNotFoundException("Nouzový záznam s ID " + id + " nebyl nalezen.");
         }
-            EmergencyRecord emergencyRecord = emergencyRecordRepository.findById(id)
-                    .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + id + " nebylo nalezeno."));
-            emergencyRecordRepository.delete(emergencyRecord);
-            return emergencyRecord;
+        EmergencyRecord emergencyRecord = emergencyRecordRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Dílo s ID " + id + " nebylo nalezeno."));
+        emergencyRecordRepository.delete(emergencyRecord);
+        return emergencyRecord;
 
 
     }
 
-    public EmergencyRecord update(Long id,Art art, User user, LocalDateTime time, String note) {
+    public EmergencyRecord update(Long id, Art art, User user, LocalDateTime time, String note) {
         EmergencyRecord record = new EmergencyRecord();
         record.setId(id);
         record.setArt(art);

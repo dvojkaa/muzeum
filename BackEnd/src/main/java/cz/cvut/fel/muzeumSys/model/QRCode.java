@@ -2,14 +2,17 @@ package cz.cvut.fel.muzeumSys.model;
 
 import cz.cvut.fel.muzeumSys.model.enums.Color;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Getter
-@Setter@ToString
+@Setter
+@ToString
 @Entity
 @Table(name = "qrcode")
-public class QRCode  {
+public class QRCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

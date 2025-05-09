@@ -1,12 +1,12 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [role, setRole] = useState(null);
     const [token, setToken] = useState(null);
-    const [loading, setLoading] = useState(true); // přidat
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedToken = sessionStorage.getItem('accessToken');
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
 
-    const login = async (jwtToken,role) => {
+    const login = async (jwtToken, role) => {
         setToken(jwtToken);
         sessionStorage.setItem('accessToken', jwtToken);
         setIsLoggedIn(true);
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, role }}>
+        <AuthContext.Provider value={{isLoggedIn, login, logout, role}}>
             {children}
         </AuthContext.Provider>
     );

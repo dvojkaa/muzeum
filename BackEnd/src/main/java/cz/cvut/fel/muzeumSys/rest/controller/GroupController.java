@@ -23,12 +23,12 @@ public class GroupController {
     }
 
 
-    @PostMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Group> createGroup(@RequestBody GroupDto groupDto) {
         return ResponseEntity.ok(groupService.createGroup(groupDto));
     }
 
-    @PostMapping(value="/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Group>> getGroups() {
         return ResponseEntity.ok(groupService.getGroups());
     }

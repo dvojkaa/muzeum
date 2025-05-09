@@ -1,21 +1,16 @@
 package cz.cvut.fel.muzeumSys.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-//@DiscriminatorValue("EMPLOYEE")
 @Getter
 @Setter
 @ToString
 @Entity
-//@NamedQueries({
-//        @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Employee c WHERE c.email = :username"),
-//        @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Employee c WHERE c.email = :email"),
-//        @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber"),
-//        @NamedQuery(name = "Customer.findByEmailAndPassword", query = "SELECT c FROM Employee c WHERE c.phoneNumber = :phoneNumber ")
-//
-//})
-public class Employee extends User{
+
+public class Employee extends User {
 
     private Boolean suspended;
 

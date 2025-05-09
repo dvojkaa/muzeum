@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../CSS/Modal.css';
 
-const EditRecordModal = ({ onClose, initialData, onSuccess }) => {
+const EditRecordModal = ({onClose, initialData, onSuccess}) => {
     const token = sessionStorage.getItem("accessToken");
     const [formData, setFormData] = useState({
         id: initialData.id,
@@ -31,8 +31,8 @@ const EditRecordModal = ({ onClose, initialData, onSuccess }) => {
     }, [initialData]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value}));
     };
 
     const handleSubmit = async (e) => {

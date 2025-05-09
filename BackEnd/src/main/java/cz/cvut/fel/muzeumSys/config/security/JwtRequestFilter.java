@@ -1,7 +1,4 @@
-
-
 package cz.cvut.fel.muzeumSys.config.security;
-
 
 import cz.cvut.fel.muzeumSys.service.UserService;
 import jakarta.servlet.FilterChain;
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -34,7 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getServletPath();
-        return path.equals("/user/login")|| path.equals("/art/{id}");
+        return path.equals("/user/login") || path.equals("/art/{id}");
     }
 
     @Override

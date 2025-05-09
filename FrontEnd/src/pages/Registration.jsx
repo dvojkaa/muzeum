@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../CSS/Registration.css';
-import { AuthContext } from '../components/AuthContext';
+import {AuthContext} from '../components/AuthContext';
 
 const Registration = () => {
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -17,7 +17,7 @@ const Registration = () => {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -43,7 +43,7 @@ const Registration = () => {
                 const data = await response.json();
                 console.log('Registration successful:', data);
 
-                login(data.token); // 👈 Spustíme login context funkci
+                login(data.token);
                 navigate('/');
             } else {
                 console.error('Registration failed:', response.statusText);
@@ -57,19 +57,24 @@ const Registration = () => {
         <div className="login">
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <input onChange={handleChange} value={formData.firstName} type="text" id="firstName" name="firstName" placeholder="Jméno:" required />
+                    <input onChange={handleChange} value={formData.firstName} type="text" id="firstName"
+                           name="firstName" placeholder="Jméno:" required/>
                 </div>
                 <div className="form-group">
-                    <input onChange={handleChange} value={formData.lastName} type="text" id="lastName" name="lastName" placeholder="Příjmení:" required />
+                    <input onChange={handleChange} value={formData.lastName} type="text" id="lastName" name="lastName"
+                           placeholder="Příjmení:" required/>
                 </div>
                 <div className="form-group">
-                    <input onChange={handleChange} value={formData.email} type="email" id="email" name="email" placeholder="E-mail:" required />
+                    <input onChange={handleChange} value={formData.email} type="email" id="email" name="email"
+                           placeholder="E-mail:" required/>
                 </div>
                 <div className="form-group">
-                    <input onChange={handleChange} value={formData.password} type="password" id="password" name="password" placeholder="Heslo:" required />
+                    <input onChange={handleChange} value={formData.password} type="password" id="password"
+                           name="password" placeholder="Heslo:" required/>
                 </div>
                 <div className="form-group">
-                    <input onChange={handleChange} value={formData.phoneNumber} type="tel" id="phoneNumber" name="phoneNumber" placeholder="Telefon:" />
+                    <input onChange={handleChange} value={formData.phoneNumber} type="tel" id="phoneNumber"
+                           name="phoneNumber" placeholder="Telefon:"/>
                 </div>
                 <button id="register" type="submit">Registrovat se</button>
             </form>

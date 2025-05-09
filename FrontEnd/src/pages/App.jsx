@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import {Route, Routes, Navigate, useLocation} from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Art from "../pages/Art.jsx";
@@ -26,43 +26,43 @@ function App() {
 
     return (
         <>
-            {!hideLayout && <Header />}
+            {!hideLayout && <Header/>}
 
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/registration" element={<Registration />} />
-                <Route path="/art/:id" element={<Art />} />
-                <Route path="/logout" element={<Logout />} />
+                <Route path="/" element={<Home/>}/>
+                <Route path="/registration" element={<Registration/>}/>
+                <Route path="/art/:id" element={<Art/>}/>
+                <Route path="/logout" element={<Logout/>}/>
 
                 {/* Admin Routes */}
                 <Route path="/admin/employee" element={
                     <AdminRoute>
-                        <Employee />
+                        <Employee/>
                     </AdminRoute>
-                } />
+                }/>
                 <Route path="/admin/database" element={
                     <AdminRoute>
-                        <Database />
+                        <Database/>
                     </AdminRoute>
-                } />
+                }/>
 
                 <Route path="/admin/emergency" element={
                     <AdminRoute>
-                        <EmergencyRecords />
+                        <EmergencyRecords/>
                     </AdminRoute>
-                } />
+                }/>
 
                 {/* Employee Routes */}
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login/>}/>
 
                 <Route path="/employee" element={
                     <EmployeeRoute>
-                        <EmployeeMainPage />
+                        <EmployeeMainPage/>
                     </EmployeeRoute>
-                } />
+                }/>
             </Routes>
 
-            {!hideLayout && <Footer />}
+            {!hideLayout && <Footer/>}
         </>
     );
 }

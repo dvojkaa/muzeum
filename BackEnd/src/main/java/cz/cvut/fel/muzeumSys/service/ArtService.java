@@ -1,15 +1,11 @@
 package cz.cvut.fel.muzeumSys.service;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.client.j2se.MatrixToImageConfig;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import cz.cvut.fel.muzeumSys.dto.Record.ArtDto;
 import cz.cvut.fel.muzeumSys.dto.Record.EmergencyRecordDto;
 import cz.cvut.fel.muzeumSys.mapper.ArtMapper;
-import cz.cvut.fel.muzeumSys.mapper.EmergencyRecordMapper;
-import cz.cvut.fel.muzeumSys.model.*;
+import cz.cvut.fel.muzeumSys.model.Art;
+import cz.cvut.fel.muzeumSys.model.EmergencyRecord;
+import cz.cvut.fel.muzeumSys.model.User;
 import cz.cvut.fel.muzeumSys.repository.ArtRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -20,19 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Service
@@ -76,10 +67,6 @@ public class ArtService {
     }
 
 
-
-
-
-
     public List<Art> editArt(List<ArtDto> artList) {
         return artList.stream()
                 .map(artDto -> {
@@ -94,7 +81,7 @@ public class ArtService {
     }
 
 
-    public List<Art> emergency(List<ArtDto> artList,String note) {
+    public List<Art> emergency(List<ArtDto> artList, String note) {
         User currentUser = userService.getCurrentUser();
 
         List<Art> affected = new ArrayList<>();
@@ -123,9 +110,7 @@ public class ArtService {
         String note = emergencyRecordDto.note();
 
 
-
-
-        return emergencyService.update(emergencyRecordDto.id() ,art,user,time,note);
+        return emergencyService.update(emergencyRecordDto.id(), art, user, time, note);
     }
 
 

@@ -1,14 +1,15 @@
 package cz.cvut.fel.muzeumSys.rest.controller;
 
 import cz.cvut.fel.muzeumSys.config.security.JwtUtil;
-import cz.cvut.fel.muzeumSys.repository.UserRepository;
 import cz.cvut.fel.muzeumSys.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     private final JwtUtil jwtUtil;
+
     @PostMapping(value = "/validateToken", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, String>> validateToken(@RequestHeader("Authorization") String authorizationHeader) {
         Map<String, String> response = new HashMap<>();

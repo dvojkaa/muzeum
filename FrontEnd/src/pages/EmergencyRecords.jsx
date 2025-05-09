@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../CSS/Database.css';
 import {useNavigate} from "react-router-dom";
 import EditRecordModal from "../components/Modals/EditRecordModal.jsx";
@@ -10,7 +10,7 @@ const EmergencyRecords = () => {
     const [records, setRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [sortConfig, setSortConfig] = useState({ key: 'timestamp', direction: 'desc' });
+    const [sortConfig, setSortConfig] = useState({key: 'timestamp', direction: 'desc'});
     const token = sessionStorage.getItem('accessToken');
     const [selectedRecord, setSelectedRecord] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,7 +63,7 @@ const EmergencyRecords = () => {
         if (sortConfig.key === key && sortConfig.direction === 'asc') {
             direction = 'desc';
         }
-        setSortConfig({ key, direction });
+        setSortConfig({key, direction});
 
         const sorted = [...filteredRecords].sort((a, b) => {
             if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
@@ -95,7 +95,7 @@ const EmergencyRecords = () => {
             <button
                 className="btn-secondary"
                 onClick={() => navigate('/admin/database')}
-                style={{ marginBottom: '1rem' }}
+                style={{marginBottom: '1rem'}}
             >
                 📜 Zpět na díla
             </button>

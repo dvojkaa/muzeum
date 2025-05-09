@@ -191,8 +191,6 @@ const Database = () => {
     };
 
     const handlePrint = () => window.print();
-
-    // Výpočet pro stránkování
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filteredArts.slice(indexOfFirstItem, indexOfLastItem);
@@ -280,7 +278,7 @@ const Database = () => {
                                                 </button>
                                                 <button className="btn-secondary-small"
                                                         onClick={() => handleAddPhoto(art)}>
-                                                     🖼️
+                                                    🖼️
                                                 </button>
                                             </td>
                                         </tr>

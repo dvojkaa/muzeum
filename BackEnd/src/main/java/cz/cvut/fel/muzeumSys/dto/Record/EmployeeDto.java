@@ -5,7 +5,7 @@ package cz.cvut.fel.muzeumSys.dto.Record;
  * Data Transfer Object for Employee entity.
  */
 
-public record EmployeeDto (
+public record EmployeeDto(
         Long id,
         String email,
         String password,
@@ -13,5 +13,5 @@ public record EmployeeDto (
         String lastName,
         String phoneNumber,
         Boolean suspended
-        ){
+) {
 }

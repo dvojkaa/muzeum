@@ -1,6 +1,5 @@
 /*!* === ZÁKLADNÍ NASTAVENÍ PROMĚNNÝCH === *!*/
 
-
 /* === MUZEJNÍ PROMĚNNÉ === */
 @import url('https://fonts.googleapis.com/css2?family=Danfo&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Special+Gothic+Expanded+One&family=EB+Garamond&display=swap');
 
@@ -9,17 +8,17 @@
 
     /*main*/
     /*--font-main: 'EB Garamond', 'Georgia', 'Times New Roman', serif;*/
-     --font-main: 'Special Gothic Expanded One', sans-serif;
+    --font-main: 'Special Gothic Expanded One', sans-serif;
     /* --font-main: 'Danfo', serif;*/
     /* --font-main: 'Roboto Mono', monospace;*/
 
 
     /* světlý motiv */
-    --bg: #fdf8f2;              /* pozadí stránky */
-    --bg-alt: #fffaf3;           /* pozadí boxů */
-    --text: #3b2f2f;             /* hlavní text */
-    --text-muted: #6b4e4e;       /* tlumený text */
-    --primary: #8b5e3c;          /* knižní hnědá */
+    --bg: #fdf8f2; /* pozadí stránky */
+    --bg-alt: #fffaf3; /* pozadí boxů */
+    --text: #3b2f2f; /* hlavní text */
+    --text-muted: #6b4e4e; /* tlumený text */
+    --primary: #8b5e3c; /* knižní hnědá */
     --primary-alt: #a97449;
     --button-hover: #5e3e28;
     --border: #ffffff;
@@ -63,6 +62,7 @@ a {
     text-decoration: none;
     transition: color 0.2s;
 }
+
 a:hover {
     color: var(--primary-alt);
 }
@@ -131,6 +131,7 @@ input:focus, select:focus, textarea:focus {
     border-color: var(--primary);
     /*background-color: #625252;*/
 }
+
 .edit-group-form {
     display: flex;
     flex-direction: column;
@@ -178,7 +179,7 @@ input:focus, select:focus, textarea:focus {
     border-radius: 6px;
     font-weight: 500;
     font-size: 1rem;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {

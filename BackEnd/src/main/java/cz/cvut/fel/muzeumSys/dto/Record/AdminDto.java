@@ -4,7 +4,7 @@ package cz.cvut.fel.muzeumSys.dto.Record;
  * Data Transfer Object for Admin entity.
  */
 
-public record AdminDto (
+public record AdminDto(
 
         Long id,
         String firstName,
@@ -12,4 +12,5 @@ public record AdminDto (
         String email,
         String password,
         String phoneNumber
-){}
+) {
+}

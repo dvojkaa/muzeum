@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
@@ -18,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 @Table(name = "users")
 
-public abstract class User{
+public abstract class User {
 
 
     @Id
@@ -29,7 +28,6 @@ public abstract class User{
     @Column(nullable = false, unique = true)
     private String email;
 
-//    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)

@@ -30,5 +30,4 @@ public class EmergencyRecord {
 
     private String note;
 
-    // konstruktory, gettery, settery
 }

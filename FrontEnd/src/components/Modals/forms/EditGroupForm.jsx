@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 const eras = [
     "PREHISTORIC", "ANCIENT_EGYPT", "ANCIENT_MESOPOTAMIA", "ANCIENT_GREECE", "ANCIENT_ROME",
@@ -19,7 +19,7 @@ const types = [
 
 const priorities = ["RED", "YELLOW", "GREEN"].sort((a, b) => a.localeCompare(b));
 
-const EditGroupForm = ({ artList, onSubmit, onCancel }) => {
+const EditGroupForm = ({artList, onSubmit, onCancel}) => {
     const [updates, setUpdates] = useState({
         color: '',
         type: '',
@@ -29,8 +29,8 @@ const EditGroupForm = ({ artList, onSubmit, onCancel }) => {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUpdates(prev => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setUpdates(prev => ({...prev, [name]: value}));
     };
 
     const handleSubmit = (e) => {
@@ -81,12 +81,12 @@ const EditGroupForm = ({ artList, onSubmit, onCancel }) => {
 
                 <label>
                     Skupina (Group ID):
-                    <input type="number" name="group" value={updates.group} onChange={handleChange} />
+                    <input type="number" name="group" value={updates.group} onChange={handleChange}/>
                 </label>
 
                 <label>
                     Místnost (Room ID):
-                    <input type="number" name="room_id" value={updates.room_id} onChange={handleChange} />
+                    <input type="number" name="room_id" value={updates.room_id} onChange={handleChange}/>
                 </label>
             </div>
 
