@@ -1,8 +1,8 @@
 import React from 'react';
-import EditArtForm from './forms/EditArtForm';
-import MoveArtForm from './forms/MoveArtForm';
-import EditGroupForm from './forms/EditGroupForm';
-import EmergencyListConfirm from './forms/EmergencyListConfirm';
+import EditArtForm from '../Modals/forms/EditArtForm';
+import MoveArtForm from '../Modals/forms/MoveArtForm';
+import EditGroupForm from '../Modals/forms/EditGroupForm';
+import EmergencyListConfirm from '../Modals/forms/EmergencyListConfirm';
 
 const ActionModal = ({ actionType, artList, onSubmit, onCancel }) => {
     const renderForm = () => {
