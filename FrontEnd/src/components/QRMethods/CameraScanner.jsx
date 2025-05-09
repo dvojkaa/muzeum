@@ -12,7 +12,11 @@ const CameraScanner = ({ onDetected, scannedArts = [], onDone }) => {
             .then((devices) => {
                 setCameras(devices);
                 if (devices.length > 0) {
-                    setSelectedCameraId(devices[0].id);
+                    // Pokud je druhá kamera, vezmi ji, jinak použij první
+                    const cameraId = devices[1]?.id || devices[0].id;
+                    setSelectedCameraId(cameraId);
+                } else {
+                    console.warn("Žádné kamery nebyly nalezeny.");
                 }
             })
             .catch((err) => {
