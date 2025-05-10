@@ -122,7 +122,7 @@ const Employee = () => {
                             <td>{user.role.replace('ROLE_', '')}</td>
                             <td>
                                 <button className="btn-secondary" onClick={() => handleEditEmployee(user)}>
-                                    Upravit
+                                    📝
                                 </button>
                             </td>
                         </tr>
