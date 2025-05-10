@@ -21,7 +21,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-bottom: 1rem;
+    margin: 1rem;
 }
 
 .add-employee-btn:hover {
