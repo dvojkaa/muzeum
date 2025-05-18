@@ -66,59 +66,9 @@ Projekt obsahuje jednotkové a integrační testy pomocí JUnit a MockMvc. Testy
 | Backend      | Railway   | https://muzeum-production.up.railway.app   |
 | Frontend     | Vercel    | https://muzeum-sigma.vercel.app            |
 
-## 📸 Ukázky rozhraní
+## Autor
 
-Ukázky rozhraní se nacházejí ve složce `screenshots`.
-
-- Admin panel
-- Mobilní rozhraní
-
-## 📂 Struktura projektu
-
-```
-MuzeumSys/
-├── frontend/              # React aplikace
-├── src/                   # Backendový kód
-│   ├── config/            # Bezpečnost, JWT, konfigurace
-│   ├── controller/        # REST controllery
-│   ├── dto/               # DTO objekty
-│   ├── entity/            # JPA entity
-│   ├── repository/        # Spring Data JPA repozitáře
-│   └── service/           # Logika aplikace
-├── tests/                 # JUnit integrační testy
-└── README.md              # Tento soubor
-```
-
-## 💬 REST API ukázka
-
-### Login
-
-```http
-POST /user/login
-Content-Type: application/json
-
-{
-  "email": "admin@muzeum.cz",
-  "password": "admin"
-}
-```
-
-### Response:
-
-```json
-{
-  "role": "ROLE_ADMIN",
-  "token": "eyJhbGciOiJIUzI1NiJ9..."
-}
-```
-
-## 📜 Licence
-
-Tento projekt byl vytvořen jako bakalářská práce na Fakultě elektrotechnické ČVUT v Praze. Projekt je dostupný pro studijní a výzkumné účely.
-
-## ✍️ Autor
-
-**Bc. Vojtěch Kratina**  
+**Vojtěch Kratina**  
 Fakulta elektrotechnická, ČVUT v Praze  
 Bakalářská práce, 2024/2025  
 Vedoucí: Ing. Lukáš Zoubek
