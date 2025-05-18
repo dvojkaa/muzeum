@@ -15,16 +15,16 @@ const Header = () => {
 
                 {isLoggedIn && (
                     <>
-                        <Link to="/admin/database">View Database</Link>
-                        <Link to="/admin/employee">Add Personal</Link>
-                        <Link to="/logout">Logout</Link>
+                        <Link to="/admin/database">Správa databáze</Link>
+                        <Link to="/admin/employee">Správa personálu</Link>
+                        <Link to="/logout">Odhlásit se</Link>
                     </>
                 )}
 
                 {!isLoggedIn && (
                     <>
                         <Link to="/login">
-                            <button className="btn">Log In</button>
+                            <button className="btn">Přihlásit se</button>
                         </Link>
                     </>
                 )}
