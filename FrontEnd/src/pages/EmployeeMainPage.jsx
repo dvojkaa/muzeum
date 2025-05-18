@@ -93,11 +93,11 @@ const EmployeeMainPage = () => {
 
     return (
         <div className="employee-container">
-            <button className="btn blue" onClick={() => handleActionClick('edit')}>Edit</button>
-            <button className="btn blue" onClick={() => handleActionClick('move')}>Move</button>
-            <button className="btn blue" onClick={() => handleActionClick('editGroup')}>Edit Group</button>
+            <button className="btn blue" onClick={() => handleActionClick('edit')}>Úprava</button>
+            <button className="btn blue" onClick={() => handleActionClick('move')}>Přesun</button>
+            <button className="btn blue" onClick={() => handleActionClick('editGroup')}>SKupinová úprava</button>
             <button className="btn red" onClick={() => handleActionClick('emergency')}>Emergency</button>
-            <Link to="/logout">Logout</Link>
+            <Link to="/logout">Odhlásit se</Link>
 
 
             {showQRModal && (
