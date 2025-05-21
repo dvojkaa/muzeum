@@ -87,7 +87,13 @@ const EditArtForm = ({art, onSubmit, onCancel}) => {
                     ))}
                 </select>
             </div>
-
+            
+            <div className="form-group">
+                <label htmlFor="parameters">Rozměry:</label>
+                <input type="text" id="parameters" name="parameters" value={formData.parameters || ''}
+                          onChange={handleChange} />
+            </div>
+            
             <div className="form-group">
                 <label htmlFor="description">Popis:</label>
                 <input type="text" id="description" name="description" value={formData.description || ''}
