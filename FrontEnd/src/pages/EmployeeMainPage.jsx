@@ -95,7 +95,7 @@ const EmployeeMainPage = () => {
         <div className="employee-container">
             <button className="btn blue" onClick={() => handleActionClick('edit')}>Úprava</button>
             <button className="btn blue" onClick={() => handleActionClick('move')}>Přesun</button>
-            <button className="btn blue" onClick={() => handleActionClick('editGroup')}>SKupinová úprava</button>
+            <button className="btn blue" onClick={() => handleActionClick('editGroup')}>Skupinová úprava</button>
             <button className="btn red" onClick={() => handleActionClick('emergency')}>Emergency</button>
             <Link to="/logout">Odhlásit se</Link>
 
