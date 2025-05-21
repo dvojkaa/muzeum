@@ -28,6 +28,7 @@ const AddArtModal = ({onClose, initialData, onSuccess}) => {
         era: '',
         type: '',
         description: '',
+        parameters: '',
         color: '',
         room: '',
         group: ''
@@ -165,6 +166,11 @@ const AddArtModal = ({onClose, initialData, onSuccess}) => {
                             <option value="">-- Vyberte prioritu --</option>
                             {priorities.map(color => <option key={color} value={color}>{color}</option>)}
                         </select>
+                    </label>
+                    
+                     <label>Rozměry:
+                        <textarea className="form-group" name="parameters" value={formData.parameters}
+                                  onChange={handleChange}/>
                     </label>
 
                     <label>Popis:
